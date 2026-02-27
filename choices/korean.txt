@@ -61,6 +61,10 @@ section=nominalclause
 section=lvc
 
 section=clausal-comp
+  comps1_clause-pos-same=on
+  comps1_ques=prop
+    comps1_feat1_name=form
+    comps1_feat1_value=nonfinite
 
 section=clausalmods
 
@@ -88,6 +92,13 @@ section=lexicon
     verb2_stem2_orth=tv2
     verb2_stem2_pred=_tv2_v_rel
     verb2_require1_others=verb-pc1
+  verb3_name=clausal_verb
+  verb3_valence=nom,comps1
+    verb3_stem1_orth=cv1
+    verb3_stem1_pred=_cv1_v_rel
+    verb3_stem2_orth=cv2
+    verb3_stem2_pred=_cv2_v_rel
+    verb3_require1_others=verb-pc1
 
 section=morphology
   noun-pc1_name=case
@@ -115,13 +126,19 @@ section=morphology
   verb-pc1_name=finiteness
   verb-pc1_obligatory=on
   verb-pc1_order=suffix
-  verb-pc1_inputs=verb1, verb2
+  verb-pc1_inputs=verb1, verb2, verb3
     verb-pc1_lrt1_name=finite
       verb-pc1_lrt1_feat1_name=form
       verb-pc1_lrt1_feat1_value=finite
       verb-pc1_lrt1_feat1_head=verb
       verb-pc1_lrt1_lri1_inflecting=yes
       verb-pc1_lrt1_lri1_orth=-fin
+    verb-pc1_lrt2_name=nonfinite
+      verb-pc1_lrt2_feat1_name=form
+      verb-pc1_lrt2_feat1_value=nonfinite
+      verb-pc1_lrt2_feat1_head=verb
+      verb-pc1_lrt2_lri1_inflecting=yes
+      verb-pc1_lrt2_lri1_orth=-inf
 
 section=toolbox-import
 
@@ -144,6 +161,24 @@ section=test-sentences
   sentence10_star=on
   sentence11_orth=n1 iv1
   sentence11_star=on
+  sentence12_orth=n1-nom n2-nom iv1-inf cv2-fin
+  sentence13_orth=n1-nom n2-nom n3-acc tv1-inf cv1-fin
+  sentence16_orth=n1-nom n2-nom iv1-inf iv2-inf cv2-fin
+  sentence16_star=on
+  sentence17_orth=n1-nom n2-nom iv1-fin cv1-fin
+  sentence17_star=on
+  sentence18_orth=n1-nom n2-nom iv1-inf cv2-inf
+  sentence18_star=on
+  sentence19_orth=n1-nom n2-acc iv1-inf cv1-fin
+  sentence19_star=on
+  sentence20_orth=n1-nom n2-nom n3-nom tv1-inf cv2-fin
+  sentence20_star=on
+  sentence26_orth=n1-nom n2-nom n3-nom n2-acc tv1-inf cv1-inf cv2-fin
+  sentence27_orth=n1-nom n2-nom n3-nom n2-acc tv1-inf tv2-inf cv2-fin
+  sentence27_star=on
+  sentence28_orth=n1-nom n2-acc cv2-fin
+  sentence28_star=on
+  sentence29_orth=n1-nom n3-gen n2-nom iv1-inf cv2-fin
 
 section=gen-options
 
