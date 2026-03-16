@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 import argparse
-from pathlib import Path
 import subprocess
+from pathlib import Path
+
 from delphin import ace
+from utils import ACE_BIN
+
 
 def load_test_sentences(path: Path):
-    tests = []  # (is_good, sentence)
+    tests = []
     for raw in path.read_text(encoding="utf-8").splitlines():
         s = raw.strip()
         if not s or s.startswith("#"):
@@ -13,43 +16,34 @@ def load_test_sentences(path: Path):
         if s.startswith("*"):
             sent = s[1:].strip()
             if sent:
-                tests.append((False, sent))  # BAD: expect 0 parses
+                tests.append((False, sent))
         else:
-            tests.append((True, s))         # GOOD: expect >=1 parses
+            tests.append((True, s))
     return tests
 
-def parse_count(ace_bin: str, grammar_dat: str, sent: str, max_parses: int) -> int:
+
+def parse_count(grammar_dat: str, sent: str, max_parses: int) -> int:
     cmdargs = ["-n", str(max_parses)]
-    # Try to silence ACE NOTE output (stderr)
     try:
         resp = ace.parse(
             grammar_dat,
             sent,
-            executable=ace_bin,
+            executable=ACE_BIN,
             cmdargs=cmdargs,
-            stderr=subprocess.DEVNULL,   # works in many PyDelphin versions
+            stderr=subprocess.DEVNULL,
         )
     except TypeError:
-        # Fallback: older PyDelphin doesn't accept stderr=. Still run, may show NOTE.
         resp = ace.parse(
             grammar_dat,
             sent,
-            executable=ace_bin,
+            executable=ACE_BIN,
             cmdargs=cmdargs,
         )
     return len(resp.get("results", []))
 
-def bucket(k: int) -> str:
-    if k == 0:
-        return "0"
-    elif k == 1:
-        return "1"
-    else:
-        return "M"  # multiple
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--ace", required=True)
     ap.add_argument("--grammar", required=True)
     ap.add_argument("--tests", required=True)
     ap.add_argument("--max-parses", type=int, default=50)
@@ -69,16 +63,20 @@ def main():
     print("--  ---  ---  ---  ------------------------------")
 
     passed = 0
+
     for i, (is_good, sent) in enumerate(tests, start=1):
-        k = parse_count(args.ace, args.grammar, sent, args.max_parses)
-        got = bucket(k)
+        k = parse_count(args.grammar, sent, args.max_parses)
+
         exp = "G" if is_good else "B"
-        ok = (k >= 1) if is_good else (k == 0)
+        ok = (k == 1) if is_good else (k == 0)
         ok_str = "OK" if ok else "FAIL"
-        print(f"{i:>2}  {exp:<3}  {got:<3}  {ok_str:<4} {sent}")
+
+        print(f"{i:>2}  {exp:<3}  {k:<3}  {ok_str:<4} {sent}")
+
         passed += int(ok)
+
         if not ok:
-            expected = ">=1" if is_good else "0"
+            expected = "1" if is_good else "0"
             fails.append((i, exp, expected, k, sent))
 
     print("--  ---  ---  ---  ------------------------------")
@@ -89,6 +87,7 @@ def main():
         for i, exp, expected, k, sent in fails:
             print(f"- #{i} exp={exp} expected={expected} got={k} :: {sent}")
         raise SystemExit(2)
+
 
 if __name__ == "__main__":
     main()

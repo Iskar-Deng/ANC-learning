@@ -57,18 +57,23 @@ section=info-str
 section=arg-opt
 
 section=nominalclause
+  ns1_name=sent
+  ns1_nmz_type=sentential
+  ns1_nmzRel=yes
+  ns1_intrans=on
+  ns1_trans=on
 
 section=lvc
 
 section=clausal-comp
   comps1_clause-pos-same=on
-  comps1_ques=prop
     comps1_feat1_name=form
     comps1_feat1_value=nonfinite
 
 section=clausalmods
 
 section=lexicon
+adj_incorp=on
   noun1_name=common_noun
   noun1_det=imp
     noun1_stem1_orth=n1
@@ -104,7 +109,7 @@ section=morphology
   noun-pc1_name=case
   noun-pc1_obligatory=on
   noun-pc1_order=suffix
-  noun-pc1_inputs=noun1
+  noun-pc1_inputs=noun, verb-pc2
     noun-pc1_lrt1_name=nominative
       noun-pc1_lrt1_feat1_name=case
       noun-pc1_lrt1_feat1_value=nom
@@ -126,7 +131,7 @@ section=morphology
   verb-pc1_name=finiteness
   verb-pc1_obligatory=on
   verb-pc1_order=suffix
-  verb-pc1_inputs=verb1, verb2, verb3
+  verb-pc1_inputs=verb
     verb-pc1_lrt1_name=finite
       verb-pc1_lrt1_feat1_name=form
       verb-pc1_lrt1_feat1_value=finite
@@ -139,6 +144,15 @@ section=morphology
       verb-pc1_lrt2_feat1_head=verb
       verb-pc1_lrt2_lri1_inflecting=yes
       verb-pc1_lrt2_lri1_orth=-inf
+  verb-pc2_name=nominalization
+  verb-pc2_order=suffix
+  verb-pc2_inputs=verb
+    verb-pc2_lrt1_name=sent-nmz
+      verb-pc2_lrt1_feat1_name=nominalization
+      verb-pc2_lrt1_feat1_value=sent
+      verb-pc2_lrt1_feat1_head=verb
+      verb-pc2_lrt1_lri1_inflecting=yes
+      verb-pc2_lrt1_lri1_orth=-nmz
 
 section=toolbox-import
 
@@ -179,6 +193,19 @@ section=test-sentences
   sentence28_orth=n1-nom n2-acc cv2-fin
   sentence28_star=on
   sentence29_orth=n1-nom n3-gen n2-nom iv1-inf cv2-fin
+  sentence30_orth=n1-nom n2-nom n3-acc tv1-nmz-acc tv2-fin
+  sentence31_orth=n1-nom n2-nom tv1-nmz-acc tv2-fin
+  sentence32_orth=n1-nom n3-acc tv1-nmz-acc tv2-fin
+  sentence33_orth=n1-nom n2-nom iv1-nmz-acc tv2-fin
+  sentence34_orth=n1-nom tv1-nmz-acc tv2-fin
+  sentence35_orth=n1-nom iv1-nmz-acc tv2-fin
+  sentence36_orth=n1-nom n2-nom tv1-nmz tv2-fin
+  sentence36_star=on
+  sentence37_orth=n1-nom n2-nom tv1-acc tv2-fin
+  sentence37_star=on
+  sentence38_orth=n1-nom iv1-nmz-nom n2-acc tv2-fin
+  sentence39_orth=n1-nom iv1-nmz n2-acc tv2-fin
+  sentence39_star=on
 
 section=gen-options
 

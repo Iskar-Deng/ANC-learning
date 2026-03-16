@@ -1,0 +1,155 @@
+
+version=35
+
+section=general
+language=Test-English
+punctuation-chars=keep-all
+archive=yes
+
+section=word-order
+word-order=svo
+has-dets=no
+has-aux=no
+subord-word-order=same
+
+section=number
+
+section=person
+person=none
+
+section=gender
+
+section=case
+case-marking=nom-acc
+nom-acc-nom-case-name=nominative
+nom-acc-acc-case-name=accusative
+
+section=adnom-poss
+  poss-strat1_order=head-final
+  poss-strat1_mod-spec=spec
+  poss-strat1_mark-loc=possessor
+  poss-strat1_possessor-type=affix
+  poss-strat1_possessor-affix-agr=non-agree
+  poss-strat2_order=head-initial
+  poss-strat2_mod-spec=mod
+  poss-strat2_mark-loc=possessor
+  poss-strat2_possessor-type=affix
+  poss-strat2_possessor-affix-agr=non-agree
+
+section=direct-inverse
+
+section=tense-aspect-mood
+
+section=evidentials
+
+section=other-features
+form-fin-nf=on
+
+section=sentential-negation
+
+section=coordination
+
+section=matrix-yes-no
+
+section=wh-q
+
+section=info-str
+
+section=arg-opt
+
+section=nominalclause
+
+section=lvc
+
+section=clausal-comp
+
+section=clausalmods
+
+section=lexicon
+  noun1_name=common_noun
+  noun1_det=imp
+    noun1_stem1_orth=n1
+    noun1_stem1_pred=_n1_n_rel
+    noun1_stem2_orth=n2
+    noun1_stem2_pred=_n2_n_rel
+    noun1_stem3_orth=n3
+    noun1_stem3_pred=_n3_n_rel
+  verb1_name=intran_verb
+  verb1_valence=nom
+    verb1_stem1_orth=iv1
+    verb1_stem1_pred=_iv1_v_rel
+    verb1_stem2_orth=iv2
+    verb1_stem2_pred=_iv2_v_rel
+  verb2_name=tran_verb
+  verb2_valence=nom-acc
+    verb2_stem1_orth=tv1
+    verb2_stem1_pred=_tv1_v_rel
+    verb2_stem2_orth=tv2
+    verb2_stem2_pred=_tv2_v_rel
+
+section=morphology
+  noun-pc1_name=case
+  noun-pc1_obligatory=on
+  noun-pc1_order=suffix
+  noun-pc1_inputs=noun
+    noun-pc1_lrt1_name=nominative
+      noun-pc1_lrt1_feat1_name=case
+      noun-pc1_lrt1_feat1_value=nom
+      noun-pc1_lrt1_feat1_head=itself
+      noun-pc1_lrt1_lri1_inflecting=no
+    noun-pc1_lrt2_name=accusative
+      noun-pc1_lrt2_feat1_name=case
+      noun-pc1_lrt2_feat1_value=acc
+      noun-pc1_lrt2_feat1_head=itself
+      noun-pc1_lrt2_lri1_inflecting=no
+    noun-pc1_lrt3_name=genitive-pre
+      noun-pc1_lrt3_feat1_name=poss-strat1
+      noun-pc1_lrt3_feat1_value=possessor
+      noun-pc1_lrt3_feat1_head=itself
+      noun-pc1_lrt3_lri1_inflecting=yes
+      noun-pc1_lrt3_lri1_orth=-s
+    noun-pc1_lrt4_name=genitive-suf
+      noun-pc1_lrt4_feat1_name=poss-strat2
+      noun-pc1_lrt4_feat1_value=possessor
+      noun-pc1_lrt4_feat1_head=itself
+      noun-pc1_lrt4_lri1_inflecting=yes
+      noun-pc1_lrt4_lri1_orth=-of
+  verb-pc1_name=finiteness
+  verb-pc1_obligatory=on
+  verb-pc1_order=suffix
+  verb-pc1_inputs=verb
+    verb-pc1_lrt1_name=finite
+      verb-pc1_lrt1_feat1_name=form
+      verb-pc1_lrt1_feat1_value=finite
+      verb-pc1_lrt1_feat1_head=verb
+      verb-pc1_lrt1_lri1_inflecting=yes
+      verb-pc1_lrt1_lri1_orth=-fin
+
+section=toolbox-import
+
+section=test-sentences
+  sentence1_orth=n1 iv1-fin
+  sentence2_orth=n1 tv1-fin n2
+  sentence3_orth=n1-s n2 iv1-fin
+  sentence4_orth=n2 n1-of iv1-fin
+  sentence5_orth=n1-s n2 tv1-fin n3
+  sentence6_orth=n1 tv1-fin
+  sentence6_star=on
+  sentence7_orth=n1 iv1
+  sentence7_star=on
+  sentence8_orth=n1 iv1-fin n2
+  sentence8_star=on
+  sentence9_orth=n2 n1-s iv1-fin
+  sentence9_star=on
+  sentence10_orth=n1-of n2 iv1-fin
+  sentence10_star=on
+  sentence11_orth=n1-s iv1-fin
+  sentence11_star=on
+  sentence12_orth=n1-of tv2-fin n2
+  sentence12_star=on
+  sentence13_orth=n1-s n2 n3-of iv1-fin
+  sentence13_star=on
+
+section=gen-options
+
+section=ToolboxLexicon
