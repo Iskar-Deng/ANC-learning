@@ -4,10 +4,11 @@
 import argparse
 import json
 import subprocess
+import re
 from pathlib import Path
 
 from delphin import ace
-from utils import ACE_BIN
+from utils import ACE_BIN, MRS_REWRITE_RULES
 
 
 def load_test_sentences(path: Path):
@@ -43,6 +44,13 @@ def parse_results(grammar_dat: str, sent: str, max_parses: int):
             cmdargs=cmdargs,
         )
     return resp.get("results", [])
+
+
+def normalize_mrs(mrs: str) -> str:
+    for src, tgt in MRS_REWRITE_RULES:
+        mrs = mrs.replace(src, tgt)
+    mrs = re.sub(r'ICONS:\s*<[^>]*>', 'ICONS: < >', mrs, flags=re.DOTALL)
+    return mrs
 
 
 def main():
@@ -87,6 +95,8 @@ def main():
             mrs = r.get("mrs")
             if not mrs:
                 continue
+
+            mrs = normalize_mrs(mrs)
 
             rows.append({
                 "id": next_id,

@@ -1,0 +1,178 @@
+NMZ
+
+korean: n1-nom n2-nom n3-acc tv1-nmz-acc tv2-fin
+[ LTOP: h0 INDEX: e2 [ e SF: prop-or-ques E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] RELS: < [ "exist_q_rel"<-1:-1> LBL: h4 ARG0: x3 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h5 BODY: h6 ]  [ "_n1_n_rel"<-1:-1> LBL: h7 ARG0: x3 ]  [ "exist_q_rel"<-1:-1> LBL: h8 ARG0: x9 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h10 BODY: h11 ]  [ "nominalized_rel"<-1:-1> LBL: h12 ARG0: x9 ARG1: h13 ]  [ "exist_q_rel"<-1:-1> LBL: h14 ARG0: x15 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h16 BODY: h17 ]  [ "_n2_n_rel"<-1:-1> LBL: h18 ARG0: x15 ]  [ "exist_q_rel"<-1:-1> LBL: h19 ARG0: x20 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h21 BODY: h22 ]  [ "_n3_n_rel"<-1:-1> LBL: h23 ARG0: x20 ]  [ "_tv1_v_rel"<-1:-1> LBL: h24 ARG0: e25 [ e SF: prop-or-ques E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] ARG1: x15 ARG2: x20 ]  [ "_tv2_v_rel"<-1:-1> LBL: h1 ARG0: e2 ARG1: x3 ARG2: x9 ] > HCONS: < h0 qeq h1 h5 qeq h7 h10 qeq h12 h13 qeq h24 h16 qeq h18 h21 qeq h23 > ICONS: < > ]
+
+english: n1 tv2-fin n2-gen tv1-nmz n3-obl
+[ LTOP: h0 INDEX: e2 [ e SF: prop-or-ques E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] RELS: < [ "exist_q_rel"<-1:-1> LBL: h4 ARG0: x3 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h5 BODY: h6 ]  [ "_n1_n_rel"<-1:-1> LBL: h7 ARG0: x3 ]  [ "_tv2_v_rel"<-1:-1> LBL: h1 ARG0: e2 ARG1: x3 ARG2: x8 [ x SPECI: bool COG-ST: uniq-id PNG: png ] ]  [ "exist_q_rel"<-1:-1> LBL: h9 ARG0: x8 RSTR: h10 BODY: h11 ]  [ "exist_q_rel"<-1:-1> LBL: h12 ARG0: x13 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h14 BODY: h15 ]  [ "_n2_n_rel"<-1:-1> LBL: h16 ARG0: x13 ]  [ "_tv1_v_rel"<-1:-1> LBL: h17 ARG0: e18 [ e SF: iforce E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] ARG1: x13 ARG2: x19 [ x SPECI: bool COG-ST: cog-st PNG: png ] ]  [ "nominalized_rel"<-1:-1> LBL: h20 ARG0: x8 ARG1: h21 ]  [ "exist_q_rel"<-1:-1> LBL: h22 ARG0: x19 RSTR: h23 BODY: h24 ]  [ "_n3_n_rel"<-1:-1> LBL: h25 ARG0: x19 ] > HCONS: < h0 qeq h1 h5 qeq h7 h10 qeq h20 h14 qeq h16 h21 qeq h17 h23 qeq h25 > ICONS: < > ]
+
+eng -> kor:
+ 8  0    -
+ 9  0    -
+10  1    N1-nom n3-acc tv2-nmz-acc tv1-fin 
+11  0    -
+12  0    -
+13  1    N2-acc tv1-nmz-nom iv1-fin
+
+n1 tv1-fin n2-gen tv2-nmz n3-obl
+n1 tv1-fin n2-gen tv2-nmz
+n1 tv1-fin tv2-nmz n3-obl
+n1 tv1-fin n2-gen iv2-nmz
+n1-gen iv1-nmz tv1-fin n2
+tv1-nmz n2-obl iv1-fin
+
+kor -> eng:
+None
+n1-nom n2-nom n3-acc tv1-nmz-acc tv2-fin
+n1-nom n2-nom tv1-nmz-acc tv2-fin
+n1-nom n3-acc tv1-nmz-acc tv2-fin
+n1-nom n2-nom iv1-nmz-acc tv2-fin
+n1-nom tv1-nmz-acc tv2-fin
+n1-nom iv1-nmz-acc tv2-fin
+n1-nom iv1-nmz-nom n2-acc tv2-fin
+
+english: n1 tv1-fin tv2-nmz n3-obl
+[ LTOP: h0 INDEX: e2 [ e SF: prop-or-ques E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] RELS: < [ "exist_q_rel"<-1:-1> LBL: h4 ARG0: x3 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h5 BODY: h6 ]  [ "_n1_n_rel"<-1:-1> LBL: h7 ARG0: x3 ]  [ "_tv1_v_rel"<-1:-1> LBL: h1 ARG0: e2 ARG1: x3 ARG2: x8 [ x SPECI: bool COG-ST: cog-st PNG: png ] ]  [ "exist_q_rel"<-1:-1> LBL: h9 ARG0: x8 RSTR: h10 BODY: h11 ]  [ "_tv2_v_rel"<-1:-1> LBL: h12 ARG0: e13 [ e SF: iforce E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] ARG1: x14 [ x SPECI: bool COG-ST: cog-st PNG: png ] ARG2: x15 [ x SPECI: bool COG-ST: cog-st PNG: png ] ]  [ "nominalized_rel"<-1:-1> LBL: h16 ARG0: x8 ARG1: h17 ]  [ "exist_q_rel"<-1:-1> LBL: h18 ARG0: x15 RSTR: h19 BODY: h20 ]  [ "_n3_n_rel"<-1:-1> LBL: h21 ARG0: x15 ] > HCONS: < h0 qeq h1 h5 qeq h7 h10 qeq h16 h17 qeq h12 h19 qeq h21 > ICONS: < > ]
+
+korean: n1-nom n3-acc tv2-nmz-acc tv1-fin
+[ LTOP: h0 INDEX: e2 [ e SF: prop-or-ques E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] RELS: < [ "exist_q_rel"<-1:-1> LBL: h4 ARG0: x3 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h5 BODY: h6 ]  [ "_n1_n_rel"<-1:-1> LBL: h7 ARG0: x3 ]  [ "exist_q_rel"<-1:-1> LBL: h8 ARG0: x9 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h10 BODY: h11 ]  [ "nominalized_rel"<-1:-1> LBL: h12 ARG0: x9 ARG1: h13 ]  [ "exist_q_rel"<-1:-1> LBL: h14 ARG0: x15 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h16 BODY: h17 ]  [ "_n3_n_rel"<-1:-1> LBL: h18 ARG0: x15 ]  [ "_tv2_v_rel"<-1:-1> LBL: h19 ARG0: e20 [ e SF: prop-or-ques E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] ARG1: x21 [ x SPECI: bool COG-ST: in-foc PNG: png ] ARG2: x15 ]  [ "_tv1_v_rel"<-1:-1> LBL: h1 ARG0: e2 ARG1: x3 ARG2: x9 ] > HCONS: < h0 qeq h1 h5 qeq h7 h10 qeq h12 h13 qeq h19 h16 qeq h18 > ICONS: < > ]
+
+对比发现，这里的英语mrs没有uniq-id。经过查询，uniq-id是noun-poss-unary-phrase-1带来的。
+根据排除法，之前英语里的SF: iforce 只能是 anc-spec-head-phrase 带来的。
+
+eng：
+    SF: iforce | _tv1_v_rel 自己的事件变量 e18
+    COG-ST: uniq-id | n2-gen tv1-nmz n3-obl 名词化后的实体变量 x8
+kor: 
+    SF: prop-or-ques | 全是
+    COG-ST: cog-st ｜ 全是
+
+eng -> kor: 只把 COG-ST 改成 cog-st 可以 generate. 只改SF不行。
+kor -> eng: 只把 SF 改成 iforce 可以 generate。 只改COG-ST不行。
+
+查询可知 prop-or-ques := iforce. 因此 kor 的 prop-or-ques 过窄，需要改为 iforce 放宽。
+同理，uniq-id := cog-st.
+考虑到这样，只需统一替换为父类即可。
+
+-------------------------------------------------------------------------------------------------
+新版不匹配问题：
+kor -> eng:
+10  1    N1 tv2-fin n2-gen tv1-nmz
+11  0    -
+12  1    N1 tv2-fin n2-gen iv1-nmz
+13  0    -
+14  0    -
+15  1    N1-gen iv1-nmz tv2-fin n2
+
+n1-nom n2-nom tv1-nmz-acc tv2-fin
+n1-nom n3-acc tv1-nmz-acc tv2-fin
+n1-nom n2-nom iv1-nmz-acc tv2-fin
+n1-nom tv1-nmz-acc tv2-fin
+n1-nom iv1-nmz-acc tv2-fin
+n1-nom iv1-nmz-nom n2-acc tv2-fin
+
+eng -> kor:
+ 8  1    N1-nom n2-nom n3-acc tv2-nmz-acc tv1-fin
+ 9  0    -
+10  1    N1-nom n3-acc tv2-nmz-acc tv1-fin
+11  1    N1-nom n2-nom iv2-nmz-acc tv1-fin
+12  1    N1-nom iv1-nmz-nom n2-acc tv1-fin
+13  1    N2-acc tv1-nmz-nom iv1-fin
+
+n1 tv1-fin n2-gen tv2-nmz n3-obl
+n1 tv1-fin n2-gen tv2-nmz
+n1 tv1-fin tv2-nmz n3-obl
+n1 tv1-fin n2-gen iv2-nmz
+n1-gen iv1-nmz tv1-fin n2
+tv1-nmz n2-obl iv1-fin
+
+先来分析 kor -> eng
+korean: n1-nom n3-acc tv1-nmz-acc tv2-fin
+[ LTOP: h0 INDEX: e2 [ e SF: iforce E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] RELS: < [ \"exist_q_rel\"<-1:-1> LBL: h4 ARG0: x3 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h5 BODY: h6 ]  [ \"_n1_n_rel\"<-1:-1> LBL: h7 ARG0: x3 ]  [ \"exist_q_rel\"<-1:-1> LBL: h8 ARG0: x9 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h10 BODY: h11 ]  [ \"nominalized_rel\"<-1:-1> LBL: h12 ARG0: x9 ARG1: h13 ]  [ \"exist_q_rel\"<-1:-1> LBL: h14 ARG0: x15 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h16 BODY: h17 ]  [ \"_n3_n_rel\"<-1:-1> LBL: h18 ARG0: x15 ]  [ \"_tv1_v_rel\"<-1:-1> LBL: h19 ARG0: e20 [ e SF: iforce E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] ARG1: x21 [ x SPECI: bool COG-ST: in-foc PNG: png ] ARG2: x15 ]  [ \"_tv2_v_rel\"<-1:-1> LBL: h1 ARG0: e2 ARG1: x3 ARG2: x9 ] > HCONS: < h0 qeq h1 h5 qeq h7 h10 qeq h12 h13 qeq h19 h16 qeq h18 > ICONS: < > ]
+
+english: n1 tv2-fin tv1-nmz n3-obl
+[ LTOP: h0 INDEX: e2 [ e SF: iforce E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] RELS: < [ "exist_q_rel"<-1:-1> LBL: h4 ARG0: x3 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h5 BODY: h6 ]  [ "_n1_n_rel"<-1:-1> LBL: h7 ARG0: x3 ]  [ "_tv2_v_rel"<-1:-1> LBL: h1 ARG0: e2 ARG1: x3 ARG2: x8 [ x SPECI: bool COG-ST: cog-st PNG: png ] ]  [ "exist_q_rel"<-1:-1> LBL: h9 ARG0: x8 RSTR: h10 BODY: h11 ]  [ "_tv1_v_rel"<-1:-1> LBL: h12 ARG0: e13 [ e SF: iforce E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] ARG1: x14 [ x SPECI: bool COG-ST: cog-st PNG: png ] ARG2: x15 [ x SPECI: bool COG-ST: cog-st PNG: png ] ]  [ "nominalized_rel"<-1:-1> LBL: h16 ARG0: x8 ARG1: h17 ]  [ "exist_q_rel"<-1:-1> LBL: h18 ARG0: x15 RSTR: h19 BODY: h20 ]  [ "_n3_n_rel"<-1:-1> LBL: h21 ARG0: x15 ] > HCONS: < h0 qeq h1 h5 qeq h7 h10 qeq h16 h17 qeq h12 h19 qeq h21 > ICONS: < > ]
+
+显然，把 in-foc 替换为 cog-st 即可解决此问题。
+
+再看 eng -> kor
+english: n1 tv1-fin n2-gen tv2-nmz
+[ LTOP: h0 INDEX: e2 [ e SF: prop-or-ques E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] RELS: < [ "exist_q_rel"<-1:-1> LBL: h4 ARG0: x3 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h5 BODY: h6 ]  [ "_n1_n_rel"<-1:-1> LBL: h7 ARG0: x3 ]  [ "_tv1_v_rel"<-1:-1> LBL: h1 ARG0: e2 ARG1: x3 ARG2: x8 [ x SPECI: bool COG-ST: uniq-id PNG: png ] ]  [ "exist_q_rel"<-1:-1> LBL: h9 ARG0: x8 RSTR: h10 BODY: h11 ]  [ "exist_q_rel"<-1:-1> LBL: h12 ARG0: x13 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h14 BODY: h15 ]  [ "_n2_n_rel"<-1:-1> LBL: h16 ARG0: x13 ]  [ "_tv2_v_rel"<-1:-1> LBL: h17 ARG0: e18 [ e SF: iforce E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] ARG1: x13 ARG2: x19 [ x SPECI: bool COG-ST: cog-st PNG: png ] ]  [ "nominalized_rel"<-1:-1> LBL: h20 ARG0: x8 ARG1: h21 ] > HCONS: < h0 qeq h1 h5 qeq h7 h10 qeq h20 h14 qeq h16 h21 qeq h17 > ICONS: < e22 [ e SF: iforce E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] non-focus x19 > ]
+
+korean: n1-nom n2-nom tv2-nmz-acc tv1-fin
+[ LTOP: h0 INDEX: e2 [ e SF: prop-or-ques E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] RELS: < [ "exist_q_rel"<-1:-1> LBL: h4 ARG0: x3 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h5 BODY: h6 ]  [ "_n1_n_rel"<-1:-1> LBL: h7 ARG0: x3 ]  [ "exist_q_rel"<-1:-1> LBL: h8 ARG0: x9 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h10 BODY: h11 ]  [ "nominalized_rel"<-1:-1> LBL: h12 ARG0: x9 ARG1: h13 ]  [ "exist_q_rel"<-1:-1> LBL: h14 ARG0: x15 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h16 BODY: h17 ]  [ "_n2_n_rel"<-1:-1> LBL: h18 ARG0: x15 ]  [ "_tv2_v_rel"<-1:-1> LBL: h19 ARG0: e20 [ e SF: prop-or-ques E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] ARG1: x15 ARG2: x21 [ x SPECI: bool COG-ST: cog-st PNG: png ] ]  [ "_tv1_v_rel"<-1:-1> LBL: h1 ARG0: e2 ARG1: x3 ARG2: x9 ] > HCONS: < h0 qeq h1 h5 qeq h7 h10 qeq h12 h13 qeq h19 h16 qeq h18 > ICONS: < > ]
+
+简单清除 ICONS 即可。
+
+Georgian 里， gen 无法正常省略。可能问题出在这里 nmz-suffix 上，无法正常进入bare-np。
+进行 eng - geo 对比。
+
+geo: n1-erg n3-obl n2-gen tv2-nmz-abs tv1-fin
+
+trans-erg-poss-lex-rule := trans-erg-poss-lex-rule_supertype &
+  [ DTR.SYNSEM.LOCAL.CAT.VAL.COMPS < [ LOCAL.CONT.HOOK.INDEX #obj ] >,
+    SYNSEM.LOCAL.CAT [ VAL.SPR < [ LOCAL [ CONT.HOOK.INDEX #obj,
+                                           CAT.HEAD.POSSESSOR possessive ] ] >,
+                       HEAD.ANC-WO + ] ].
+
+eng: n1 tv1-fin (n3-gen) tv2-nmz n2-obl
+
+trans-nominal-lex-rule := trans-nominal-lex-rule_supertype &
+  [ DTR.SYNSEM.LOCAL.CAT.VAL.SUBJ < [ LOCAL.CONT.HOOK.INDEX #subj ] >,
+    SYNSEM.LOCAL.CAT.VAL.SPR < [ LOCAL [ CONT.HOOK.INDEX #subj,
+                                         CAT.HEAD.POSSESSOR possessive ] ] > ].
+
+1、eng 走的是 head-comp
+2、删除 HEAD.ANC-WO 后，geo 可以正常 省略 gen。但 comp-head 和 anc-comp-head 都可以走，产生了歧义。
+
+[ LTOP: h0 INDEX: e2 [ e SF: prop-or-ques E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] RELS: < [ "exist_q_rel"<-1:-1> LBL: h4 ARG0: x3 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h5 BODY: h6 ]  [ "_n1_n_rel"<-1:-1> LBL: h7 ARG0: x3 ]  [ "exist_q_rel"<-1:-1> LBL: h8 ARG0: x9 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h10 BODY: h11 ]  [ "exist_q_rel"<-1:-1> LBL: h12 ARG0: x13 [ x SPECI: bool COG-ST: uniq-id PNG: png ] RSTR: h14 BODY: h15 ]  [ "poss_rel"<-1:-1> LBL: h16 ARG0: e17 [ e SF: iforce E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] ARG1: x13 ARG2: x18 [ x SPECI: bool COG-ST: cog-st PNG: png ] ]  [ "exist_q_rel"<-1:-1> LBL: h19 ARG0: x18 RSTR: h20 BODY: h21 ]  [ "_n2_n_rel"<-1:-1> LBL: h22 ARG0: x18 ]  [ "_n3_n_rel"<-1:-1> LBL: h16 ARG0: x13 ]  [ "_tv2_v_rel"<-1:-1> LBL: h23 ARG0: e24 [ e SF: iforce E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] ARG1: x13 ARG2: x25 [ x SPECI: bool COG-ST: cog-st PNG: png ] ]  [ "nominalized_rel"<-1:-1> LBL: h26 ARG0: x9 ARG1: h27 ]  [ "_tv1_v_rel"<-1:-1> LBL: h1 ARG0: e2 ARG1: x3 ARG2: x9 ] > HCONS: < h0 qeq h1 h5 qeq h7 h10 qeq h26 h14 qeq h16 h20 qeq h22 h27 qeq h23 > ICONS: < > ]
+
+[ LTOP: h0 INDEX: e2 [ e SF: prop-or-ques E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] RELS: < [ "exist_q_rel"<-1:-1> LBL: h4 ARG0: x3 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h5 BODY: h6 ]  [ "_n1_n_rel"<-1:-1> LBL: h7 ARG0: x3 ]  [ "exist_q_rel"<-1:-1> LBL: h8 ARG0: x9 [ x SPECI: bool COG-ST: uniq-id PNG: png ] RSTR: h10 BODY: h11 ]  [ "exist_q_rel"<-1:-1> LBL: h12 ARG0: x13 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h14 BODY: h15 ]  [ "_n2_n_rel"<-1:-1> LBL: h16 ARG0: x13 ]  [ "exist_q_rel"<-1:-1> LBL: h17 ARG0: x18 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h19 BODY: h20 ]  [ "_n3_n_rel"<-1:-1> LBL: h21 ARG0: x18 ]  [ "_tv2_v_rel"<-1:-1> LBL: h22 ARG0: e23 [ e SF: iforce E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] ARG1: x18 ARG2: x13 ]  [ "nominalized_rel"<-1:-1> LBL: h24 ARG0: x9 ARG1: h25 ]  [ "_tv1_v_rel"<-1:-1> LBL: h1 ARG0: e2 ARG1: x3 ARG2: x9 ] > HCONS: < h0 qeq h1 h5 qeq h7 h10 qeq h24 h14 qeq h16 h19 qeq h21 h25 qeq h22 > ICONS: < > ]
+
+情况：NMZ 的 代码里，ERG-POSS 会触发 ANC-WO 导致异常行为。
+单纯删除 ANC-WO 不足以解决问题。
+可能考虑的解决方案：
+
+1、直接改 set_anc_wo_value() 代码，涉及重新克隆网址等，不一定现实
+2、手动改代码里的 ANC-WO，但不一定能删干净。只删除 ANC-WO 只能修成 obl 接 tv，但 tv 全省略仍然不可以。而且出现了overgenerate
+3、用他的 ANC-WO，把 eng 也改成这个，也就是走：
+same-word-order=no
+nmz-clause-word-order=sov
+初步尝试了一下不太行。
+4、全部用 SENT，但违反类型学，虽然实现上可能可以。
+
+1. 保留这条
+
+把 trans-erg-poss-lex-rule 里的：
+
+HEAD.ANC-WO +
+
+改成：
+
+HEAD.ANC-WO -
+2. 保留这条
+
+把 anc-head-opt-comp-phrase 改成 English 式：
+
+anc-head-opt-comp-phrase := basic-head-opt-comp-phrase &
+  [ SYNSEM.LOCAL.CAT.POSSESSUM #possessum,
+    HEAD-DTR.SYNSEM.LOCAL.CAT [ HEAD noun &
+                                     [ NMZ + ],
+                                POSSESSUM #possessum ] ].
+
+把 anc-head-opt-comp-phrase 改成：
+
+anc-head-opt-comp-phrase := basic-head-opt-comp-phrase &
+  [ SYNSEM.LOCAL.CAT.POSSESSUM #possessum,
+    HEAD-DTR.SYNSEM.LOCAL.CAT [ HEAD noun &
+                                     [ NMZ + ],
+                                POSSESSUM #possessum,
+                                VAL.SPR < [ ] > ] ].
+
+-------------------------------------------------------------------------------------------------
+
+Hebrew: n1 tv2-fin tv1-nmz-acc
+[ LTOP: h0 INDEX: e2 [ e SF: prop-or-ques E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] RELS: < [ "_tv1_v_rel"<-1:-1> LBL: h4 ARG0: e5 [ e SF: iforce E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] ARG1: x6 [ x SPECI: bool COG-ST: cog-st PNG: png ] ARG2: x7 [ x SPECI: bool COG-ST: cog-st PNG: png ] ]  [ "nominalized_rel"<-1:-1> LBL: h8 ARG0: x3 [ x SPECI: bool COG-ST: uniq-id PNG: png ] ARG1: h9 ]  [ "exist_q_rel"<-1:-1> LBL: h10 ARG0: x3 RSTR: h11 BODY: h12 ]  [ "exist_q_rel"<-1:-1> LBL: h13 ARG0: x6 RSTR: h14 BODY: h15 ]  [ "_n2_n_rel"<-1:-1> LBL: h16 ARG0: x6 ]  [ "_iv1_v_rel"<-1:-1> LBL: h1 ARG0: e2 ARG1: x3 ] > HCONS: < h0 qeq h1 h9 qeq h4 h11 qeq h8 h14 qeq h16 > ICONS: < e17 [ e SF: iforce E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] non-focus x7 > ]
+
+Korean: N1-nom tv1-nmz-acc tv2-fin
+[ LTOP: h0 INDEX: e2 [ e SF: iforce E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] RELS: < [ \"exist_q_rel\"<-1:-1> LBL: h4 ARG0: x3 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h5 BODY: h6 ]  [ \"_n1_n_rel\"<-1:-1> LBL: h7 ARG0: x3 ]  [ \"exist_q_rel\"<-1:-1> LBL: h8 ARG0: x9 [ x SPECI: bool COG-ST: cog-st PNG: png ] RSTR: h10 BODY: h11 ]  [ \"nominalized_rel\"<-1:-1> LBL: h12 ARG0: x9 ARG1: h13 ]  [ \"_tv1_v_rel\"<-1:-1> LBL: h14 ARG0: e15 [ e SF: iforce E.TENSE: tense E.ASPECT: aspect E.MOOD: mood ] ARG1: x16 [ x SPECI: bool COG-ST: cog-st PNG: png ] ARG2: x17 [ x SPECI: bool COG-ST: cog-st PNG: png ] ]  [ \"_tv2_v_rel\"<-1:-1> LBL: h1 ARG0: e2 ARG1: x3 ARG2: x9 ] > HCONS: < h0 qeq h1 h5 qeq h7 h10 qeq h12 h13 qeq h14 > ICONS: < > ]

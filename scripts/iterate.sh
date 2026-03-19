@@ -3,7 +3,7 @@ set -euo pipefail
 
 PROJECT_ROOT=/home/dengh/workspace/ANC-learning
 GRAMMAR_ROOT="$PROJECT_ROOT/grammars"
-LID=test-english
+LID=c-random
 TARBALL="$GRAMMAR_ROOT/$LID.tar.gz"
 
 ACE_BIN=$(python3 -c 'from utils import ACE_BIN; print(ACE_BIN)')
