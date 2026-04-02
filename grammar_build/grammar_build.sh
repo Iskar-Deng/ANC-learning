@@ -14,8 +14,8 @@ python3 -m scripts.run_matrix_tests \
 # 调用 ACE 解析指定句子，并输出 derivation tree。
 # 可选打印 MRS 或导出 Graphviz DOT 图，用于查看语法规则展开情况。
 python3 -m scripts.debug_parse \
-  --grammar grammars/test-hebrew_final/test-hebrew.dat \
-  --sent "n1 tv2-fin tv1-nmz-acc" \
+  --grammar grammars/test-english/test-english.dat \
+  --sent "I eat-fin apple" \
   --mrs \
   --tree \
   --png-out trees
@@ -28,8 +28,8 @@ python3 -m scripts.debug_parse \
   --png-out trees
 
 python3 -m scripts.debug_parse \
-  --grammar grammars/test-georgian_orig/test-georgian.dat \
-  --sent "n1-erg n2-gen n3-obl tv2-nmz-abs tv1-fin" \
+  --grammar grammars/test-hebrew/test-hebrew.dat \
+  --sent "Destroytion cityac shocks everyoneac" \
   --mrs \
   --tree \
   --png-out trees
@@ -54,6 +54,6 @@ python3 -m scripts.extract_mrs_from_tests \
 # 根据 MRS jsonl 和指定 grammar 做 generation。
 # 读取前一步保存的 MRS，生成所有可还原的句子，并保存到一个 jsonl 文件中。
 python3 -m scripts.generate_from_mrs_bank \
-  --grammar grammars/c-random_final/c-random.dat \
-  --input mrs/test-georgian.jsonl \
-  --out mrs/generated.jsonl
+  --grammar grammars/test-english/test-english.dat \
+  --input data/pseudo_parsed.jsonl \
+  --out data/english_output.jsonl

@@ -1,7 +1,17 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-DAT_PATH="/home/dengh/workspace/ANC-learning/grammars/c-alignment/c-alignment.dat"
+if [ "$#" -lt 1 ]; then
+  echo "Usage: $0 <path_to_dat_file>"
+  exit 1
+fi
+
+DAT_PATH="$(realpath "$1")"
+
+if [ ! -f "$DAT_PATH" ]; then
+  echo "Error: file not found: $DAT_PATH"
+  exit 1
+fi
 
 GRAMMAR_DIR="$(dirname "$DAT_PATH")"
 CONFIG_FILE="$GRAMMAR_DIR/ace/config.tdl"

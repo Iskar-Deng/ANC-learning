@@ -45,6 +45,14 @@ def main():
     ap.add_argument("--input", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--max-gen", type=int, default=200)
+
+    # ✅ 新增开关：不保存 MRS
+    ap.add_argument(
+        "--no-mrs",
+        action="store_true",
+        help="Do not save MRS in output (save space)",
+    )
+
     args = ap.parse_args()
 
     rows = load_rows(Path(args.input))
@@ -72,11 +80,15 @@ def main():
         sent_str = ", ".join(surfaces) if surfaces else "-"
         print(f"{mrs_id:>2}  {len(surfaces):<3}  {sent_str}")
 
-        out_rows.append({
+        out_entry = {
             "id": mrs_id,
             "sent": surfaces,
-            "mrs": mrs,
-        })
+        }
+
+        if not args.no_mrs:
+            out_entry["mrs"] = mrs
+
+        out_rows.append(out_entry)
 
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)

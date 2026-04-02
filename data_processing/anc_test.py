@@ -4,11 +4,8 @@
 import spacy
 
 TEST_SENTENCES = [
-    "Mary gave a book to me.",
-    "Mary gave me a book.",
-    "I gave up the book.",
-    "I gave the book up.",
-    "I look for my book."
+    "John's destroying of the city shocked everyone",
+    "Mary gave me a book."
 ]
 
 

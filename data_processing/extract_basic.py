@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from collections import Counter
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Sequence
 
@@ -127,13 +128,13 @@ def extract_nominal_modifiers(sent: Span) -> List[JsonDict]:
 
 
 def reject_record(
-    sid: int,
+    id: int,
     sentence: str,
     reason: str,
     nominal_modifiers: Optional[List[JsonDict]] = None,
 ) -> JsonDict:
     return {
-        "sid": sid,
+        "id": id,
         "sentence": sentence,
         "status": "reject",
         "construction": None,
@@ -147,7 +148,7 @@ def reject_record(
 
 
 def keep_record(
-    sid: int,
+    id: int,
     sentence: str,
     construction: str,
     predicate: str,
@@ -157,7 +158,7 @@ def keep_record(
     nominal_modifiers: Optional[List[JsonDict]] = None,
 ) -> JsonDict:
     return {
-        "sid": sid,
+        "id": id,
         "sentence": sentence,
         "status": "keep",
         "construction": construction,
@@ -258,6 +259,7 @@ def extract_simple_clause(pred: Optional[Token], forced_subject: Optional[Token]
     obj_candidates = collect_object_candidates(pred)
 
     if len(obj_candidates) == 0:
+        particle_info = extract_particle(pred)
         return {
             "construction": "iv",
             "predicate": pred.lemma_,
@@ -270,8 +272,8 @@ def extract_simple_clause(pred: Optional[Token], forced_subject: Optional[Token]
                 "adposition_dep": None,
                 "object_form": None,
                 "object_text": None,
-                "particle": extract_particle(pred),
-            } if extract_particle(pred) is not None else None,
+                "particle": particle_info,
+            } if particle_info is not None else None,
             "complement": None,
         }
 
@@ -329,6 +331,7 @@ def extract_cv(
         if embedded is None:
             return None
 
+        particle_info = extract_particle(root)
         return {
             "construction": "cv",
             "predicate": root.lemma_,
@@ -341,8 +344,8 @@ def extract_cv(
                 "adposition_dep": None,
                 "object_form": None,
                 "object_text": None,
-                "particle": extract_particle(root),
-            } if extract_particle(root) is not None else None,
+                "particle": particle_info,
+            } if particle_info is not None else None,
             "complement": {
                 "comp_type": "xcomp",
                 "construction": embedded["construction"],
@@ -363,6 +366,7 @@ def extract_cv(
         if embedded is None:
             return None
 
+        particle_info = extract_particle(root)
         return {
             "construction": "cv",
             "predicate": root.lemma_,
@@ -375,8 +379,8 @@ def extract_cv(
                 "adposition_dep": None,
                 "object_form": None,
                 "object_text": None,
-                "particle": extract_particle(root),
-            } if extract_particle(root) is not None else None,
+                "particle": particle_info,
+            } if particle_info is not None else None,
             "complement": {
                 "comp_type": "ccomp",
                 "construction": embedded["construction"],
@@ -411,19 +415,19 @@ def has_multiple_object_candidates(root: Token) -> bool:
     return len(collect_object_candidates(root)) > 1
 
 
-def extract_from_sentence(sent: Span, sid: int, max_depth: int = 2) -> JsonDict:
+def extract_from_sentence(sent: Span, id: int, max_depth: int = 2) -> JsonDict:
     sentence = sent.text.strip()
     nominal_modifiers = extract_nominal_modifiers(sent)
 
     if not sentence:
-        return reject_record(sid, sentence, "empty_sentence", nominal_modifiers=nominal_modifiers)
+        return reject_record(id, sentence, "empty_sentence", nominal_modifiers=nominal_modifiers)
 
     root = next((tok for tok in sent if tok.dep_ == "ROOT"), None)
     if root is None:
-        return reject_record(sid, sentence, "no_root", nominal_modifiers=nominal_modifiers)
+        return reject_record(id, sentence, "no_root", nominal_modifiers=nominal_modifiers)
 
     if has_child_dep(root, {"nsubjpass", "auxpass"}):
-        return reject_record(sid, sentence, "passive", nominal_modifiers=nominal_modifiers)
+        return reject_record(id, sentence, "passive", nominal_modifiers=nominal_modifiers)
 
     subj = first_child_by_dep(root, {"nsubj"})
     attr = first_child_by_dep(root, {"attr"})
@@ -431,11 +435,11 @@ def extract_from_sentence(sent: Span, sid: int, max_depth: int = 2) -> JsonDict:
 
     if root.lemma_ == "be" and root.pos_ == "AUX":
         if acomp is not None:
-            return reject_record(sid, sentence, "copula_adjective", nominal_modifiers=nominal_modifiers)
+            return reject_record(id, sentence, "copula_adjective", nominal_modifiers=nominal_modifiers)
 
         if subj is not None and attr is not None and attr.pos_ in {"NOUN", "PROPN", "PRON"}:
             return keep_record(
-                sid,
+                id,
                 sentence,
                 "cop_n",
                 "be",
@@ -447,16 +451,16 @@ def extract_from_sentence(sent: Span, sid: int, max_depth: int = 2) -> JsonDict:
                 nominal_modifiers=nominal_modifiers,
             )
 
-        return reject_record(sid, sentence, "bad_copula", nominal_modifiers=nominal_modifiers)
+        return reject_record(id, sentence, "bad_copula", nominal_modifiers=nominal_modifiers)
 
     if root.pos_ == "VERB":
         if has_multiple_object_candidates(root):
-            return reject_record(sid, sentence, "multiple_objects", nominal_modifiers=nominal_modifiers)
+            return reject_record(id, sentence, "multiple_objects", nominal_modifiers=nominal_modifiers)
 
         result = extract_clause(root, forced_subject=None, depth=0, max_depth=max_depth)
         if result is not None:
             return keep_record(
-                sid,
+                id,
                 sentence,
                 result["construction"],
                 result["predicate"],
@@ -467,11 +471,11 @@ def extract_from_sentence(sent: Span, sid: int, max_depth: int = 2) -> JsonDict:
             )
 
         if has_child_dep(root, {"xcomp", "ccomp"}):
-            return reject_record(sid, sentence, "bad_clausal_complement", nominal_modifiers=nominal_modifiers)
+            return reject_record(id, sentence, "bad_clausal_complement", nominal_modifiers=nominal_modifiers)
 
-        return reject_record(sid, sentence, "bad_simple_clause", nominal_modifiers=nominal_modifiers)
+        return reject_record(id, sentence, "bad_simple_clause", nominal_modifiers=nominal_modifiers)
 
-    return reject_record(sid, sentence, "unhandled", nominal_modifiers=nominal_modifiers)
+    return reject_record(id, sentence, "unhandled", nominal_modifiers=nominal_modifiers)
 
 
 def iter_nonempty_lines(path: Path) -> Iterable[str]:
@@ -493,6 +497,219 @@ def write_jsonl(records: List[JsonDict], output_path: Path) -> None:
             outfile.write(json.dumps(rec, ensure_ascii=False) + "\n")
 
 
+def get_complement_depth(comp: Optional[JsonDict]) -> int:
+    if comp is None:
+        return 0
+    return 1 + get_complement_depth(comp.get("complement"))
+
+
+def collect_stats(records: List[JsonDict], top_n_predicates: int = 20) -> JsonDict:
+    total = len(records)
+    kept_records = [r for r in records if r["status"] == "keep"]
+    rejected_records = [r for r in records if r["status"] == "reject"]
+
+    kept = len(kept_records)
+    rejected = len(rejected_records)
+
+    construction_counts = Counter(
+        r["construction"] for r in kept_records if r["construction"] is not None
+    )
+    reject_counts = Counter(
+        r["reject_reason"] for r in rejected_records if r["reject_reason"] is not None
+    )
+
+    object_type_counts = Counter()
+    comp_type_counts = Counter()
+    comp_depth_counts = Counter()
+    predicate_counts = Counter()
+    particle_counts = Counter()
+
+    nominal_modifier_totals = Counter()
+    sentences_with_modifier = Counter()
+    noun_records_total = 0
+
+    for rec in kept_records:
+        predicate = rec.get("predicate")
+        if predicate:
+            predicate_counts[predicate] += 1
+
+        obj = rec.get("object_info")
+        if obj:
+            obj_type = obj.get("object_type")
+            if obj_type:
+                object_type_counts[obj_type] += 1
+            particle = obj.get("particle")
+            if particle:
+                particle_lemma = particle.get("particle_lemma")
+                if particle_lemma:
+                    particle_counts[particle_lemma] += 1
+
+        comp = rec.get("complement")
+        if comp:
+            comp_type = comp.get("comp_type")
+            if comp_type:
+                comp_type_counts[comp_type] += 1
+            comp_depth_counts[get_complement_depth(comp)] += 1
+
+        current = comp
+        while current:
+            obj2 = current.get("object_info")
+            if obj2 and obj2.get("particle"):
+                particle_lemma = obj2["particle"].get("particle_lemma")
+                if particle_lemma:
+                    particle_counts[particle_lemma] += 1
+            current = current.get("complement")
+
+    for rec in records:
+        nm_list = rec.get("nominal_modifiers", [])
+        noun_records_total += len(nm_list)
+
+        has_poss = False
+        has_of = False
+        has_by = False
+
+        for noun_rec in nm_list:
+            mods = noun_rec.get("modifiers", {})
+            poss_n = len(mods.get("poss", []))
+            of_n = len(mods.get("of", []))
+            by_n = len(mods.get("by", []))
+
+            nominal_modifier_totals["poss"] += poss_n
+            nominal_modifier_totals["of"] += of_n
+            nominal_modifier_totals["by"] += by_n
+
+            if poss_n > 0:
+                has_poss = True
+            if of_n > 0:
+                has_of = True
+            if by_n > 0:
+                has_by = True
+
+        if has_poss:
+            sentences_with_modifier["poss"] += 1
+        if has_of:
+            sentences_with_modifier["of"] += 1
+        if has_by:
+            sentences_with_modifier["by"] += 1
+        if has_poss or has_of or has_by:
+            sentences_with_modifier["any"] += 1
+
+    def pct(n: int, d: int) -> float:
+        return (n / d * 100.0) if d > 0 else 0.0
+
+    top_predicates = predicate_counts.most_common(top_n_predicates)
+    top_particles = particle_counts.most_common(top_n_predicates)
+
+    return {
+        "total_sentences": total,
+        "kept": kept,
+        "rejected": rejected,
+        "kept_rate_percent": pct(kept, total),
+        "rejected_rate_percent": pct(rejected, total),
+
+        "construction_counts": dict(construction_counts),
+        "construction_percent_of_kept": {
+            k: pct(v, kept) for k, v in construction_counts.items()
+        },
+        "construction_percent_of_total": {
+            k: pct(v, total) for k, v in construction_counts.items()
+        },
+
+        "copula_count": construction_counts.get("cop_n", 0),
+        "copula_percent_of_kept": pct(construction_counts.get("cop_n", 0), kept),
+        "copula_percent_of_total": pct(construction_counts.get("cop_n", 0), total),
+
+        "reject_reason_counts": dict(reject_counts),
+        "reject_reason_percent_of_rejected": {
+            k: pct(v, rejected) for k, v in reject_counts.items()
+        },
+        "reject_reason_percent_of_total": {
+            k: pct(v, total) for k, v in reject_counts.items()
+        },
+
+        "object_type_counts": dict(object_type_counts),
+        "object_type_percent_of_kept": {
+            k: pct(v, kept) for k, v in object_type_counts.items()
+        },
+
+        "complement_type_counts": dict(comp_type_counts),
+        "complement_depth_counts": dict(comp_depth_counts),
+
+        "predicate_top_n": top_predicates,
+        "particle_top_n": top_particles,
+        "sentences_with_particle": sum(particle_counts.values()),
+        "particle_token_total": sum(particle_counts.values()),
+
+        "nominal_modifier_totals": dict(nominal_modifier_totals),
+        "sentences_with_modifier_counts": dict(sentences_with_modifier),
+        "sentences_with_modifier_percent_of_total": {
+            k: pct(v, total) for k, v in sentences_with_modifier.items()
+        },
+        "noun_records_total": noun_records_total,
+        "avg_noun_records_per_sentence": (noun_records_total / total) if total > 0 else 0.0,
+    }
+
+
+def print_stats(stats: JsonDict) -> None:
+    print("\n=== Overall ===")
+    print(f"Total sentences: {stats['total_sentences']}")
+    print(f"Kept: {stats['kept']} ({stats['kept_rate_percent']:.2f}%)")
+    print(f"Rejected: {stats['rejected']} ({stats['rejected_rate_percent']:.2f}%)")
+
+    print("\n=== Constructions ===")
+    for k, v in sorted(stats["construction_counts"].items()):
+        pct_kept = stats["construction_percent_of_kept"].get(k, 0.0)
+        pct_total = stats["construction_percent_of_total"].get(k, 0.0)
+        print(f"{k}: {v} ({pct_kept:.2f}% of kept, {pct_total:.2f}% of total)")
+
+    print("\n=== Copula ===")
+    print(
+        f"cop_n: {stats['copula_count']} "
+        f"({stats['copula_percent_of_kept']:.2f}% of kept, "
+        f"{stats['copula_percent_of_total']:.2f}% of total)"
+    )
+
+    print("\n=== Reject reasons ===")
+    for k, v in sorted(stats["reject_reason_counts"].items()):
+        pct_rej = stats["reject_reason_percent_of_rejected"].get(k, 0.0)
+        pct_total = stats["reject_reason_percent_of_total"].get(k, 0.0)
+        print(f"{k}: {v} ({pct_rej:.2f}% of rejected, {pct_total:.2f}% of total)")
+
+    print("\n=== Object types ===")
+    for k, v in sorted(stats["object_type_counts"].items()):
+        pct_kept = stats["object_type_percent_of_kept"].get(k, 0.0)
+        print(f"{k}: {v} ({pct_kept:.2f}% of kept)")
+
+    print("\n=== Complement types ===")
+    for k, v in sorted(stats["complement_type_counts"].items()):
+        print(f"{k}: {v}")
+
+    print("\n=== Complement depth ===")
+    for k, v in sorted(stats["complement_depth_counts"].items()):
+        print(f"depth_{k}: {v}")
+
+    print("\n=== Top predicates ===")
+    for pred, count in stats["predicate_top_n"]:
+        print(f"{pred}: {count}")
+
+    print("\n=== Top particles ===")
+    for particle, count in stats["particle_top_n"]:
+        print(f"{particle}: {count}")
+
+    print("\n=== Nominal modifiers (totals) ===")
+    for k, v in sorted(stats["nominal_modifier_totals"].items()):
+        print(f"{k}: {v}")
+
+    print("\n=== Sentences with nominal modifiers ===")
+    for k, v in sorted(stats["sentences_with_modifier_counts"].items()):
+        pct_total = stats["sentences_with_modifier_percent_of_total"].get(k, 0.0)
+        print(f"{k}: {v} ({pct_total:.2f}% of total)")
+
+    print("\n=== Noun record density ===")
+    print(f"noun_records_total: {stats['noun_records_total']}")
+    print(f"avg_noun_records_per_sentence: {stats['avg_noun_records_per_sentence']:.4f}")
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", required=True, help="Input txt file")
@@ -500,6 +717,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--model", default="en_core_web_md", help="spaCy model name")
     parser.add_argument("--max-depth", type=int, default=2, help="Max recursive depth for clausal complement")
     parser.add_argument("--batch-size", type=int, default=1000, help="spaCy pipe batch size")
+    parser.add_argument("--stats-output", help="Optional path to write corpus statistics as json")
+    parser.add_argument("--top-n-predicates", type=int, default=20, help="Top N predicates/particles to report")
     return parser.parse_args()
 
 
@@ -512,9 +731,7 @@ def main() -> None:
     nlp = load_nlp(args.model)
 
     records: List[JsonDict] = []
-    total = 0
-    kept = 0
-    sid = 1
+    id = 1
 
     lines = list(iter_nonempty_lines(input_path))
 
@@ -525,21 +742,20 @@ def main() -> None:
     ):
         assert isinstance(doc, Doc)
         for sent in doc.sents:
-            rec = extract_from_sentence(sent, sid=sid, max_depth=args.max_depth)
+            rec = extract_from_sentence(sent, id=id, max_depth=args.max_depth)
             records.append(rec)
-            total += 1
-            if rec["status"] == "keep":
-                kept += 1
-            sid += 1
+            id += 1
 
     write_jsonl(records, output_path)
 
-    extraction_rate = kept / total if total > 0 else 0.0
+    stats = collect_stats(records, top_n_predicates=args.top_n_predicates)
+    print_stats(stats)
 
-    print(f"Total sentences: {total}")
-    print(f"Extracted: {kept}")
-    print(f"Rejected: {total - kept}")
-    print(f"Extraction rate: {extraction_rate:.4f} ({extraction_rate * 100:.2f}%)")
+    if args.stats_output:
+        stats_path = Path(args.stats_output)
+        stats_path.parent.mkdir(parents=True, exist_ok=True)
+        with stats_path.open("w", encoding="utf-8") as outfile:
+            json.dump(stats, outfile, ensure_ascii=False, indent=2)
 
 
 if __name__ == "__main__":
