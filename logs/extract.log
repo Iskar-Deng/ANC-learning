@@ -1,0 +1,99 @@
+=== Overall ===
+Total sentences: 11953154
+Kept: 3903342 (32.66%)
+Rejected: 8049812 (67.34%)
+
+=== Constructions ===
+cop_n: 693557 (17.77% of kept, 5.80% of total)
+cv: 637498 (16.33% of kept, 5.33% of total)
+iv: 845946 (21.67% of kept, 7.08% of total)
+tv: 1726341 (44.23% of kept, 14.44% of total)
+
+=== Copula ===
+cop_n: 693557 (17.77% of kept, 5.80% of total)
+
+=== Reject reasons ===
+bad_clausal_complement: 728397 (9.05% of rejected, 6.09% of total)
+bad_copula: 576045 (7.16% of rejected, 4.82% of total)
+bad_simple_clause: 634719 (7.88% of rejected, 5.31% of total)
+copula_adjective: 493848 (6.13% of rejected, 4.13% of total)
+empty_sentence: 2 (0.00% of rejected, 0.00% of total)
+multiple_objects: 551083 (6.85% of rejected, 4.61% of total)
+passive: 340795 (4.23% of rejected, 2.85% of total)
+unhandled: 4724923 (58.70% of rejected, 39.53% of total)
+
+=== Object types ===
+direct_obj: 1301491 (33.34% of kept)
+indirect_obj: 1476 (0.04% of kept)
+pp_obj: 423374 (10.85% of kept)
+
+=== Complement types ===
+ccomp: 373859
+xcomp: 263639
+
+=== Complement depth ===
+depth_1: 566259
+depth_2: 65052
+depth_3: 5701
+depth_4: 442
+depth_5: 35
+depth_6: 9
+
+=== Top predicates ===
+be: 700913
+go: 221400
+have: 196861
+do: 165935
+get: 149861
+know: 111888
+say: 109598
+come: 93161
+want: 91910
+look: 81482
+see: 80451
+think: 77207
+make: 48309
+take: 43561
+like: 39458
+put: 38373
+need: 34150
+let: 33695
+tell: 29811
+play: 26581
+
+=== Top particles ===
+up: 75902
+out: 49760
+on: 42851
+down: 31169
+off: 23187
+in: 17076
+over: 10307
+back: 3056
+around: 2317
+along: 1301
+through: 774
+by: 694
+away: 671
+about: 344
+across: 222
+forth: 167
+behind: 129
+aside: 72
+dat: 68
+under: 66
+
+=== Nominal modifiers (totals) ===
+by: 21689
+of: 1076464
+poss: 1606121
+
+=== Sentences with nominal modifiers ===
+any: 1930177 (16.15% of total)
+by: 21029 (0.18% of total)
+of: 849898 (7.11% of total)
+poss: 1319368 (11.04% of total)
+
+=== Noun record density ===
+noun_records_total: 23820328
+avg_noun_records_per_sentence: 1.9928

@@ -197,7 +197,6 @@ def collect_object_candidates(pred: Token) -> List[JsonDict]:
         )
 
     for child in pred.children:
-        # Bare dative NP, e.g. "Mary gave me a book."
         if child.dep_ == "dative" and child.pos_ != "ADP":
             candidates.append(
                 {
@@ -209,7 +208,6 @@ def collect_object_candidates(pred: Token) -> List[JsonDict]:
             )
             continue
 
-        # Prepositional/dative object, e.g. "Mary gave a book to me."
         if child.dep_ in {"prep", "dative"}:
             pobj = first_child_by_dep(child, {"pobj"})
             if pobj is not None:
@@ -486,15 +484,17 @@ def iter_nonempty_lines(path: Path) -> Iterable[str]:
                 yield stripped
 
 
+def count_nonempty_lines(path: Path) -> int:
+    count = 0
+    with path.open("r", encoding="utf-8") as infile:
+        for line in infile:
+            if line.strip():
+                count += 1
+    return count
+
+
 def load_nlp(model_name: str) -> Language:
     return spacy.load(model_name, disable=["ner"])
-
-
-def write_jsonl(records: List[JsonDict], output_path: Path) -> None:
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    with output_path.open("w", encoding="utf-8") as outfile:
-        for rec in records:
-            outfile.write(json.dumps(rec, ensure_ascii=False) + "\n")
 
 
 def get_complement_depth(comp: Optional[JsonDict]) -> int:
@@ -503,66 +503,79 @@ def get_complement_depth(comp: Optional[JsonDict]) -> int:
     return 1 + get_complement_depth(comp.get("complement"))
 
 
-def collect_stats(records: List[JsonDict], top_n_predicates: int = 20) -> JsonDict:
-    total = len(records)
-    kept_records = [r for r in records if r["status"] == "keep"]
-    rejected_records = [r for r in records if r["status"] == "reject"]
+class StreamingStats:
+    def __init__(self, top_n_predicates: int = 20) -> None:
+        self.top_n_predicates = top_n_predicates
 
-    kept = len(kept_records)
-    rejected = len(rejected_records)
+        self.total = 0
+        self.kept = 0
+        self.rejected = 0
 
-    construction_counts = Counter(
-        r["construction"] for r in kept_records if r["construction"] is not None
-    )
-    reject_counts = Counter(
-        r["reject_reason"] for r in rejected_records if r["reject_reason"] is not None
-    )
+        self.construction_counts: Counter[str] = Counter()
+        self.reject_counts: Counter[str] = Counter()
 
-    object_type_counts = Counter()
-    comp_type_counts = Counter()
-    comp_depth_counts = Counter()
-    predicate_counts = Counter()
-    particle_counts = Counter()
+        self.object_type_counts: Counter[str] = Counter()
+        self.comp_type_counts: Counter[str] = Counter()
+        self.comp_depth_counts: Counter[int] = Counter()
 
-    nominal_modifier_totals = Counter()
-    sentences_with_modifier = Counter()
-    noun_records_total = 0
+        self.predicate_counts: Counter[str] = Counter()
+        self.particle_counts: Counter[str] = Counter()
 
-    for rec in kept_records:
-        predicate = rec.get("predicate")
-        if predicate:
-            predicate_counts[predicate] += 1
+        self.nominal_modifier_totals: Counter[str] = Counter()
+        self.sentences_with_modifier: Counter[str] = Counter()
+        self.noun_records_total = 0
 
-        obj = rec.get("object_info")
-        if obj:
-            obj_type = obj.get("object_type")
-            if obj_type:
-                object_type_counts[obj_type] += 1
-            particle = obj.get("particle")
-            if particle:
-                particle_lemma = particle.get("particle_lemma")
-                if particle_lemma:
-                    particle_counts[particle_lemma] += 1
+    def _update_particle_counts_from_object_info(self, obj: Optional[JsonDict]) -> None:
+        if not obj:
+            return
+        particle = obj.get("particle")
+        if particle:
+            particle_lemma = particle.get("particle_lemma")
+            if particle_lemma:
+                self.particle_counts[particle_lemma] += 1
 
-        comp = rec.get("complement")
-        if comp:
-            comp_type = comp.get("comp_type")
-            if comp_type:
-                comp_type_counts[comp_type] += 1
-            comp_depth_counts[get_complement_depth(comp)] += 1
+    def update(self, rec: JsonDict) -> None:
+        self.total += 1
 
-        current = comp
-        while current:
-            obj2 = current.get("object_info")
-            if obj2 and obj2.get("particle"):
-                particle_lemma = obj2["particle"].get("particle_lemma")
-                if particle_lemma:
-                    particle_counts[particle_lemma] += 1
-            current = current.get("complement")
+        status = rec.get("status")
+        if status == "keep":
+            self.kept += 1
 
-    for rec in records:
+            construction = rec.get("construction")
+            if construction is not None:
+                self.construction_counts[construction] += 1
+
+            predicate = rec.get("predicate")
+            if predicate:
+                self.predicate_counts[predicate] += 1
+
+            obj = rec.get("object_info")
+            if obj:
+                obj_type = obj.get("object_type")
+                if obj_type:
+                    self.object_type_counts[obj_type] += 1
+                self._update_particle_counts_from_object_info(obj)
+
+            comp = rec.get("complement")
+            if comp:
+                comp_type = comp.get("comp_type")
+                if comp_type:
+                    self.comp_type_counts[comp_type] += 1
+                self.comp_depth_counts[get_complement_depth(comp)] += 1
+
+            current = rec.get("complement")
+            while current:
+                self._update_particle_counts_from_object_info(current.get("object_info"))
+                current = current.get("complement")
+
+        elif status == "reject":
+            self.rejected += 1
+            reason = rec.get("reject_reason")
+            if reason is not None:
+                self.reject_counts[reason] += 1
+
         nm_list = rec.get("nominal_modifiers", [])
-        noun_records_total += len(nm_list)
+        self.noun_records_total += len(nm_list)
 
         has_poss = False
         has_of = False
@@ -574,9 +587,9 @@ def collect_stats(records: List[JsonDict], top_n_predicates: int = 20) -> JsonDi
             of_n = len(mods.get("of", []))
             by_n = len(mods.get("by", []))
 
-            nominal_modifier_totals["poss"] += poss_n
-            nominal_modifier_totals["of"] += of_n
-            nominal_modifier_totals["by"] += by_n
+            self.nominal_modifier_totals["poss"] += poss_n
+            self.nominal_modifier_totals["of"] += of_n
+            self.nominal_modifier_totals["by"] += by_n
 
             if poss_n > 0:
                 has_poss = True
@@ -586,68 +599,69 @@ def collect_stats(records: List[JsonDict], top_n_predicates: int = 20) -> JsonDi
                 has_by = True
 
         if has_poss:
-            sentences_with_modifier["poss"] += 1
+            self.sentences_with_modifier["poss"] += 1
         if has_of:
-            sentences_with_modifier["of"] += 1
+            self.sentences_with_modifier["of"] += 1
         if has_by:
-            sentences_with_modifier["by"] += 1
+            self.sentences_with_modifier["by"] += 1
         if has_poss or has_of or has_by:
-            sentences_with_modifier["any"] += 1
+            self.sentences_with_modifier["any"] += 1
 
-    def pct(n: int, d: int) -> float:
-        return (n / d * 100.0) if d > 0 else 0.0
+    def to_dict(self) -> JsonDict:
+        def pct(n: int, d: int) -> float:
+            return (n / d * 100.0) if d > 0 else 0.0
 
-    top_predicates = predicate_counts.most_common(top_n_predicates)
-    top_particles = particle_counts.most_common(top_n_predicates)
+        top_predicates = self.predicate_counts.most_common(self.top_n_predicates)
+        top_particles = self.particle_counts.most_common(self.top_n_predicates)
 
-    return {
-        "total_sentences": total,
-        "kept": kept,
-        "rejected": rejected,
-        "kept_rate_percent": pct(kept, total),
-        "rejected_rate_percent": pct(rejected, total),
+        return {
+            "total_sentences": self.total,
+            "kept": self.kept,
+            "rejected": self.rejected,
+            "kept_rate_percent": pct(self.kept, self.total),
+            "rejected_rate_percent": pct(self.rejected, self.total),
 
-        "construction_counts": dict(construction_counts),
-        "construction_percent_of_kept": {
-            k: pct(v, kept) for k, v in construction_counts.items()
-        },
-        "construction_percent_of_total": {
-            k: pct(v, total) for k, v in construction_counts.items()
-        },
+            "construction_counts": dict(self.construction_counts),
+            "construction_percent_of_kept": {
+                k: pct(v, self.kept) for k, v in self.construction_counts.items()
+            },
+            "construction_percent_of_total": {
+                k: pct(v, self.total) for k, v in self.construction_counts.items()
+            },
 
-        "copula_count": construction_counts.get("cop_n", 0),
-        "copula_percent_of_kept": pct(construction_counts.get("cop_n", 0), kept),
-        "copula_percent_of_total": pct(construction_counts.get("cop_n", 0), total),
+            "copula_count": self.construction_counts.get("cop_n", 0),
+            "copula_percent_of_kept": pct(self.construction_counts.get("cop_n", 0), self.kept),
+            "copula_percent_of_total": pct(self.construction_counts.get("cop_n", 0), self.total),
 
-        "reject_reason_counts": dict(reject_counts),
-        "reject_reason_percent_of_rejected": {
-            k: pct(v, rejected) for k, v in reject_counts.items()
-        },
-        "reject_reason_percent_of_total": {
-            k: pct(v, total) for k, v in reject_counts.items()
-        },
+            "reject_reason_counts": dict(self.reject_counts),
+            "reject_reason_percent_of_rejected": {
+                k: pct(v, self.rejected) for k, v in self.reject_counts.items()
+            },
+            "reject_reason_percent_of_total": {
+                k: pct(v, self.total) for k, v in self.reject_counts.items()
+            },
 
-        "object_type_counts": dict(object_type_counts),
-        "object_type_percent_of_kept": {
-            k: pct(v, kept) for k, v in object_type_counts.items()
-        },
+            "object_type_counts": dict(self.object_type_counts),
+            "object_type_percent_of_kept": {
+                k: pct(v, self.kept) for k, v in self.object_type_counts.items()
+            },
 
-        "complement_type_counts": dict(comp_type_counts),
-        "complement_depth_counts": dict(comp_depth_counts),
+            "complement_type_counts": dict(self.comp_type_counts),
+            "complement_depth_counts": dict(self.comp_depth_counts),
 
-        "predicate_top_n": top_predicates,
-        "particle_top_n": top_particles,
-        "sentences_with_particle": sum(particle_counts.values()),
-        "particle_token_total": sum(particle_counts.values()),
+            "predicate_top_n": top_predicates,
+            "particle_top_n": top_particles,
+            "sentences_with_particle": sum(self.particle_counts.values()),
+            "particle_token_total": sum(self.particle_counts.values()),
 
-        "nominal_modifier_totals": dict(nominal_modifier_totals),
-        "sentences_with_modifier_counts": dict(sentences_with_modifier),
-        "sentences_with_modifier_percent_of_total": {
-            k: pct(v, total) for k, v in sentences_with_modifier.items()
-        },
-        "noun_records_total": noun_records_total,
-        "avg_noun_records_per_sentence": (noun_records_total / total) if total > 0 else 0.0,
-    }
+            "nominal_modifier_totals": dict(self.nominal_modifier_totals),
+            "sentences_with_modifier_counts": dict(self.sentences_with_modifier),
+            "sentences_with_modifier_percent_of_total": {
+                k: pct(v, self.total) for k, v in self.sentences_with_modifier.items()
+            },
+            "noun_records_total": self.noun_records_total,
+            "avg_noun_records_per_sentence": (self.noun_records_total / self.total) if self.total > 0 else 0.0,
+        }
 
 
 def print_stats(stats: JsonDict) -> None:
@@ -715,10 +729,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--input", required=True, help="Input txt file")
     parser.add_argument("--output", required=True, help="Output jsonl file")
     parser.add_argument("--model", default="en_core_web_md", help="spaCy model name")
-    parser.add_argument("--max-depth", type=int, default=2, help="Max recursive depth for clausal complement")
-    parser.add_argument("--batch-size", type=int, default=1000, help="spaCy pipe batch size")
+    parser.add_argument("--max-depth", type=int, default=10, help="Max recursive depth for clausal complement")
+    parser.add_argument("--batch-size", type=int, default=256, help="spaCy pipe batch size")
     parser.add_argument("--stats-output", help="Optional path to write corpus statistics as json")
     parser.add_argument("--top-n-predicates", type=int, default=20, help="Top N predicates/particles to report")
+    parser.add_argument(
+        "--no-total",
+        action="store_true",
+        help="Do not pre-count non-empty lines for tqdm total (slightly faster startup, no ETA)",
+    )
     return parser.parse_args()
 
 
@@ -727,35 +746,37 @@ def main() -> None:
 
     input_path = Path(args.input)
     output_path = Path(args.output)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
 
     nlp = load_nlp(args.model)
+    stats = StreamingStats(top_n_predicates=args.top_n_predicates)
 
-    records: List[JsonDict] = []
-    id = 1
+    total_lines = None if args.no_total else count_nonempty_lines(input_path)
+    next_id = 1
 
-    lines = list(iter_nonempty_lines(input_path))
+    with output_path.open("w", encoding="utf-8") as outfile:
+        doc_iter = nlp.pipe(iter_nonempty_lines(input_path), batch_size=args.batch_size)
 
-    for doc in tqdm(
-        nlp.pipe(lines, batch_size=args.batch_size),
-        total=len(lines),
-        desc="Processing",
-    ):
-        assert isinstance(doc, Doc)
-        for sent in doc.sents:
-            rec = extract_from_sentence(sent, id=id, max_depth=args.max_depth)
-            records.append(rec)
-            id += 1
+        for doc in tqdm(
+            doc_iter,
+            total=total_lines,
+            desc="Processing",
+        ):
+            assert isinstance(doc, Doc)
+            for sent in doc.sents:
+                rec = extract_from_sentence(sent, id=next_id, max_depth=args.max_depth)
+                outfile.write(json.dumps(rec, ensure_ascii=False) + "\n")
+                stats.update(rec)
+                next_id += 1
 
-    write_jsonl(records, output_path)
-
-    stats = collect_stats(records, top_n_predicates=args.top_n_predicates)
-    print_stats(stats)
+    stats_dict = stats.to_dict()
+    print_stats(stats_dict)
 
     if args.stats_output:
         stats_path = Path(args.stats_output)
         stats_path.parent.mkdir(parents=True, exist_ok=True)
         with stats_path.open("w", encoding="utf-8") as outfile:
-            json.dump(stats, outfile, ensure_ascii=False, indent=2)
+            json.dump(stats_dict, outfile, ensure_ascii=False, indent=2)
 
 
 if __name__ == "__main__":

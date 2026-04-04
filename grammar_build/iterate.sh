@@ -56,6 +56,7 @@ else
 fi
 
 DAT_NAME="$LID.dat"
+TDL_FILE="$OUTDIR/$LID.tdl"
 
 echo "========== ANC ITERATION =========="
 echo "Language: $LID"
@@ -66,7 +67,7 @@ else
 fi
 echo
 
-echo "[1/3] Extracting grammar..."
+echo "[1/4] Extracting grammar..."
 mkdir -p "$OUTDIR"
 
 tar -xzf "$TARBALL" \
@@ -76,7 +77,7 @@ tar -xzf "$TARBALL" \
 echo "Extracted → $OUTDIR"
 echo
 
-echo "[2/3] Compiling with ACE..."
+echo "[2/4] Compiling with ACE..."
 cd "$OUTDIR"
 
 "$ACE_BIN" \
@@ -86,14 +87,36 @@ cd "$OUTDIR"
 echo "Compiled → $OUTDIR/$DAT_NAME"
 echo
 
-echo "[3/3] Running test suite..."
+echo "[3/4] Running test suite..."
 
 cd "$PROJECT_ROOT"
 
-python3 -m scripts.run_matrix_tests \
+set +e
+
+python3 -m grammar_build.run_matrix_tests \
   --grammar "$OUTDIR/$DAT_NAME" \
   --tests "$OUTDIR/test_sentences" \
   --max-parses 50
+
+set -e
+
+echo
+echo "[4/4] Checking for ANC-WO in $TDL_FILE ..."
+
+if [ ! -f "$TDL_FILE" ]; then
+  echo "Warning: TDL file not found: $TDL_FILE"
+else
+  if grep -q 'ANC-WO' "$TDL_FILE"; then
+    echo
+    echo "ANC-WO found in:"
+    echo "  $TDL_FILE"
+    echo
+    echo "Next step: manual repair is needed."
+    echo "Please patch the ANC-WO-related rules by hand."
+  else
+    echo "No ANC-WO found."
+  fi
+fi
 
 echo
 echo "========== DONE =========="
