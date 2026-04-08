@@ -41,38 +41,45 @@ python -m data_processing.parse_pseudo_with_grammar \
 # Part 2: 具体语言生成
 
 # 1. 构建目标语言基础语法
-grammar_build/iterate.sh test-korean
+grammar_build/iterate.sh c-random
 
 # 2. 更新目标语法词表
 python data_processing/update_grammar_lexicon.py \
   --lexicon-json data/train_lexicon.json \
-  --grammar-root grammars/test-korean \
+  --grammar-root grammars/c-random \
   --no-trigger
 
 # 3. 人工语法修补
-# （手动修改 grammar files）
+# 关闭 `trans-erg-poss-lex-rule/trans-poss-acc-lex-rule/trans-nominal-lex-rule` 的 ANC-WO 分流
+#    - 将 `HEAD.ANC-WO +` 改为：`HEAD.ANC-WO -`
+# 放宽 `anc-head-opt-comp-phrase`
+#    - 删除对 `SUBJ` 的限制
+#    - 保留一个弱的 `SPR` 要求：`VAL.SPR < [ ] >`
 
 # 4. 重编译目标语法
-grammar_build/recompile_grammar.sh grammars/test-korean/test-korean.dat
+grammar_build/recompile_grammar.sh grammars/c-random/c-random.dat
 
 # 5. 从 MRS bank 生成对应语言
 nohup python3 -m grammar_build.generate_from_mrs_bank \
-  --grammar grammars/test-english/test-english.dat \
+  --grammar grammars/c-random/c-random.dat \
   --input data/train_mrs.jsonl \
-  --out data/train_mrs-test-english.jsonl \
+  --out data/train_mrs-c-random.jsonl \
   --no-mrs \
   --workers 12 \
   --chunksize 100 \
   --max-gen 20 \
-  > logs/generate-english.log 2>&1 &
+  > logs/generate-random.log 2>&1 &
 
 # 6. 去重 / 选择 overgeneration 输出
 python data_processing/select_overgen.py \
-  --input data/train_mrs-test-english.jsonl \
-  --out data/train_mrs-test-english-selected.jsonl \
-  --left-suffix gs \
-  --right-suffix ob
+  --input data/train_mrs-c-random.jsonl \
+  --out data/train_mrs-c-random-selected.jsonl \
+  --left-suffix er \
+  --right-suffix ge \
+  --variant-suffixes er ge \
+  --prefer-suffix ge \
+  --save-details data/train_mrs-c-random-selected_details.jsonl
 
 # 7. 检查 overgeneration
 python data_processing/show_overgen.py \
-  data/train_mrs-test-english.jsonl
+  data/train_mrs-test-georgian-selected.jsonl
