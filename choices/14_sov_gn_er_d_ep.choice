@@ -1,0 +1,166 @@
+version=35
+
+section=general
+language=14_sov_gn_er_d_ep
+punctuation-chars=keep-all
+archive=yes
+
+section=word-order
+word-order=sov
+has-dets=no
+has-aux=no
+subord-word-order=same
+
+section=number
+
+section=person
+person=none
+
+section=gender
+
+section=case
+case-marking=erg-abs
+erg-abs-erg-case-name=ergative
+erg-abs-abs-case-name=absolutive
+  case1_name=oblique
+
+section=adnom-poss
+  poss-strat1_order=head-final
+  poss-strat1_mod-spec=spec
+  poss-strat1_mark-loc=possessor
+  poss-strat1_possessor-type=affix
+  poss-strat1_possessor-affix-agr=non-agree
+
+section=direct-inverse
+
+section=tense-aspect-mood
+
+section=evidentials
+
+section=other-features
+form-fin-nf=on
+
+section=sentential-negation
+
+section=coordination
+
+section=matrix-yes-no
+
+section=wh-q
+
+section=info-str
+
+section=arg-opt
+
+section=nominalclause
+  ns1_name=erg-poss
+  ns1_nmz_type=erg-poss
+  ns1_det=imp
+  ns1_intrans=on
+  ns1_trans=on
+same-word-order=no
+nmz-clause-word-order=sov
+  nmz_poss_strat1_name=poss-strat1
+non_sent_sem=verb-only
+
+section=lvc
+
+section=clausal-comp
+  comps1_clause-pos-same=on
+    comps1_feat1_name=form
+    comps1_feat1_value=nonfinite
+
+section=clausalmods
+
+section=lexicon
+  noun1_name=common_noun
+  noun1_det=imp
+    noun1_stem1_orth=n1
+    noun1_stem1_pred=_n1_n_rel
+    noun1_stem2_orth=n2
+    noun1_stem2_pred=_n2_n_rel
+    noun1_stem3_orth=n3
+    noun1_stem3_pred=_n3_n_rel
+  verb1_name=intran_verb
+  verb1_valence=abs
+    verb1_stem1_orth=iv1
+    verb1_stem1_pred=_iv1_v_rel
+    verb1_stem2_orth=iv2
+    verb1_stem2_pred=_iv2_v_rel
+  verb2_name=tran_verb
+  verb2_valence=erg-abs
+    verb2_stem1_orth=tv1
+    verb2_stem1_pred=_tv1_v_rel
+    verb2_stem2_orth=tv2
+    verb2_stem2_pred=_tv2_v_rel
+  verb3_name=clausal_verb
+  verb3_valence=erg,comps1
+    verb3_stem1_orth=cv1
+    verb3_stem1_pred=_cv1_v_rel
+    verb3_stem2_orth=cv2
+    verb3_stem2_pred=_cv2_v_rel
+
+section=morphology
+  noun-pc1_name=case
+  noun-pc1_obligatory=on
+  noun-pc1_order=suffix
+  noun-pc1_inputs=noun, verb-pc2
+    noun-pc1_lrt1_name=ergative
+      noun-pc1_lrt1_feat1_name=case
+      noun-pc1_lrt1_feat1_value=erg
+      noun-pc1_lrt1_feat1_head=itself
+      noun-pc1_lrt1_lri1_inflecting=yes
+      noun-pc1_lrt1_lri1_orth=ca
+    noun-pc1_lrt2_name=absolutive
+      noun-pc1_lrt2_feat1_name=case
+      noun-pc1_lrt2_feat1_value=abs
+      noun-pc1_lrt2_feat1_head=itself
+      noun-pc1_lrt2_lri1_inflecting=no
+    noun-pc1_lrt3_name=genitive
+      noun-pc1_lrt3_feat1_name=poss-strat1
+      noun-pc1_lrt3_feat1_value=possessor
+      noun-pc1_lrt3_feat1_head=itself
+      noun-pc1_lrt3_lri1_inflecting=yes
+      noun-pc1_lrt3_lri1_orth=ge
+    noun-pc1_lrt4_name=oblique
+      noun-pc1_lrt4_feat1_name=case
+      noun-pc1_lrt4_feat1_value=oblique
+      noun-pc1_lrt4_feat1_head=itself
+      noun-pc1_lrt4_lri1_inflecting=yes
+      noun-pc1_lrt4_lri1_orth=ob
+  verb-pc1_name=finiteness
+  verb-pc1_obligatory=on
+  verb-pc1_order=suffix
+  verb-pc1_inputs=verb
+    verb-pc1_lrt1_name=finite
+      verb-pc1_lrt1_feat1_name=form
+      verb-pc1_lrt1_feat1_value=finite
+      verb-pc1_lrt1_feat1_head=verb
+      verb-pc1_lrt1_lri1_inflecting=yes
+      verb-pc1_lrt1_lri1_orth=s
+    verb-pc1_lrt2_name=nonfinite
+      verb-pc1_lrt2_feat1_name=form
+      verb-pc1_lrt2_feat1_value=nonfinite
+      verb-pc1_lrt2_feat1_head=verb
+      verb-pc1_lrt2_lri1_inflecting=yes
+      verb-pc1_lrt2_lri1_orth=ing
+  verb-pc2_name=nominalization
+  verb-pc2_order=suffix
+  verb-pc2_inputs=verb1, verb2
+    verb-pc2_lrt1_name=erg-poss-nmz
+      verb-pc2_lrt1_feat1_name=nominalization
+      verb-pc2_lrt1_feat1_value=erg-poss
+      verb-pc2_lrt1_feat1_head=verb
+      verb-pc2_lrt1_feat3_name=case
+      verb-pc2_lrt1_feat3_value=oblique
+      verb-pc2_lrt1_feat3_head=obj
+      verb-pc2_lrt1_lri1_inflecting=yes
+      verb-pc2_lrt1_lri1_orth=ing
+
+section=toolbox-import
+
+section=test-sentences
+
+section=gen-options
+
+section=ToolboxLexicon

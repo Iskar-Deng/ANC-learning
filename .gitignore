@@ -2,5 +2,7 @@ archive/
 __pycache__/
 bin/
 data/
+debug/
+external/
 grammars/
 logs/
