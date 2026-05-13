@@ -679,7 +679,7 @@ class PseudoEnglishGenerator:
 
         if expected_construction == "iv":
             # iv:
-            # 0 overt args -> bare verbtion is allowed
+            # 0 overt args -> bare verbnmz is allowed
             # 1 overt arg  -> that sole arg is always realized as ge
             # 2 overt args -> reject this ANC analysis
             if overt_arg_count > 1:

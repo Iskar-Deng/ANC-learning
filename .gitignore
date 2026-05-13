@@ -6,3 +6,5 @@ debug/
 external/
 grammars/
 logs/
+models/
+results/

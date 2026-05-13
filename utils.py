@@ -1,5 +1,3 @@
-# utils.py
-
 ACE_BIN = "/home/dengh/workspace/ANC-learning/bin/ace-0.9.34/ace"
 
 MRS_REWRITE_RULES = [
@@ -18,7 +16,7 @@ TRAINING_CONFIG = {
 
     # training
     "seed": 42,
-    "num_train_epochs": 3,
+    "max_steps": 70000,
     "per_device_train_batch_size": 16,
     "per_device_eval_batch_size": 16,
     "gradient_accumulation_steps": 2,
@@ -28,9 +26,9 @@ TRAINING_CONFIG = {
 
     # logging / saving
     "logging_steps": 100,
-    "eval_steps": 2000,
-    "save_steps": 2000,
-    "save_total_limit": 2,
+    "eval_steps": 5000,
+    "save_steps": 5000,
+    "save_total_limit": 1,
 
     # dataloader
     "dataloader_num_workers": 0,
