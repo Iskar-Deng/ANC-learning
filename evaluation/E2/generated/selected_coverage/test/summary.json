@@ -1,0 +1,14 @@
+{
+  "selected_dir": "data/test/generated/selected",
+  "n_files": 96,
+  "min_ids_per_language": 223316,
+  "max_ids_per_language": 223316,
+  "mean_ids_per_language": 223316.0,
+  "union_ids": 223316,
+  "common_ids": 223316,
+  "ids_missing_in_some_language": 0,
+  "languages_with_bad_rows": 0,
+  "total_bad_rows": 0,
+  "languages_with_duplicate_ids": 0,
+  "total_duplicate_id_entries": 0
+}

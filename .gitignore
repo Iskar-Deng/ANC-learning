@@ -3,6 +3,7 @@ __pycache__/
 bin/
 data/
 debug/
+e1_materials
 external/
 grammars/
 logs/
