@@ -1,4 +1,13 @@
-ACE_BIN = "/home/dengh/workspace/ANC-learning/bin/ace-0.9.34/ace"
+import os
+from pathlib import Path
+
+
+PROJECT_ROOT = Path(__file__).resolve().parent
+
+ACE_BIN = os.environ.get(
+    "ACE_BIN",
+    str(PROJECT_ROOT / "bin" / "ace-0.9.34" / "ace"),
+)
 
 MRS_REWRITE_RULES = [
     ("SF: prop-or-ques", "SF: iforce"),

@@ -76,6 +76,7 @@ The full experiment has three derived layers:
 
 For step-by-step details, see the linked pipeline documents:
 
+- [RunPod environment setup](RUNPOD_SETUP.md)
 - [Semantic extraction pipeline](semantic_extraction/SEMANTIC_PIPELINE.md)
 - [Grammar build pipeline](grammar_build/GRAMMAR_PIPELINE.md)
 - [Language generation pipeline](language_generation/GENERATION_PIPELINE.md)
