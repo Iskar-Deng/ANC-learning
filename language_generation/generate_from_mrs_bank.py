@@ -126,6 +126,10 @@ def process_row(task: Tuple[str, int, bool, Dict[str, Any]]) -> Tuple[str, Optio
         "sent": surfaces,
     }
 
+    for key in ("source_id", "pseudo_index", "sentence", "pseudo_english"):
+        if key in row:
+            out_entry[key] = row[key]
+
     if keep_mrs:
         out_entry["mrs"] = mrs
 

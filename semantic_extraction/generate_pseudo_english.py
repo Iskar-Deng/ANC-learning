@@ -293,8 +293,12 @@ class PseudoEnglishGenerator:
             if pseudo is None:
                 continue
 
+            source_id = rec.get("id", new_sid)
+
             yield {
-                "id": new_sid,
+                "id": source_id,
+                "source_id": source_id,
+                "pseudo_index": new_sid,
                 "sentence": rec.get("sentence"),
                 "pseudo_english": pseudo,
             }
@@ -451,7 +455,7 @@ class PseudoEnglishGenerator:
 
         self.total_keep_sentences += 1
 
-        pseudo, has_anc = self._realize_clause(rec)
+        pseudo, has_anc = self._realize_clause(rec, context_rec=rec)
         if pseudo is None:
             return None
 
@@ -468,17 +472,22 @@ class PseudoEnglishGenerator:
 
         return pseudo
 
-    def _realize_clause(self, rec: JsonDict) -> Tuple[Optional[str], bool]:
+    def _realize_clause(
+        self,
+        rec: JsonDict,
+        context_rec: Optional[JsonDict] = None,
+    ) -> Tuple[Optional[str], bool]:
         construction = rec.get("construction")
+        context = context_rec or rec
 
         if construction == "iv":
-            return self._realize_iv(rec)
+            return self._realize_iv(rec, context)
         if construction == "tv":
-            return self._realize_tv(rec)
+            return self._realize_tv(rec, context)
         if construction == "cv":
-            return self._realize_cv(rec)
+            return self._realize_cv(rec, context)
         if construction == "cop_n":
-            return self._realize_cop_n(rec), False
+            return self._realize_cop_n(rec, context), False
 
         return None, False
 
@@ -502,7 +511,7 @@ class PseudoEnglishGenerator:
 
         return " ".join(parts)
 
-    def _realize_iv(self, rec: JsonDict) -> Tuple[str, bool]:
+    def _realize_iv(self, rec: JsonDict, context_rec: JsonDict) -> Tuple[str, bool]:
         args = rec.get("arguments") or {}
         subj = args.get("S")
         pred = rec.get("predicate")
@@ -512,6 +521,8 @@ class PseudoEnglishGenerator:
 
         anc = self._extract_anc_info_for_noun(
             rec=rec,
+            context_rec=context_rec,
+            role="S",
             noun_lemma=subj,
             expected_construction="iv",
         )
@@ -520,11 +531,16 @@ class PseudoEnglishGenerator:
             verb_tok = self._verb_surface(pred, rec.get("object_info"))
             return f"{anc_np} {verb_tok}s", True
 
-        subj_tok = self._realize_ordinary_noun_with_gen(subj, rec)
+        subj_tok = self._realize_ordinary_noun_with_gen(
+            subj,
+            rec,
+            context_rec=context_rec,
+            role="S",
+        )
         verb_tok = self._verb_surface(pred, rec.get("object_info"))
         return f"{subj_tok} {verb_tok}s", False
 
-    def _realize_tv(self, rec: JsonDict) -> Tuple[str, bool]:
+    def _realize_tv(self, rec: JsonDict, context_rec: JsonDict) -> Tuple[str, bool]:
         args = rec.get("arguments") or {}
         a = args.get("A")
         p = args.get("P")
@@ -532,11 +548,18 @@ class PseudoEnglishGenerator:
         if not a or not p or not rec.get("predicate"):
             return "[BAD_TV]", False
 
-        p_tok = self._canon_token(p)
+        p_tok = self._realize_ordinary_noun_with_gen(
+            p,
+            rec,
+            context_rec=context_rec,
+            role="P",
+        )
         matrix_verb = self._verb_surface(rec["predicate"], rec.get("object_info")) + "s"
 
         anc = self._extract_anc_info_for_noun(
             rec=rec,
+            context_rec=context_rec,
+            role="A",
             noun_lemma=a,
             expected_construction="tv",
         )
@@ -544,10 +567,15 @@ class PseudoEnglishGenerator:
             anc_np = self._render_anc_np(anc)
             return f"{anc_np} {matrix_verb} {p_tok}", True
 
-        ordinary_np_subj = self._realize_ordinary_noun_with_gen(a, rec)
+        ordinary_np_subj = self._realize_ordinary_noun_with_gen(
+            a,
+            rec,
+            context_rec=context_rec,
+            role="A",
+        )
         return f"{ordinary_np_subj} {matrix_verb} {p_tok}", False
 
-    def _realize_cv(self, rec: JsonDict) -> Tuple[str, bool]:
+    def _realize_cv(self, rec: JsonDict, context_rec: JsonDict) -> Tuple[str, bool]:
         args = rec.get("arguments") or {}
         a = args.get("A")
         pred = rec.get("predicate")
@@ -556,7 +584,7 @@ class PseudoEnglishGenerator:
         if not a or not pred or not isinstance(comp, dict):
             return "[BAD_CV]", False
 
-        embedded, embedded_has_anc = self._realize_clause(comp)
+        embedded, embedded_has_anc = self._realize_clause(comp, context_rec=context_rec)
         if embedded is None:
             return "[BAD_CV]", False
 
@@ -565,6 +593,8 @@ class PseudoEnglishGenerator:
         # 所以 cv 句子会正常 realization，但不会 nominalized-cv。
         anc = self._extract_anc_info_for_noun(
             rec=rec,
+            context_rec=context_rec,
+            role="A",
             noun_lemma=a,
             expected_construction="cv",
         )
@@ -573,11 +603,16 @@ class PseudoEnglishGenerator:
             verb_tok = self._verb_surface(pred, rec.get("object_info"))
             return f"{anc_np} {verb_tok}s that {embedded}", True
 
-        a_tok = self._realize_ordinary_noun_with_gen(a, rec)
+        a_tok = self._realize_ordinary_noun_with_gen(
+            a,
+            rec,
+            context_rec=context_rec,
+            role="A",
+        )
         verb_tok = self._verb_surface(pred, rec.get("object_info"))
         return f"{a_tok} {verb_tok}s that {embedded}", embedded_has_anc
 
-    def _realize_cop_n(self, rec: JsonDict) -> str:
+    def _realize_cop_n(self, rec: JsonDict, context_rec: JsonDict) -> str:
         args = rec.get("arguments") or {}
         a = args.get("A")
         pred_nom = args.get("PRED")
@@ -586,19 +621,81 @@ class PseudoEnglishGenerator:
         if not a or not pred_nom or not pred:
             return "[BAD_COP_N]"
 
-        subj = self._realize_ordinary_noun_with_gen(a, rec)
+        subj = self._realize_ordinary_noun_with_gen(
+            a,
+            rec,
+            context_rec=context_rec,
+            role="A",
+        )
         verb = self._verb_surface(pred, rec.get("object_info")) + "s"
-        pred_nom_tok = self._canon_token(pred_nom)
+        pred_nom_tok = self._realize_ordinary_noun_with_gen(
+            pred_nom,
+            rec,
+            context_rec=context_rec,
+            role="PRED",
+        )
         return f"{subj} {verb} {pred_nom_tok}"
 
-    def _realize_ordinary_noun_with_gen(self, noun_lemma: str, rec: JsonDict) -> str:
+    def _argument_token_index(self, rec: JsonDict, role: Optional[str]) -> Optional[int]:
+        if role is None:
+            return None
+
+        argument_info = rec.get("argument_info") or {}
+        role_info = argument_info.get(role)
+        if not isinstance(role_info, dict):
+            return None
+
+        token_index = role_info.get("token_index")
+        return token_index if isinstance(token_index, int) else None
+
+    def _find_nominal_modifier(
+        self,
+        noun_lemma: str,
+        rec: JsonDict,
+        context_rec: Optional[JsonDict] = None,
+        role: Optional[str] = None,
+    ) -> Optional[JsonDict]:
         noun_tok = self._canon_token(noun_lemma)
+        target_token_index = self._argument_token_index(rec, role)
+        source_rec = context_rec or rec
 
-        nominal_modifiers = rec.get("nominal_modifiers") or []
-        for nm in nominal_modifiers:
-            if self._canon_token(nm.get("noun_lemma", "")) != noun_tok:
-                continue
+        nominal_modifiers = source_rec.get("nominal_modifiers") or []
+        matches = [
+            nm
+            for nm in nominal_modifiers
+            if self._canon_token(nm.get("noun_lemma", "")) == noun_tok
+        ]
 
+        if target_token_index is not None:
+            indexed_matches = [
+                nm
+                for nm in matches
+                if nm.get("token_index") == target_token_index
+            ]
+            if indexed_matches:
+                return indexed_matches[0]
+
+        if matches:
+            return matches[0]
+
+        return None
+
+    def _realize_ordinary_noun_with_gen(
+        self,
+        noun_lemma: str,
+        rec: JsonDict,
+        context_rec: Optional[JsonDict] = None,
+        role: Optional[str] = None,
+    ) -> str:
+        noun_tok = self._canon_token(noun_lemma)
+        nm = self._find_nominal_modifier(
+            noun_lemma,
+            rec,
+            context_rec=context_rec,
+            role=role,
+        )
+
+        if nm is not None:
             modifiers = nm.get("modifiers") or {}
             poss_mods = modifiers.get("poss") or []
             if poss_mods:
@@ -628,6 +725,8 @@ class PseudoEnglishGenerator:
         rec: JsonDict,
         noun_lemma: str,
         expected_construction: str,
+        context_rec: Optional[JsonDict] = None,
+        role: Optional[str] = None,
     ) -> Optional[Dict[str, Optional[str]]]:
         noun_tok = self._canon_token(noun_lemma)
 
@@ -635,12 +734,12 @@ class PseudoEnglishGenerator:
         if cand is None:
             return None
 
-        nominal_modifiers = rec.get("nominal_modifiers") or []
-        target_nm = None
-        for nm in nominal_modifiers:
-            if self._canon_token(nm.get("noun_lemma", "")) == noun_tok:
-                target_nm = nm
-                break
+        target_nm = self._find_nominal_modifier(
+            noun_lemma,
+            rec,
+            context_rec=context_rec,
+            role=role,
+        )
 
         poss_mods: List[JsonDict] = []
         of_mods: List[JsonDict] = []

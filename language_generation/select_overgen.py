@@ -146,6 +146,29 @@ def group_sentences_by_id(rows: List[JsonDict]) -> Dict[Any, List[str]]:
     return dict(grouped)
 
 
+def first_metadata_by_id(rows: List[JsonDict]) -> Dict[Any, JsonDict]:
+    metadata_by_id: Dict[Any, JsonDict] = {}
+    carry_keys = ("source_id", "pseudo_index", "sentence", "pseudo_english")
+
+    for row in rows:
+        if "id" not in row:
+            continue
+
+        row_id = row["id"]
+        if row_id in metadata_by_id:
+            continue
+
+        metadata = {
+            key: row[key]
+            for key in carry_keys
+            if key in row
+        }
+        if metadata:
+            metadata_by_id[row_id] = metadata
+
+    return metadata_by_id
+
+
 def sort_key(value: Any) -> Tuple[int, Any]:
     if isinstance(value, int):
         return (0, value)
@@ -669,6 +692,7 @@ def main() -> None:
 
     rows = load_jsonl(in_path)
     grouped = group_sentences_by_id(rows)
+    metadata_by_id = first_metadata_by_id(rows)
     rng = random.Random(args.seed)
 
     out_rows: List[JsonDict] = []
@@ -725,12 +749,12 @@ def main() -> None:
         elif reason == "different_bag_random":
             different_bag_random += 1
 
-        out_rows.append(
-            {
-                "id": row_id,
-                "sent": chosen,
-            }
-        )
+        out_row = {
+            "id": row_id,
+            "sent": chosen,
+        }
+        out_row.update(metadata_by_id.get(row_id, {}))
+        out_rows.append(out_row)
 
         if details_path is not None and len(sents) > 1:
             detail_rows.append(
@@ -741,6 +765,7 @@ def main() -> None:
                     "selection_reason": reason,
                     "language": language,
                     "config": config,
+                    **metadata_by_id.get(row_id, {}),
                 }
             )
 

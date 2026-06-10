@@ -111,6 +111,14 @@ def extract_pseudo_sentence(row: JsonDict) -> str:
     return pseudo.strip()
 
 
+def carryover_metadata(row: JsonDict) -> JsonDict:
+    metadata: JsonDict = {}
+    for key in ("source_id", "pseudo_index"):
+        if key in row:
+            metadata[key] = row[key]
+    return metadata
+
+
 def make_parser(grammar_dat: str, max_parses: int) -> Any:
     cmdargs = ["-n", str(max_parses)]
 
@@ -263,6 +271,7 @@ def build_output_rows_for_item(
     id_value = extract_sentence_id(row, fallback_id)
     source_sentence = extract_source_sentence(row)
     pseudo_sentence = extract_pseudo_sentence(row)
+    metadata = carryover_metadata(row)
 
     n = len(results)
 
@@ -279,6 +288,7 @@ def build_output_rows_for_item(
                 "parse_count": 0,
                 "parse_index": None,
                 "mrs": None,
+                **metadata,
             }
         ], 0
 
@@ -304,6 +314,7 @@ def build_output_rows_for_item(
                 "parse_count": n,
                 "parse_index": parse_index,
                 "mrs": mrs,
+                **metadata,
             }
         )
         success_count += 1
@@ -318,6 +329,7 @@ def build_output_rows_for_item(
                 "parse_count": n,
                 "parse_index": None,
                 "mrs": None,
+                **metadata,
             }
         )
 
