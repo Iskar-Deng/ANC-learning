@@ -39,6 +39,19 @@ def extract_head_lemma(token: Optional[Token]) -> Optional[str]:
     return token.lemma_
 
 
+def token_record(token: Optional[Token]) -> Optional[JsonDict]:
+    if token is None:
+        return None
+    return {
+        "lemma": token.lemma_,
+        "head_text": token.text,
+        "text": subtree_text(token),
+        "token_index": token.i,
+        "sent_token_index": token.i - token.sent.start,
+        "dep": token.dep_,
+    }
+
+
 def subtree_text(token: Optional[Token]) -> Optional[str]:
     if token is None:
         return None
@@ -114,6 +127,8 @@ def extract_nominal_modifiers(sent: Span) -> List[JsonDict]:
             {
                 "noun_text": tok.text,
                 "noun_lemma": tok.lemma_,
+                "token_index": tok.i,
+                "sent_token_index": tok.i - sent.start,
                 "noun_dep": tok.dep_,
                 "noun_head": tok.head.text,
                 "modifiers": {
@@ -140,6 +155,7 @@ def reject_record(
         "construction": None,
         "predicate": None,
         "arguments": None,
+        "argument_info": None,
         "object_info": None,
         "complement": None,
         "nominal_modifiers": nominal_modifiers if nominal_modifiers is not None else [],
@@ -153,6 +169,7 @@ def keep_record(
     construction: str,
     predicate: str,
     arguments: JsonDict,
+    argument_info: Optional[JsonDict] = None,
     object_info: Optional[JsonDict] = None,
     complement: Optional[JsonDict] = None,
     nominal_modifiers: Optional[List[JsonDict]] = None,
@@ -164,6 +181,7 @@ def keep_record(
         "construction": construction,
         "predicate": predicate,
         "arguments": arguments,
+        "argument_info": argument_info,
         "object_info": object_info,
         "complement": complement,
         "nominal_modifiers": nominal_modifiers if nominal_modifiers is not None else [],
@@ -264,6 +282,9 @@ def extract_simple_clause(pred: Optional[Token], forced_subject: Optional[Token]
             "arguments": {
                 "S": extract_head_lemma(subj),
             },
+            "argument_info": {
+                "S": token_record(subj),
+            },
             "object_info": {
                 "object_type": None,
                 "adposition": None,
@@ -285,6 +306,10 @@ def extract_simple_clause(pred: Optional[Token], forced_subject: Optional[Token]
             "arguments": {
                 "A": extract_head_lemma(subj),
                 "P": extract_head_lemma(obj_tok),
+            },
+            "argument_info": {
+                "A": token_record(subj),
+                "P": token_record(obj_tok),
             },
             "object_info": build_object_info(pred, obj_info),
             "complement": None,
@@ -336,6 +361,9 @@ def extract_cv(
             "arguments": {
                 "A": extract_head_lemma(matrix_subj),
             },
+            "argument_info": {
+                "A": token_record(matrix_subj),
+            },
             "object_info": {
                 "object_type": None,
                 "adposition": None,
@@ -349,6 +377,7 @@ def extract_cv(
                 "construction": embedded["construction"],
                 "predicate": embedded["predicate"],
                 "arguments": embedded["arguments"],
+                "argument_info": embedded.get("argument_info"),
                 "object_info": embedded.get("object_info"),
                 "complement": embedded.get("complement"),
             },
@@ -371,6 +400,9 @@ def extract_cv(
             "arguments": {
                 "A": extract_head_lemma(matrix_subj),
             },
+            "argument_info": {
+                "A": token_record(matrix_subj),
+            },
             "object_info": {
                 "object_type": None,
                 "adposition": None,
@@ -384,6 +416,7 @@ def extract_cv(
                 "construction": embedded["construction"],
                 "predicate": embedded["predicate"],
                 "arguments": embedded["arguments"],
+                "argument_info": embedded.get("argument_info"),
                 "object_info": embedded.get("object_info"),
                 "complement": embedded.get("complement"),
             },
@@ -445,6 +478,10 @@ def extract_from_sentence(sent: Span, id: int, max_depth: int = 2) -> JsonDict:
                     "A": extract_head_lemma(subj),
                     "PRED": extract_head_lemma(attr),
                 },
+                argument_info={
+                    "A": token_record(subj),
+                    "PRED": token_record(attr),
+                },
                 object_info=None,
                 nominal_modifiers=nominal_modifiers,
             )
@@ -463,6 +500,7 @@ def extract_from_sentence(sent: Span, id: int, max_depth: int = 2) -> JsonDict:
                 result["construction"],
                 result["predicate"],
                 result["arguments"],
+                argument_info=result.get("argument_info"),
                 object_info=result.get("object_info"),
                 complement=result.get("complement"),
                 nominal_modifiers=nominal_modifiers,

@@ -1,6 +1,10 @@
 import random
+from pathlib import Path
 
-input_file = "/home/dengh/workspace/ANC-learning/data/babylm.txt"
+
+repo_root = Path(__file__).resolve().parents[1]
+data_dir = repo_root / "data"
+input_file = data_dir / "babylm.txt"
 
 with open(input_file, "r", encoding="utf-8") as f:
     lines = f.readlines()
@@ -12,17 +16,12 @@ n = len(lines)
 train_end = int(n * 0.9)
 dev_end = int(n * 0.95)
 
-train_lines = lines[:train_end]
-dev_lines = lines[train_end:dev_end]
-test_lines = lines[dev_end:]
+splits = {
+    "train.txt": lines[:train_end],
+    "dev.txt": lines[train_end:dev_end],
+    "test.txt": lines[dev_end:],
+}
 
-base_path = "/home/dengh/workspace/ANC-learning/data/"
-
-with open(base_path + "train.txt", "w", encoding="utf-8") as f:
-    f.writelines(train_lines)
-
-with open(base_path + "dev.txt", "w", encoding="utf-8") as f:
-    f.writelines(dev_lines)
-
-with open(base_path + "test.txt", "w", encoding="utf-8") as f:
-    f.writelines(test_lines)
+for filename, split_lines in splits.items():
+    with open(data_dir / filename, "w", encoding="utf-8") as f:
+        f.writelines(split_lines)
