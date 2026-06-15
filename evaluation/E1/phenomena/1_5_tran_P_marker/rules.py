@@ -8,8 +8,8 @@ from typing import Any, Dict
 from evaluation.E1.rule_utils import marker_value, parse_transitive_good, strip_suffix
 
 
-PHENOMENON_ID = "1.4"
-PHENOMENON_NAME = "tran_A_marker"
+PHENOMENON_ID = "1.5"
+PHENOMENON_NAME = "tran_P_marker"
 
 
 def stable_row_index(row: Dict[str, Any] | None, fallback_index: int) -> int:
@@ -23,17 +23,17 @@ def stable_row_index(row: Dict[str, Any] | None, fallback_index: int) -> int:
     return fallback_index
 
 
-def foil_for_a(row: Dict[str, Any] | None, fallback_index: int, alignment: str) -> tuple[str, str]:
+def foil_for_p(row: Dict[str, Any] | None, fallback_index: int, alignment: str) -> tuple[str, str]:
     use_ge_foil = stable_row_index(row, fallback_index) % 2 == 0
 
     if use_ge_foil:
-        return "ge", "replace_transitive_a_marker_with_ge"
+        return "ge", "replace_transitive_p_marker_with_ge"
 
     if alignment == "nom-acc":
-        return "ca", "add_ca_to_transitive_a"
+        return "0", "remove_ca_from_transitive_p"
 
     if alignment == "erg-abs":
-        return "0", "remove_ca_from_transitive_a"
+        return "ca", "add_ca_to_transitive_p"
 
     raise ValueError(f"Unsupported alignment: {alignment}")
 
@@ -60,35 +60,35 @@ def perturb(
         p_mark=good_p_mark,
     )
 
-    target_index = parsed.a.head_index
+    target_index = parsed.p.head_index
     target_token = tokens[target_index]
-    bad_value, perturbation_label = foil_for_a(row, source_index, alignment)
+    bad_value, perturbation_label = foil_for_p(row, source_index, alignment)
 
     bad_tokens = tokens[:]
-    if marker_value(good_a_mark) == "0":
+    if marker_value(good_p_mark) == "0":
         if bad_value == "0":
-            raise ValueError("A is already zero-marked")
+            raise ValueError("P is already zero-marked")
         bad_tokens[target_index] = target_token + bad_value
-    elif good_a_mark == "ca":
-        a_stem = strip_suffix(target_token, "ca")
+    elif good_p_mark == "ca":
+        p_stem = strip_suffix(target_token, "ca")
         if bad_value == "0":
-            bad_tokens[target_index] = a_stem
+            bad_tokens[target_index] = p_stem
         elif bad_value == "ge":
-            bad_tokens[target_index] = a_stem + "ge"
+            bad_tokens[target_index] = p_stem + "ge"
         else:
-            raise ValueError(f"Unsupported bad_value for ca-marked A: {bad_value}")
+            raise ValueError(f"Unsupported bad_value for ca-marked P: {bad_value}")
     else:
-        raise ValueError(f"Unsupported GOOD A marker: {good_a_mark!r}")
+        raise ValueError(f"Unsupported GOOD P marker: {good_p_mark!r}")
 
     return {
         "bad": " ".join(bad_tokens),
-        "target_role": "A",
+        "target_role": "P",
         "target_index": target_index,
         "target_token": target_token,
         "a_span": parsed.a.text,
         "p_span": parsed.p.text,
         "verb_token": parsed.verb_token,
-        "good_value": marker_value(good_a_mark),
+        "good_value": marker_value(good_p_mark),
         "bad_value": bad_value,
         "perturbation": perturbation_label,
     }

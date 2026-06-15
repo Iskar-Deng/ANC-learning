@@ -10,21 +10,20 @@ PHENOMENON_ID = "1.1"
 PHENOMENON_NAME = "intran_S_marker"
 
 
-def foil_marker_for_source(source_index: int) -> str:
+def foil_marker_for_row(row: Dict[str, Any] | None, fallback_index: int) -> str:
     """
-    1-25:   simple S -> S-ca
-    26-50:  simple S -> S-ge
-    51-75:  genitive/possessive S head -> head-ca
-    76-100: genitive/possessive S head -> head-ge
-
-    If more than 100 source items are used, continue alternating in 25-item
-    blocks so extra backup items remain usable.
+    Alternate between real marker foils without relying on source block layout.
     """
-    if source_index < 1:
-        raise ValueError(f"source_index must be 1-based, got {source_index}")
+    value: Any = fallback_index
+    if row is not None:
+        value = row.get("id", row.get("source_id", fallback_index))
 
-    block = ((source_index - 1) // 25) % 2
-    return "ca" if block == 0 else "ge"
+    try:
+        index = int(value)
+    except (TypeError, ValueError):
+        index = fallback_index
+
+    return "ca" if index % 2 else "ge"
 
 
 def split_intransitive_clause(tokens: List[str], clause_wo: str) -> tuple[List[str], int]:
@@ -91,7 +90,7 @@ def perturb(
     head_offset = subject_head_offset(subject_tokens, np_wo)
     target_index = subject_start + head_offset
 
-    foil_marker = foil_marker_for_source(source_index)
+    foil_marker = foil_marker_for_row(row, source_index)
 
     bad_tokens = tokens[:]
     bad_tokens[target_index] = bad_tokens[target_index] + foil_marker
