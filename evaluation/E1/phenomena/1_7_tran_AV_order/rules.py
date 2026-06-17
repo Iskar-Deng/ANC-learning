@@ -8,8 +8,8 @@ from pathlib import Path
 from typing import Any, Dict, List, NamedTuple
 
 
-PHENOMENON_ID = "1.5"
-PHENOMENON_NAME = "tran_P_marker"
+PHENOMENON_ID = "1.7"
+PHENOMENON_NAME = "tran_AV_order"
 TEMPLATE_PATH = Path(__file__).with_name("templates.json")
 
 
@@ -45,15 +45,6 @@ TEMPLATES = load_templates()
 
 def marker_value(mark: str | None) -> str:
     return mark or "0"
-
-
-def strip_suffix(token: str, suffix: str) -> str:
-    if not token.endswith(suffix):
-        raise ValueError(f"Expected token ending in {suffix!r}, got: {token}")
-    stem = token[: -len(suffix)]
-    if not stem:
-        raise ValueError(f"Could not strip suffix {suffix!r} from token: {token}")
-    return stem
 
 
 def finite_verb_like(token: str) -> bool:
@@ -208,30 +199,21 @@ def template_shape_from_pseudo(row: Dict[str, Any] | None) -> tuple[int, int] | 
     return a_len, p_len
 
 
-def stable_row_index(row: Dict[str, Any] | None, fallback_index: int) -> int:
-    if row is not None:
-        for key in ("id", "source_id", "pseudo_index", "pair_index"):
-            value = row.get(key)
-            try:
-                return int(value)
-            except (TypeError, ValueError):
-                pass
-    return fallback_index
+def sentence_case_tokens(tokens: List[str]) -> List[str]:
+    if not tokens:
+        return tokens
+
+    cased = [token.lower() for token in tokens]
+    cased[0] = cased[0][:1].upper() + cased[0][1:]
+    return cased
 
 
-def foil_for_p(row: Dict[str, Any] | None, fallback_index: int, alignment: str) -> tuple[str, str]:
-    use_ge_foil = stable_row_index(row, fallback_index) % 2 == 0
-
-    if use_ge_foil:
-        return "ge", "replace_transitive_p_marker_with_ge"
-
-    if alignment == "nom-acc":
-        return "0", "remove_ca_from_transitive_p"
-
-    if alignment == "erg-abs":
-        return "ca", "add_ca_to_transitive_p"
-
-    raise ValueError(f"Unsupported alignment: {alignment}")
+def av_value(clause_wo: str) -> str:
+    if clause_wo in {"sov", "svo"}:
+        return "AV"
+    if clause_wo == "vos":
+        return "VA"
+    raise ValueError(f"Unsupported clause_wo: {clause_wo}")
 
 
 def perturb(
@@ -244,7 +226,6 @@ def perturb(
 
     clause_wo = language_config["clause_wo"]
     np_wo = language_config["np_wo"]
-    alignment = language_config["alignment"]
     good_a_mark = language_config["FIN_A_MARK"]
     good_p_mark = language_config["FIN_P_MARK"]
 
@@ -264,41 +245,36 @@ def perturb(
             "tokens": tokens,
             "clause_wo": clause_wo,
             "np_wo": np_wo,
-            "alignment": alignment,
             "good_a_mark": marker_value(good_a_mark),
             "good_p_mark": marker_value(good_p_mark),
         }
 
-    target_index = parsed.p.head_index
-    target_token = tokens[target_index]
-    bad_value, perturbation_label = foil_for_p(row, source_index, alignment)
+    a_tokens = parsed.a.tokens
+    p_tokens = parsed.p.tokens
+    verb_tokens = [parsed.verb_token]
 
-    bad_tokens = tokens[:]
-    if marker_value(good_p_mark) == "0":
-        if bad_value == "0":
-            raise ValueError("P is already zero-marked")
-        bad_tokens[target_index] = target_token + bad_value
-    elif good_p_mark == "ca":
-        p_stem = strip_suffix(target_token, "ca")
-        if bad_value == "0":
-            bad_tokens[target_index] = p_stem
-        elif bad_value == "ge":
-            bad_tokens[target_index] = p_stem + "ge"
-        else:
-            raise ValueError(f"Unsupported bad_value for ca-marked P: {bad_value}")
+    if clause_wo == "sov":
+        bad_tokens = p_tokens + verb_tokens + a_tokens
+    elif clause_wo == "svo":
+        bad_tokens = verb_tokens + p_tokens + a_tokens
+    elif clause_wo == "vos":
+        bad_tokens = a_tokens + verb_tokens + p_tokens
     else:
-        raise ValueError(f"Unsupported GOOD P marker: {good_p_mark!r}")
+        raise ValueError(f"Unsupported clause_wo: {clause_wo}")
+
+    good_value = av_value(clause_wo)
+    bad_value = "VA" if good_value == "AV" else "AV"
 
     return {
-        "bad": " ".join(bad_tokens),
-        "target_role": "P",
-        "target_index": target_index,
-        "target_token": target_token,
+        "bad": " ".join(sentence_case_tokens(bad_tokens)),
+        "target_role": "A_V_order",
+        "target_index": parsed.a.start,
+        "target_token": tokens[parsed.a.start],
         "a_span": parsed.a.text,
         "p_span": parsed.p.text,
         "verb_token": parsed.verb_token,
-        "good_value": marker_value(good_p_mark),
+        "good_value": good_value,
         "bad_value": bad_value,
         "template": parsed.template_name,
-        "perturbation": perturbation_label,
+        "perturbation": "swap_transitive_a_span_with_vp_chunk",
     }

@@ -1,0 +1,50 @@
+[
+  {
+    "name": "sv_single_gen_s_gn",
+    "clause_wo": ["sov", "svo"],
+    "np_wo": ["gn"],
+    "gen_depth": 1,
+    "token_count": 3,
+    "verb_index": 2,
+    "subject_start": 0,
+    "subject_len": 2,
+    "gen_indices": [0],
+    "layer_to_gen_index": {"1": 0}
+  },
+  {
+    "name": "sv_single_gen_s_ng",
+    "clause_wo": ["sov", "svo"],
+    "np_wo": ["ng"],
+    "gen_depth": 1,
+    "token_count": 3,
+    "verb_index": 2,
+    "subject_start": 0,
+    "subject_len": 2,
+    "gen_indices": [1],
+    "layer_to_gen_index": {"1": 1}
+  },
+  {
+    "name": "vs_single_gen_s_gn",
+    "clause_wo": ["vos"],
+    "np_wo": ["gn"],
+    "gen_depth": 1,
+    "token_count": 3,
+    "verb_index": 0,
+    "subject_start": 1,
+    "subject_len": 2,
+    "gen_indices": [1],
+    "layer_to_gen_index": {"1": 1}
+  },
+  {
+    "name": "vs_single_gen_s_ng",
+    "clause_wo": ["vos"],
+    "np_wo": ["ng"],
+    "gen_depth": 1,
+    "token_count": 3,
+    "verb_index": 0,
+    "subject_start": 1,
+    "subject_len": 2,
+    "gen_indices": [2],
+    "layer_to_gen_index": {"1": 2}
+  }
+]

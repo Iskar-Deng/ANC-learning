@@ -1,0 +1,8 @@
+[
+  {
+    "name": "cv_embedded_iv",
+    "embedded_construction": "iv",
+    "matrix_a_lens": [1, 2],
+    "embedded_s_lens": [1, 2]
+  }
+]

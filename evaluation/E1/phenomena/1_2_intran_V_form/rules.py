@@ -3,29 +3,71 @@
 
 from __future__ import annotations
 
+import json
+from pathlib import Path
 from typing import Any, Dict, List
 
 
 PHENOMENON_ID = "1.2"
 PHENOMENON_NAME = "1_2_intran_V_form"
+TEMPLATE_PATH = Path(__file__).with_name("templates.json")
 
 
-def finite_verb_index(tokens: List[str], clause_wo: str) -> int:
-    """
-    Expected GOOD shape for basic intransitive clauses:
-      SOV/SVO: S V-s
-      VOS:     V-s S
-    """
-    if len(tokens) < 2:
-        raise ValueError(f"Expected at least two tokens, got: {tokens}")
+def load_templates() -> List[Dict[str, Any]]:
+    with TEMPLATE_PATH.open(encoding="utf-8") as infile:
+        return json.load(infile)
 
-    if clause_wo in {"sov", "svo"}:
-        return len(tokens) - 1
 
-    if clause_wo == "vos":
-        return 0
+TEMPLATES = load_templates()
 
-    raise ValueError(f"Unsupported clause_wo: {clause_wo}")
+
+def finite_verb_like(token: str) -> bool:
+    return token.endswith("s")
+
+
+def template_matches(
+    template: Dict[str, Any],
+    tokens: List[str],
+    clause_wo: str,
+    np_wo: str,
+) -> bool:
+    if clause_wo not in template["clause_wo"]:
+        return False
+
+    if np_wo not in template["np_wo"]:
+        return False
+
+    if len(tokens) != template["token_count"]:
+        return False
+
+    verb_index = template["verb_index"]
+    if not finite_verb_like(tokens[verb_index]):
+        return False
+
+    subject_start = template["subject_start"]
+    for requirement in template["required_suffixes"]:
+        index = subject_start + requirement["relative_index"]
+        if not tokens[index].endswith(requirement["suffix"]):
+            return False
+
+    return True
+
+
+def find_template_match(
+    tokens: List[str],
+    clause_wo: str,
+    np_wo: str,
+) -> Dict[str, Any] | None:
+    matches = [
+        template
+        for template in TEMPLATES
+        if template_matches(template, tokens, clause_wo, np_wo)
+    ]
+
+    if len(matches) == 1:
+        return matches[0]
+
+    return None
 
 
 def finite_to_nonfinite(token: str) -> str:
@@ -53,8 +95,20 @@ def perturb(
 ) -> Dict[str, Any]:
     tokens = good_sentence.strip().split()
     clause_wo = language_config["clause_wo"]
+    np_wo = language_config["np_wo"]
 
-    target_index = finite_verb_index(tokens, clause_wo)
+    template = find_template_match(tokens, clause_wo, np_wo)
+    if template is None:
+        return {
+            "skip": True,
+            "skip_reason": "template_match_count_not_one",
+            "good": good_sentence,
+            "tokens": tokens,
+            "clause_wo": clause_wo,
+            "np_wo": np_wo,
+        }
+
+    target_index = template["verb_index"]
     good_token = tokens[target_index]
     bad_token = finite_to_nonfinite(good_token)
 
@@ -66,7 +120,11 @@ def perturb(
         "target_role": "V",
         "target_index": target_index,
         "target_token": good_token,
+        "subject_span": " ".join(
+            tokens[template["subject_start"] : template["subject_start"] + template["subject_len"]]
+        ),
         "good_value": "finite_s",
         "bad_value": "nonfinite_ing",
+        "template": template["name"],
         "perturbation": "replace_intransitive_finite_s_with_nonfinite_ing",
     }

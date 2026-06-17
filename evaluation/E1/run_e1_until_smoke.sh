@@ -5,7 +5,7 @@ export LANG="${LANG:-C.UTF-8}"
 export LC_ALL="${LC_ALL:-C.UTF-8}"
 
 PHEN=""
-SMOKE_LANG="92_vos_ng_er_d_se"
+SMOKE_LANG=""
 SAMPLE_SIZE=100
 SEED=42
 PARSE_WORKERS=8
@@ -26,7 +26,7 @@ Required:
   --phenomenon NAME            e.g. 1_2_intran_V_form
 
 Options:
-  --smoke-lang LANG            Default: 92_vos_ng_er_d_se
+  --smoke-lang LANG            Smoke-test language. Default: random generated language
   --sample-size N              Smoke pair sample size. Default: 100
   --seed N                     Sampling seed. Default: 42
   --parse-workers N            Pseudo-English parse workers. Default: 8
@@ -119,8 +119,6 @@ PSEUDO_STATS="$MAT_DIR/${PHEN}_pseudo_stats.json"
 MRS="$MAT_DIR/${PHEN}_mrs.jsonl"
 GEN_BASE="$MAT_DIR/generated"
 GEN_LOG_DIR="$MAT_DIR/logs/generation"
-SMOKE_GOOD="$GEN_BASE/selected/${SMOKE_LANG}.jsonl"
-SMOKE_PAIR="$MAT_DIR/pairs/${SMOKE_LANG}.pairs.jsonl"
 
 if [[ ! -f "$SOURCE" ]]; then
   echo "Error: source not found: $SOURCE"
@@ -143,7 +141,7 @@ echo "========== E1 Until Smoke =========="
 echo "Project root:      $PROJECT_ROOT"
 echo "Phenomenon:        $PHEN"
 echo "Source:            $SOURCE"
-echo "Smoke language:    $SMOKE_LANG"
+echo "Smoke language:    ${SMOKE_LANG:-random after generation}"
 echo "Sample size:       $SAMPLE_SIZE"
 echo "Seed:              $SEED"
 echo "Python:            $PYTHON_BIN"
@@ -206,6 +204,27 @@ if [[ "$SKIP_EXISTING_GENERATION" == true ]]; then
 fi
 
 "${GEN_CMD[@]}"
+
+if [[ -z "$SMOKE_LANG" ]]; then
+  SMOKE_LANG="$(
+    "$PYTHON_BIN" - "$GEN_BASE/selected" <<'PY'
+import random
+import sys
+from pathlib import Path
+
+selected_dir = Path(sys.argv[1])
+files = sorted(selected_dir.glob("*.jsonl"))
+if not files:
+    raise SystemExit(f"No selected generation files found in {selected_dir}")
+print(random.choice(files).stem)
+PY
+  )"
+  echo
+  echo "Random smoke language: $SMOKE_LANG"
+fi
+
+SMOKE_GOOD="$GEN_BASE/selected/${SMOKE_LANG}.jsonl"
+SMOKE_PAIR="$MAT_DIR/pairs/${SMOKE_LANG}.pairs.jsonl"
 
 if [[ ! -f "$SMOKE_GOOD" ]]; then
   echo "Error: smoke selected output not found: $SMOKE_GOOD"

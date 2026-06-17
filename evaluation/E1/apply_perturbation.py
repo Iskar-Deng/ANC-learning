@@ -9,7 +9,7 @@ import json
 import random
 import sys
 from pathlib import Path
-from typing import Any, Dict, Iterator, List
+from typing import Any, Dict, Iterator, List, TextIO
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT) not in sys.path:
@@ -102,18 +102,42 @@ def load_rows(path: Path, language_arg: str | None) -> List[JsonDict]:
     return rows
 
 
-def sample_rows(rows: List[JsonDict], sample_size: int | None, seed: int) -> List[JsonDict]:
+def shuffle_rows(rows: List[JsonDict], seed: int) -> List[JsonDict]:
     shuffled = rows[:]
     rng = random.Random(seed)
     rng.shuffle(shuffled)
+    return shuffled
 
+
+def validate_sample_size(sample_size: int | None) -> None:
     if sample_size is None:
-        return shuffled
+        return
 
     if sample_size < 1:
         raise ValueError(f"--sample-size must be >= 1, got {sample_size}")
 
-    return shuffled[:sample_size]
+
+def write_reject(
+    rejects_f: TextIO | None,
+    row: JsonDict,
+    pair_index: int,
+    language: str,
+    source_index: int,
+    good: str,
+    metadata: JsonDict,
+) -> None:
+    if rejects_f is None:
+        return
+
+    out_row = {
+        **row,
+        "pair_index": pair_index,
+        "language": language,
+        "source_index": source_index,
+        "good": good,
+        **metadata,
+    }
+    rejects_f.write(json.dumps(out_row, ensure_ascii=False) + "\n")
 
 
 def main() -> None:
@@ -142,12 +166,18 @@ def main() -> None:
         help="Use all rows after shuffling; overrides --sample-size.",
     )
     ap.add_argument("--seed", type=int, default=42)
+    ap.add_argument(
+        "--rejects-out",
+        default=None,
+        help="Optional JSONL path for items skipped by phenomenon rules.",
+    )
 
     args = ap.parse_args()
 
     phenomenon_dir = Path(args.phenomenon_dir)
     good_path = Path(args.good_items)
     out_path = Path(args.out)
+    rejects_path = Path(args.rejects_out) if args.rejects_out else None
 
     rules = load_rules(phenomenon_dir)
     phenomenon_id = getattr(rules, "PHENOMENON_ID", phenomenon_dir.name)
@@ -155,53 +185,89 @@ def main() -> None:
 
     rows = load_rows(good_path, args.language)
     sample_size = None if args.all else args.sample_size
-    selected_rows = sample_rows(rows, sample_size=sample_size, seed=args.seed)
+    validate_sample_size(sample_size)
+    shuffled_rows = shuffle_rows(rows, seed=args.seed)
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
+    if rejects_path is not None:
+        rejects_path.parent.mkdir(parents=True, exist_ok=True)
+
+    accepted_count = 0
+    skipped_count = 0
+    processed_count = 0
 
     with out_path.open("w", encoding="utf-8") as f:
-        for pair_index, row in enumerate(selected_rows, start=1):
-            language = row["language"]
-            source_index = get_source_index(row, pair_index)
-            good = get_good_sentence(row)
-            config = config_for_language(language)
+        rejects_f = rejects_path.open("w", encoding="utf-8") if rejects_path else None
+        try:
+            for shuffled_index, row in enumerate(shuffled_rows, start=1):
+                if sample_size is not None and accepted_count >= sample_size:
+                    break
 
-            perturbation = rules.perturb(
-                good_sentence=good,
-                language_config=config,
-                source_index=source_index,
-                row=row,
-            )
+                processed_count += 1
+                pair_index = accepted_count + 1
+                language = row["language"]
+                source_index = get_source_index(row, shuffled_index)
+                good = get_good_sentence(row)
+                config = config_for_language(language)
 
-            if isinstance(perturbation, str):
-                bad = perturbation
-                metadata: JsonDict = {}
-            elif isinstance(perturbation, dict):
-                bad = perturbation.get("bad")
-                metadata = dict(perturbation)
-                metadata.pop("bad", None)
-            else:
-                raise TypeError("perturb() must return a bad sentence string or a dict")
+                perturbation = rules.perturb(
+                    good_sentence=good,
+                    language_config=config,
+                    source_index=source_index,
+                    row=row,
+                )
 
-            if not isinstance(bad, str) or not bad.strip():
-                raise ValueError(f"perturb() returned invalid bad sentence for row: {row}")
+                if isinstance(perturbation, str):
+                    bad = perturbation
+                    metadata: JsonDict = {}
+                elif isinstance(perturbation, dict):
+                    if perturbation.get("skip"):
+                        skipped_count += 1
+                        metadata = dict(perturbation)
+                        write_reject(
+                            rejects_f=rejects_f,
+                            row=row,
+                            pair_index=pair_index,
+                            language=language,
+                            source_index=source_index,
+                            good=good,
+                            metadata=metadata,
+                        )
+                        continue
 
-            out_row = {
-                **row,
-                "phenomenon_id": phenomenon_id,
-                "phenomenon_name": phenomenon_name,
-                "pair_index": pair_index,
-                "language": language,
-                "source_index": source_index,
-                "good": good,
-                "bad": bad.strip(),
-                **metadata,
-            }
-            f.write(json.dumps(out_row, ensure_ascii=False) + "\n")
+                    bad = perturbation.get("bad")
+                    metadata = dict(perturbation)
+                    metadata.pop("bad", None)
+                else:
+                    raise TypeError("perturb() must return a bad sentence string or a dict")
+
+                if not isinstance(bad, str) or not bad.strip():
+                    raise ValueError(f"perturb() returned invalid bad sentence for row: {row}")
+
+                out_row = {
+                    **row,
+                    "phenomenon_id": phenomenon_id,
+                    "phenomenon_name": phenomenon_name,
+                    "pair_index": pair_index,
+                    "language": language,
+                    "source_index": source_index,
+                    "good": good,
+                    "bad": bad.strip(),
+                    **metadata,
+                }
+                f.write(json.dumps(out_row, ensure_ascii=False) + "\n")
+                accepted_count += 1
+        finally:
+            if rejects_f is not None:
+                rejects_f.close()
 
     print(f"Loaded rows: {len(rows)}")
-    print(f"Wrote pairs: {len(selected_rows)}")
+    print(f"Processed rows: {processed_count}")
+    print(f"Skipped rows: {skipped_count}")
+    print(f"Wrote pairs: {accepted_count}")
     print(f"Output: {out_path}")
+    if rejects_path is not None:
+        print(f"Rejects: {rejects_path}")
 
 
 if __name__ == "__main__":

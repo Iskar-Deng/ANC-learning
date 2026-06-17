@@ -1,0 +1,201 @@
+row_id	source_uid	pair_id	use_for	good_stem	bad_stem	sentence_good	sentence_bad	lexically_identical
+1	intransitive	0	1.9_intran_V_valency	yawn	walkthrough	Todd can't yawn.	Todd can't walk through.	false
+2	intransitive	1	1.9_intran_V_valency	leave	boastabout	Some guests hadn't left.	Some guests hadn't boasted about.	false
+3	intransitive	3	1.9_intran_V_valency	shout	boastabout	Regina is shouting.	Regina is boasting about.	false
+4	intransitive	4	1.9_intran_V_valency	complain	wear	This guest's plumber complains.	This guest's plumber wore.	false
+5	intransitive	5	1.9_intran_V_valency	benefit	argueabout	Anna's grandmothers aren't benefiting.	Anna's grandmothers aren't arguing about.	false
+6	intransitive	6	1.9_intran_V_valency	vaporize	scare	Some glaciers are vaporizing.	Some glaciers are scaring.	false
+7	intransitive	7	1.9_intran_V_valency	succeed	boastabout	Stephanie succeeds.	Stephanie boasts about.	false
+8	intransitive	8	1.9_intran_V_valency	scream	driveto	Tara's contractors scream.	Tara's contractors drive to.	false
+9	intransitive	9	1.9_intran_V_valency	crumple	looklike	All gloves weren't crumpling.	All gloves weren't looking like.	false
+10	intransitive	10	1.9_intran_V_valency	cook	goto	Patricia's hairdressers hadn't cooked.	Patricia's hairdressers hadn't gone to.	false
+11	intransitive	12	1.9_intran_V_valency	scorch	scare	The muffins were scorching.	The muffins were scaring.	false
+12	intransitive	13	1.9_intran_V_valency	paint	walkthrough	Those friends of Sally were painting.	Those friends of Sally were walking through.	false
+13	intransitive	14	1.9_intran_V_valency	brighten	resemble	This screen does brighten.	This screen does resemble.	false
+14	intransitive	15	1.9_intran_V_valency	succeed	scare	Danielle's podiatrists were succeeding.	Danielle's podiatrists were scaring.	false
+15	intransitive	16	1.9_intran_V_valency	collaborate	goto	A lot of cashiers should collaborate.	A lot of cashiers should go to.	false
+16	intransitive	17	1.9_intran_V_valency	blacken	resemble	The pepper blackened.	The pepper resembles.	false
+17	intransitive	19	1.9_intran_V_valency	die	arriveat	Guy's French teachers die.	Guy's French teachers arrived at.	false
+18	intransitive	20	1.9_intran_V_valency	crumple	scare	This shirt crumples.	This shirt scares.	false
+19	intransitive	21	1.9_intran_V_valency	fall	resemble	Some cup falls apart.	Some cup resembles.	false
+20	intransitive	22	1.9_intran_V_valency	clash	arriveat	All grandmothers of Bill hadn't clashed.	All grandmothers of Bill hadn't arrived at.	false
+21	intransitive	23	1.9_intran_V_valency	chip	scare	Some convertible is chipping.	Some convertible is scaring.	false
+22	intransitive	25	1.9_intran_V_valency	cooperate	boastabout	These grandfathers of Ella cooperated.	These grandfathers of Ella boast about.	false
+23	intransitive	26	1.9_intran_V_valency	dim	looklike	Most spotlights had dimmed.	Most spotlights had looked like.	false
+24	intransitive	27	1.9_intran_V_valency	learn	dislike	Keith learns.	Keith disliked.	false
+25	intransitive	28	1.9_intran_V_valency	donate	conceal	Andrea has donated.	Andrea has concealed.	false
+26	intransitive	29	1.9_intran_V_valency	hunt	examine	Some sisters of Laurie weren't hunting.	Some sisters of Laurie weren't examining.	false
+27	intransitive	30	1.9_intran_V_valency	argue	looklike	Brian argued.	Brian looked like.	false
+28	intransitive	31	1.9_intran_V_valency	embrace	respect	Many teachers embrace.	Many teachers respected.	false
+29	intransitive	32	1.9_intran_V_valency	depart	cure	Larry departs.	Larry cured.	false
+30	intransitive	35	1.9_intran_V_valency	fall	conceal	The waitresses haven't fallen asleep.	The waitresses haven't concealed.	false
+31	intransitive	36	1.9_intran_V_valency	murmur	goto	Bethany murmured.	Bethany goes to.	false
+32	intransitive	38	1.9_intran_V_valency	shatter	looklike	Some wheelbarrow shattered.	Some wheelbarrow looked like.	false
+33	intransitive	39	1.9_intran_V_valency	lie	examine	The dancer's daughters lie.	The dancer's daughters examined.	false
+34	intransitive	40	1.9_intran_V_valency	compete	conceal	The companies haven't competed.	The companies haven't concealed.	false
+35	intransitive	41	1.9_intran_V_valency	wakeup	returnto	Kimberley wakes up.	Kimberley returned to.	false
+36	intransitive	42	1.9_intran_V_valency	kiss	examine	Some people's tutors were kissing.	Some people's tutors were examining.	false
+37	intransitive	43	1.9_intran_V_valency	concur	carefor	Nicole concurred.	Nicole cared for.	false
+38	intransitive	44	1.9_intran_V_valency	blink	boastabout	The student has blinked.	The student has boasted about.	false
+39	intransitive	45	1.9_intran_V_valency	die	argueabout	Donna shouldn't die.	Donna shouldn't argue about.	false
+40	intransitive	46	1.9_intran_V_valency	play	cure	Lori plays.	Lori cured.	false
+41	intransitive	47	1.9_intran_V_valency	answer	reveal	A son of Andrea answered.	A son of Andrea reveals.	false
+42	intransitive	48	1.9_intran_V_valency	debate	respect	Most organizations couldn't debate.	Most organizations couldn't respect.	false
+43	intransitive	49	1.9_intran_V_valency	assemble	dislike	Helen's associates assemble.	Helen's associates disliked.	false
+44	intransitive	50	1.9_intran_V_valency	litter	escapefrom	Alice littered.	Alice escaped from.	false
+45	intransitive	51	1.9_intran_V_valency	donate	driveto	Robert's ex-wives donate.	Robert's ex-wives drive to.	false
+46	intransitive	52	1.9_intran_V_valency	negotiate	goto	A lot of doctors negotiated.	A lot of doctors go to.	false
+47	intransitive	53	1.9_intran_V_valency	rot	resemble	That pepper rotted.	That pepper resembles.	false
+48	intransitive	55	1.9_intran_V_valency	protest	conceal	A child's tutor is protesting.	A child's tutor is concealing.	false
+49	intransitive	56	1.9_intran_V_valency	darken	looklike	The lamps hadn't darkened.	The lamps hadn't looked like.	false
+50	intransitive	57	1.9_intran_V_valency	drink	goto	Many adults drink.	Many adults go to.	false
+51	intransitive	58	1.9_intran_V_valency	sitdown	arriveat	Kimberley does sit down.	Kimberley does arrive at.	false
+52	intransitive	59	1.9_intran_V_valency	lie	complainabout	The Borgias won't lie.	The Borgias won't complain about.	false
+53	intransitive	60	1.9_intran_V_valency	move	listento	A lot of teachers had moved.	A lot of teachers had listened to.	false
+54	intransitive	208	1.9_intran_V_valency	wash	talkabout	Jennifer washes.	Jennifer talks about.	false
+55	intransitive	63	1.9_intran_V_valency	murmur	examine	Some nephews of Jodi hadn't murmured.	Some nephews of Jodi hadn't examined.	false
+56	intransitive	64	1.9_intran_V_valency	salute	goto	Robert has saluted.	Robert has gone to.	false
+57	intransitive	65	1.9_intran_V_valency	warp	scare	This shirt wasn't warping.	This shirt wasn't scaring.	false
+58	intransitive	66	1.9_intran_V_valency	wakeup	scare	This hamster isn't waking up.	This hamster isn't scaring.	false
+59	intransitive	68	1.9_intran_V_valency	answer	talkabout	Karen isn't answering.	Karen isn't talking about.	false
+60	intransitive	69	1.9_intran_V_valency	tighten	resemble	A lot of hats tighten.	A lot of hats resembled.	false
+61	intransitive	70	1.9_intran_V_valency	reply	arriveat	Andrea's nephews have replied.	Andrea's nephews have arrived at.	false
+62	intransitive	71	1.9_intran_V_valency	char	resemble	That spinach charred.	That spinach resembles.	false
+63	intransitive	72	1.9_intran_V_valency	standup	arriveat	Matt's ex-boyfriend stands up.	Matt's ex-boyfriend arrived at.	false
+64	intransitive	73	1.9_intran_V_valency	crumple	resemble	Many shoes crumpled.	Many shoes resembled.	false
+65	intransitive	74	1.9_intran_V_valency	steer	scare	Many bicycles should steer.	Many bicycles should scare.	false
+66	intransitive	75	1.9_intran_V_valency	blink	listento	Some grandmothers of Vincent have blinked.	Some grandmothers of Vincent have listened to.	false
+67	intransitive	76	1.9_intran_V_valency	smile	admire	Anna's cousins might smile.	Anna's cousins might admire.	false
+68	intransitive	77	1.9_intran_V_valency	darken	scare	This screen darkened.	This screen scares.	false
+69	intransitive	78	1.9_intran_V_valency	fling	looklike	A closet flung open.	A closet looks like.	false
+70	intransitive	79	1.9_intran_V_valency	smile	dropby	Wayne is smiling.	Wayne is dropping by.	false
+71	intransitive	81	1.9_intran_V_valency	cough	lift	Beverly does cough.	Beverly does lift.	false
+72	intransitive	82	1.9_intran_V_valency	hunt	talkabout	Grace hasn't hunted.	Grace hasn't talked about.	false
+73	intransitive	83	1.9_intran_V_valency	sigh	complainabout	Tracy is sighing.	Tracy is complaining about.	false
+74	intransitive	84	1.9_intran_V_valency	surrender	lift	Teachers hadn't surrendered.	Teachers hadn't lifted.	false
+75	intransitive	85	1.9_intran_V_valency	meet	argueabout	The guests did meet.	The guests did argue about.	false
+76	intransitive	86	1.9_intran_V_valency	conspire	returnto	Frank's cousins had conspired.	Frank's cousins had returned to.	false
+77	intransitive	87	1.9_intran_V_valency	char	looklike	Some tomatoes aren't charring.	Some tomatoes aren't looking like.	false
+78	intransitive	88	1.9_intran_V_valency	steer	looklike	Some skateboard should steer.	Some skateboard should look like.	false
+79	intransitive	89	1.9_intran_V_valency	change	fire	The Borgias won't change.	The Borgias won't fire.	false
+80	intransitive	91	1.9_intran_V_valency	hideaway	fire	A cousin of some waitresses would hide away.	A cousin of some waitresses would fire.	false
+81	intransitive	93	1.9_intran_V_valency	struggle	looklike	Jason's supervisors hadn't struggled.	Jason's supervisors hadn't looked like.	false
+82	intransitive	94	1.9_intran_V_valency	answer	listento	Kirsten was answering.	Kirsten was listening to.	false
+83	intransitive	95	1.9_intran_V_valency	slow	scare	Some wheelbarrows are slowing.	Some wheelbarrows are scaring.	false
+84	intransitive	97	1.9_intran_V_valency	wasteaway	workwith	These drivers hadn't wasted away.	These drivers hadn't worked with.	false
+85	intransitive	98	1.9_intran_V_valency	exist	scare	This bike is existing.	This bike is scaring.	false
+86	intransitive	99	1.9_intran_V_valency	murmur	boastabout	The actor's employee murmurs.	The actor's employee boasts about.	false
+87	intransitive	100	1.9_intran_V_valency	stretch	looklike	Those actresses stretch.	Those actresses look like.	false
+88	intransitive	101	1.9_intran_V_valency	chip	looklike	This plane chipped.	This plane looked like.	false
+89	intransitive	102	1.9_intran_V_valency	see	boastabout	Wendy hadn't seen.	Wendy hadn't boasted about.	false
+90	intransitive	103	1.9_intran_V_valency	complain	conceal	Maria was complaining.	Maria was concealing.	false
+91	intransitive	104	1.9_intran_V_valency	cope	talkabout	Those governments were coping.	Those governments were talking about.	false
+92	intransitive	105	1.9_intran_V_valency	yawn	arriveat	Some mother of Caroline is yawning.	Some mother of Caroline is arriving at.	false
+93	intransitive	106	1.9_intran_V_valency	reply	complainabout	Julie replies.	Julie complained about.	false
+94	intransitive	107	1.9_intran_V_valency	practice	carefor	Candice's students haven't practiced.	Candice's students haven't cared for.	false
+95	intransitive	108	1.9_intran_V_valency	fling	resemble	Some eyes flung open.	Some eyes resemble.	false
+96	intransitive	109	1.9_intran_V_valency	yawn	driveto	Katherine won't yawn.	Katherine won't drive to.	false
+97	intransitive	110	1.9_intran_V_valency	change	dropby	The Impressionists have changed.	The Impressionists have dropped by.	false
+98	intransitive	111	1.9_intran_V_valency	stretch	talkabout	Some son of Nancy stretched.	Some son of Nancy talked about.	false
+99	intransitive	112	1.9_intran_V_valency	crumple	looklike	Most shoes do crumple.	Most shoes do look like.	false
+100	intransitive	113	1.9_intran_V_valency	weep	conceal	Deborah had wept.	Deborah had concealed.	false
+101	intransitive	114	1.9_intran_V_valency	exist	soundlike	Sarah's brother exists.	Sarah's brother sounds like.	false
+102	intransitive	115	1.9_intran_V_valency	flatten	resemble	The blouses can flatten.	The blouses can resemble.	false
+103	intransitive	117	1.9_intran_V_valency	talk	goto	Aaron talked.	Aaron went to.	false
+104	intransitive	118	1.9_intran_V_valency	interact	conceal	Christine's friends will interact.	Christine's friends will conceal.	false
+105	intransitive	119	1.9_intran_V_valency	shut	looklike	Those doors shut.	Those doors look like.	false
+106	intransitive	120	1.9_intran_V_valency	sitdown	dislike	Those daughters of Pamela wouldn't sit down.	Those daughters of Pamela wouldn't dislike.	false
+107	intransitive	121	1.9_intran_V_valency	mutter	looklike	Andrea was muttering.	Andrea was looking like.	false
+108	intransitive	123	1.9_intran_V_valency	open	looklike	That closet opens.	That closet looked like.	false
+109	intransitive	124	1.9_intran_V_valency	boast	driveto	Most actors boast.	Most actors drive to.	false
+110	intransitive	125	1.9_intran_V_valency	confer	reference	Some banks confer.	Some banks reference.	false
+111	intransitive	127	1.9_intran_V_valency	succeed	goto	Some student's podiatrists had succeeded.	Some student's podiatrists had gone to.	false
+112	intransitive	128	1.9_intran_V_valency	slow	looklike	The plane slowed.	The plane looks like.	false
+113	intransitive	129	1.9_intran_V_valency	sitdown	complainabout	That grandmother of Anne sits down.	That grandmother of Anne complains about.	false
+114	intransitive	131	1.9_intran_V_valency	vaporize	scare	The lakes would vaporize.	The lakes would scare.	false
+115	intransitive	133	1.9_intran_V_valency	fight	fire	This museum was fighting.	This museum was firing.	false
+116	intransitive	134	1.9_intran_V_valency	wasteaway	resemble	Most tomatoes hadn't wasted away.	Most tomatoes hadn't resembled.	false
+117	intransitive	135	1.9_intran_V_valency	soak	resemble	Those blouses soaked.	Those blouses resemble.	false
+118	intransitive	136	1.9_intran_V_valency	kiss	admire	Ruth's dentists haven't kissed.	Ruth's dentists haven't admired.	false
+119	intransitive	137	1.9_intran_V_valency	burn	resemble	That spinach burns.	That spinach resembles.	false
+120	intransitive	138	1.9_intran_V_valency	wakeup	talkto	Alexander hasn't woken up.	Alexander hasn't talked to.	false
+121	intransitive	140	1.9_intran_V_valency	whisper	conceal	Stacy has whispered.	Stacy has concealed.	false
+122	intransitive	141	1.9_intran_V_valency	debate	looklike	The bank hadn't debated.	The bank hadn't looked like.	false
+123	intransitive	142	1.9_intran_V_valency	fray	resemble	A shoe frayed.	A shoe resembles.	false
+124	intransitive	143	1.9_intran_V_valency	fall	scare	Marcus's plumbers fall asleep.	Marcus's plumbers scare.	false
+125	intransitive	145	1.9_intran_V_valency	yell	fire	All actors yell.	All actors fire.	false
+126	intransitive	146	1.9_intran_V_valency	sigh	conceal	Pamela's classmate wasn't sighing.	Pamela's classmate wasn't concealing.	false
+127	intransitive	147	1.9_intran_V_valency	worry	walkthrough	Many girls worry.	Many girls walked through.	false
+128	intransitive	148	1.9_intran_V_valency	negotiate	talkabout	Some legislatures negotiated.	Some legislatures talk about.	false
+129	intransitive	149	1.9_intran_V_valency	brighten	looklike	This candle won't brighten.	This candle won't look like.	false
+130	intransitive	151	1.9_intran_V_valency	perform	biketo	Claire had performed.	Claire had biked to.	false
+131	intransitive	152	1.9_intran_V_valency	practice	reveal	Every patient isn't practicing.	Every patient isn't revealing.	false
+132	intransitive	153	1.9_intran_V_valency	shatter	resemble	A skateboard shattered.	A skateboard resembled.	false
+133	intransitive	154	1.9_intran_V_valency	dim	scare	These lights dimmed.	These lights scare.	false
+134	intransitive	155	1.9_intran_V_valency	blink	biketo	Michael isn't blinking.	Michael isn't biking to.	false
+135	intransitive	157	1.9_intran_V_valency	spinaround	scare	Timothy's doctors were spinning around.	Timothy's doctors were scaring.	false
+136	intransitive	158	1.9_intran_V_valency	shut	scare	Some mouth will shut.	Some mouth will scare.	false
+137	intransitive	159	1.9_intran_V_valency	lie	cure	Mary is lying.	Mary is curing.	false
+138	intransitive	160	1.9_intran_V_valency	maneuver	resemble	Every cart had maneuvered.	Every cart had resembled.	false
+139	intransitive	161	1.9_intran_V_valency	wrinkle	resemble	Most scarves did wrinkle.	Most scarves did resemble.	false
+140	intransitive	162	1.9_intran_V_valency	suffer	returnto	Phillip has suffered.	Phillip has returned to.	false
+141	intransitive	163	1.9_intran_V_valency	compromise	complainabout	Tammy compromised.	Tammy complained about.	false
+142	intransitive	164	1.9_intran_V_valency	divorce	conceal	Erin's dermatologists have divorced.	Erin's dermatologists have concealed.	false
+143	intransitive	166	1.9_intran_V_valency	shrink	resemble	This sock shrinks.	This sock resembled.	false
+144	intransitive	167	1.9_intran_V_valency	condense	scare	The ice cream did condense.	The ice cream did scare.	false
+145	intransitive	168	1.9_intran_V_valency	worry	boastabout	Dawn's oncologists had worried.	Dawn's oncologists had boasted about.	false
+146	intransitive	169	1.9_intran_V_valency	close	looklike	The eye is closing.	The eye is looking like.	false
+147	intransitive	170	1.9_intran_V_valency	sigh	talkabout	Tanya's ex-husbands might sigh.	Tanya's ex-husbands might talk about.	false
+148	intransitive	171	1.9_intran_V_valency	laugh	go	Many nieces of Bruce are laughing.	Many nieces of Bruce are going to.	false
+149	intransitive	172	1.9_intran_V_valency	swallow	argueabout	Carmen's electricians haven't swallowed.	Carmen's electricians haven't argued about.	false
+150	intransitive	173	1.9_intran_V_valency	shout	driveto	Veronica does shout.	Veronica does drive to.	false
+151	intransitive	174	1.9_intran_V_valency	salute	boastabout	Alicia salutes.	Alicia boasted about.	false
+152	intransitive	176	1.9_intran_V_valency	murmur	scare	Cindy has murmured.	Cindy has scared.	false
+153	intransitive	178	1.9_intran_V_valency	see	lift	Stephen's associate had seen.	Stephen's associate had lifted.	false
+154	intransitive	180	1.9_intran_V_valency	dim	resemble	A lot of lights dimmed.	A lot of lights resembled.	false
+155	intransitive	181	1.9_intran_V_valency	react	fire	Linda's senators had reacted.	Linda's senators had fired.	false
+156	intransitive	182	1.9_intran_V_valency	evaporate	scare	Most icicles were evaporating.	Most icicles were scaring.	false
+157	intransitive	186	1.9_intran_V_valency	train	respect	Wendy trains.	Wendy respected.	false
+158	intransitive	188	1.9_intran_V_valency	hunt	dropby	Candice isn't hunting.	Candice isn't dropping by.	false
+159	intransitive	189	1.9_intran_V_valency	exist	resemble	The spinach exists.	The spinach resembled.	false
+160	intransitive	190	1.9_intran_V_valency	steer	scare	Some unicycles had steered.	Some unicycles had scared.	false
+161	intransitive	193	1.9_intran_V_valency	vanish	talkto	Marla's ex-girlfriends vanish.	Marla's ex-girlfriends talked to.	false
+162	intransitive	195	1.9_intran_V_valency	argue	arriveat	Jerry's bosses argue.	Jerry's bosses arrive at.	false
+163	intransitive	196	1.9_intran_V_valency	wakeup	dislike	Nicole's sons will wake up.	Nicole's sons will dislike.	false
+164	intransitive	212	1.9_intran_V_valency	dry	looklike	Some scarf dries.	Some scarf looks like.	false
+165	intransitive	198	1.9_intran_V_valency	exist	conceal	Rose isn't existing.	Rose isn't concealing.	false
+166	intransitive	202	1.9_intran_V_valency	shrink	scare	Those shirts shrink.	Those shirts scare.	false
+167	intransitive	203	1.9_intran_V_valency	depart	talkto	Tracy will depart.	Tracy will talk to.	false
+168	intransitive	238	1.9_intran_V_valency	nod	fire	Kathleen can nod.	Kathleen can fire.	false
+169	intransitive	205	1.9_intran_V_valency	cook	find	A lot of boys can cook.	A lot of boys can find.	false
+170	intransitive	206	1.9_intran_V_valency	surrender	admire	A lot of committees hadn't surrendered.	A lot of committees hadn't admired.	false
+171	intransitive	207	1.9_intran_V_valency	wasteaway	reveal	Lori hadn't wasted away.	Lori hadn't revealed.	false
+172	intransitive	210	1.9_intran_V_valency	vanish	looklike	That book had vanished.	That book had looked like.	false
+173	intransitive	211	1.9_intran_V_valency	bake	argueabout	Michael will bake.	Michael will argue about.	false
+174	intransitive	213	1.9_intran_V_valency	communicate	returnto	William's ex-wives communicate.	William's ex-wives returned to.	false
+175	intransitive	214	1.9_intran_V_valency	hunt	lift	Aaron has hunted.	Aaron has lifted.	false
+176	intransitive	215	1.9_intran_V_valency	chuckle	wear	Charles's dermatologist chuckles.	Charles's dermatologist wore.	false
+177	intransitive	216	1.9_intran_V_valency	crack	looklike	This computer cracked.	This computer looks like.	false
+178	intransitive	218	1.9_intran_V_valency	fall	lift	The Borgias' daughters fall asleep.	The Borgias' daughters lifted.	false
+179	intransitive	219	1.9_intran_V_valency	reply	reference	This university hadn't replied.	This university hadn't referenced.	false
+180	intransitive	220	1.9_intran_V_valency	donate	scare	The universities donated.	The universities scared.	false
+181	intransitive	221	1.9_intran_V_valency	close	scare	A closet couldn't close.	A closet couldn't scare.	false
+182	intransitive	223	1.9_intran_V_valency	whisper	carefor	That lady whispers.	That lady cares for.	false
+183	intransitive	224	1.9_intran_V_valency	date	find	All granddaughters of the Clintons have dated.	All granddaughters of the Clintons have found.	false
+184	intransitive	225	1.9_intran_V_valency	explain	respect	Rodney's sons explain everything.	Rodney's sons respected.	false
+185	intransitive	226	1.9_intran_V_valency	rust	resemble	The cart can't rust.	The cart can't resemble.	false
+186	intransitive	227	1.9_intran_V_valency	write	fire	Janet writes.	Janet fires.	false
+187	intransitive	228	1.9_intran_V_valency	ripen	looklike	The pepper ripened.	The pepper looked like.	false
+188	intransitive	229	1.9_intran_V_valency	sitdown	disagreewith	Jennifer sat down.	Jennifer disagrees with.	false
+189	intransitive	231	1.9_intran_V_valency	argue	resemble	Many patients argued.	Many patients resembled.	false
+190	intransitive	232	1.9_intran_V_valency	assemble	workwith	Legislatures were assembling.	Legislatures were working with.	false
+191	intransitive	233	1.9_intran_V_valency	roll	scare	A lot of unicycles are rolling.	A lot of unicycles are scaring.	false
+192	intransitive	234	1.9_intran_V_valency	succeed	bike	Rachel's mentors were succeeding.	Rachel's mentors were biking to.	false
+193	intransitive	235	1.9_intran_V_valency	fall	soundlike	Craig fell asleep.	Craig sounded like.	false
+194	intransitive	236	1.9_intran_V_valency	roll	resemble	A wheelbarrow rolled.	A wheelbarrow resembled.	false
+195	intransitive	240	1.9_intran_V_valency	mutter	dropby	Holly was muttering.	Holly was dropping by.	false
+196	intransitive	241	1.9_intran_V_valency	reply	conceal	The people wouldn't reply.	The people wouldn't conceal.	false
+197	intransitive	243	1.9_intran_V_valency	respond	fleefrom	Melissa's nieces could respond.	Melissa's nieces could flee from.	false
+198	intransitive	244	1.9_intran_V_valency	sigh	arriveat	Many guys had sighed.	Many guys had arrived at.	false
+199	intransitive	245	1.9_intran_V_valency	write	dropby	Eric can't write.	Eric can't drop by.	false
+200	intransitive	246	1.9_intran_V_valency	accelerate	resemble	Every carriage accelerated.	Every carriage resembled.	false

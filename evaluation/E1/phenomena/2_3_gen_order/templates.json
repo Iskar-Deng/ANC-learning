@@ -1,0 +1,60 @@
+{
+  "intransitive": [
+    {
+      "name": "sv_genitive_s_gn",
+      "clause_wo": ["sov", "svo"],
+      "np_wo": ["gn"],
+      "token_count": 3,
+      "verb_index": 2,
+      "target_start": 0,
+      "target_len": 2,
+      "possessor_offset": 0,
+      "head_offset": 1,
+      "target_role": "S"
+    },
+    {
+      "name": "sv_genitive_s_ng",
+      "clause_wo": ["sov", "svo"],
+      "np_wo": ["ng"],
+      "token_count": 3,
+      "verb_index": 2,
+      "target_start": 0,
+      "target_len": 2,
+      "possessor_offset": 1,
+      "head_offset": 0,
+      "target_role": "S"
+    },
+    {
+      "name": "vs_genitive_s_gn",
+      "clause_wo": ["vos"],
+      "np_wo": ["gn"],
+      "token_count": 3,
+      "verb_index": 0,
+      "target_start": 1,
+      "target_len": 2,
+      "possessor_offset": 0,
+      "head_offset": 1,
+      "target_role": "S"
+    },
+    {
+      "name": "vs_genitive_s_ng",
+      "clause_wo": ["vos"],
+      "np_wo": ["ng"],
+      "token_count": 3,
+      "verb_index": 0,
+      "target_start": 1,
+      "target_len": 2,
+      "possessor_offset": 1,
+      "head_offset": 0,
+      "target_role": "S"
+    }
+  ],
+  "transitive": [
+    {"name": "sov_a_simple_p_genitive", "clause_wo": ["sov"], "a_len": 1, "p_len": 2},
+    {"name": "sov_a_genitive_p_simple", "clause_wo": ["sov"], "a_len": 2, "p_len": 1},
+    {"name": "svo_a_simple_p_genitive", "clause_wo": ["svo"], "a_len": 1, "p_len": 2},
+    {"name": "svo_a_genitive_p_simple", "clause_wo": ["svo"], "a_len": 2, "p_len": 1},
+    {"name": "vos_a_simple_p_genitive", "clause_wo": ["vos"], "a_len": 1, "p_len": 2},
+    {"name": "vos_a_genitive_p_simple", "clause_wo": ["vos"], "a_len": 2, "p_len": 1}
+  ]
+}

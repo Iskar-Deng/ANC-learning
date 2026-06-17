@@ -1,0 +1,251 @@
+row_id	source_uid	pair_id	use_for	good_stem	bad_stem	sentence_good	sentence_bad	lexically_identical
+1	transitive	1	1.10_tran_V_valency	watch	scream	Diane watched Alan.	Diane screamed Alan.	false
+2	transitive	2	1.10_tran_V_valency	buy	weep	This cousin of Theodore buys some mushroom.	This cousin of Theodore wept some mushroom.	false
+3	transitive	3	1.10_tran_V_valency	argueabout	go	Rhonda was arguing about this nephew of Dana.	Rhonda was going fishing this nephew of Dana.	false
+4	transitive	4	1.10_tran_V_valency	tour	cope	A lot of actresses' nieces have toured that art gallery.	A lot of actresses' nieces have coped that art gallery.	false
+5	transitive	5	1.10_tran_V_valency	wear	slumpover	Debra wears many skirts.	Debra slumps over many skirts.	false
+6	transitive	6	1.10_tran_V_valency	embarrass	scream	Chad's daughters embarrasses Erin's girlfriend.	Chad's daughters screamed Erin's girlfriend.	false
+7	transitive	7	1.10_tran_V_valency	criticize	shrug	Elaine criticized Jill.	Elaine shrugs Jill.	false
+8	transitive	8	1.10_tran_V_valency	question	wave	The pedestrians question some people.	The pedestrians wave some people.	false
+9	transitive	9	1.10_tran_V_valency	goto	smile	Vanessa has gone to a lot of college campuses.	Vanessa has smiled a lot of college campuses.	false
+10	transitive	10	1.10_tran_V_valency	listento	react	Those committees listened to Kristen.	Those committees react Kristen.	false
+11	transitive	11	1.10_tran_V_valency	climbup	murmur	Most pedestrians' father might climb up the slope.	Most pedestrians' father might murmur the slope.	false
+12	transitive	12	1.10_tran_V_valency	scan	murmur	Theresa shouldn't scan this essay.	Theresa shouldn't murmur this essay.	false
+13	transitive	13	1.10_tran_V_valency	tour	cry	Andrea's ex-husbands toured this art gallery.	Andrea's ex-husbands cry this art gallery.	false
+14	transitive	14	1.10_tran_V_valency	insult	sigh	A lot of girls' son hadn't insulted Jerry.	A lot of girls' son hadn't sighed Jerry.	false
+15	transitive	15	1.10_tran_V_valency	escapefrom	fall	Denise has escaped from Marie's grandsons.	Denise has fallen Marie's grandsons.	false
+16	transitive	16	1.10_tran_V_valency	investigate	go	Grace is investigating a lot of girls' ex-wife.	Grace is going fishing a lot of girls' ex-wife.	false
+17	transitive	17	1.10_tran_V_valency	talkabout	reply	Donna talked about Anna's friends.	Donna replies Anna's friends.	false
+18	transitive	18	1.10_tran_V_valency	forget	murmur	Many sisters of some guest forget Eva.	Many sisters of some guest murmured Eva.	false
+19	transitive	19	1.10_tran_V_valency	astound	fall	The truck hadn't astounded a bank.	The truck hadn't fallen a bank.	false
+20	transitive	20	1.10_tran_V_valency	kiss	chuckle	April's mentees weren't kissing Matt's nephews.	April's mentees weren't chuckling Matt's nephews.	false
+21	transitive	21	1.10_tran_V_valency	observe	grin	Phillip isn't observing Winston Churchill.	Phillip isn't grinning Winston Churchill.	false
+22	transitive	22	1.10_tran_V_valency	explore	weep	Bill explores the bank.	Bill wept the bank.	false
+23	transitive	23	1.10_tran_V_valency	remember	flirt	These grandmothers of Rebecca remembered Angela.	These grandmothers of Rebecca flirted Angela.	false
+24	transitive	24	1.10_tran_V_valency	describe	react	Many universities describe Samantha.	Many universities reacted Samantha.	false
+25	transitive	25	1.10_tran_V_valency	goto	murmur	A lot of grandmothers of Melanie go to the mall.	A lot of grandmothers of Melanie murmured the mall.	false
+26	transitive	26	1.10_tran_V_valency	scan	concur	Stacy's cousins haven't scanned many drivers' oncologists.	Stacy's cousins haven't concurred many drivers' oncologists.	false
+27	transitive	27	1.10_tran_V_valency	fire	talk	Ella's tutor can't fire every adult.	Ella's tutor can't talk every adult.	false
+28	transitive	28	1.10_tran_V_valency	research	suffer	Christopher researched most public parks.	Christopher suffered most public parks.	false
+29	transitive	29	1.10_tran_V_valency	explore	slumpover	Melinda explores those closets.	Melinda slumped over those closets.	false
+30	transitive	31	1.10_tran_V_valency	distract	comehere	Some mother of Diane wasn't distracting a lot of students' ex-girlfriends.	Some mother of Diane wasn't coming here a lot of students' ex-girlfriends.	false
+31	transitive	32	1.10_tran_V_valency	escapefrom	talk	Robert hasn't escaped from Brenda.	Robert hasn't talked Brenda.	false
+32	transitive	33	1.10_tran_V_valency	runaround	smile	Marcus wasn't running around that high school.	Marcus wasn't smiling that high school.	false
+33	transitive	34	1.10_tran_V_valency	examine	weep	Monet hadn't examined most commentaries.	Monet hadn't wept most commentaries.	false
+34	transitive	35	1.10_tran_V_valency	escapefrom	weep	Many actresses escape from Cynthia.	Many actresses weep Cynthia.	false
+35	transitive	36	1.10_tran_V_valency	distract	reply	Amy's cousins distracts a lot of women.	Amy's cousins reply a lot of women.	false
+36	transitive	37	1.10_tran_V_valency	admire	chuckle	Many senators' niece admires Brian's ex-husband.	Many senators' niece chuckled Brian's ex-husband.	false
+37	transitive	38	1.10_tran_V_valency	clean	wave	Carmen's father isn't cleaning a lot of cups.	Carmen's father isn't waving a lot of cups.	false
+38	transitive	39	1.10_tran_V_valency	like	go	Rose couldn't like Liam's employees.	Rose couldn't go fishing Liam's employees.	false
+39	transitive	40	1.10_tran_V_valency	resemble	compromise	Daniel's ex-husband resembles a lot of prints of actresses.	Daniel's ex-husband compromises a lot of prints of actresses.	false
+40	transitive	41	1.10_tran_V_valency	sell	sigh	Heidi sells every banana.	Heidi sighed every banana.	false
+41	transitive	42	1.10_tran_V_valency	alarm	shout	Phillip's senators alarm the driver.	Phillip's senators shouted the driver.	false
+42	transitive	43	1.10_tran_V_valency	notice	weep	The actress can notice every student.	The actress can weep every student.	false
+43	transitive	44	1.10_tran_V_valency	thinkabout	sigh	The mothers of Kimberley think about all universities.	The mothers of Kimberley sighed all universities.	false
+44	transitive	45	1.10_tran_V_valency	heal	retaliate	The Clintons heal Kimberley.	The Clintons retaliated Kimberley.	false
+45	transitive	46	1.10_tran_V_valency	hurt	fall	Most schools hurt Marcus.	Most schools fall Marcus.	false
+46	transitive	47	1.10_tran_V_valency	know	react	Phillip knows Jill's senator.	Phillip reacts Jill's senator.	false
+47	transitive	48	1.10_tran_V_valency	criticize	fall	Sabrina was criticizing Jennifer.	Sabrina was falling Jennifer.	false
+48	transitive	49	1.10_tran_V_valency	explore	compromise	Lori was exploring art galleries.	Lori was compromising art galleries.	false
+49	transitive	50	1.10_tran_V_valency	embarrass	concur	Beth will embarrass Eric.	Beth will concur Eric.	false
+50	transitive	51	1.10_tran_V_valency	skatearound	complain	The guy hadn't skated around schools.	The guy hadn't complained schools.	false
+51	transitive	52	1.10_tran_V_valency	hire	clash	Ella's teachers hire Nina.	Ella's teachers clashed Nina.	false
+52	transitive	53	1.10_tran_V_valency	astound	boast	Every cashier astounded Barbara's nieces.	Every cashier boasts Barbara's nieces.	false
+53	transitive	54	1.10_tran_V_valency	irritate	rot	That mushroom irritates Michael's daughters.	That mushroom rotted Michael's daughters.	false
+54	transitive	55	1.10_tran_V_valency	arriveat	smile	Valerie's electricians arrive at the rivers.	Valerie's electricians smiled the rivers.	false
+55	transitive	56	1.10_tran_V_valency	shock	boast	Every hospital shocked Donald.	Every hospital boasts Donald.	false
+56	transitive	57	1.10_tran_V_valency	lift	slumpover	Patricia did lift that hat.	Patricia did slump over that hat.	false
+57	transitive	58	1.10_tran_V_valency	resemble	testify	Irene resembled every painting.	Irene testifies every painting.	false
+58	transitive	59	1.10_tran_V_valency	praise	testify	Michelle praises Bradley.	Michelle testifies Bradley.	false
+59	transitive	60	1.10_tran_V_valency	reveal	fish	That brother of Michael revealed many mushrooms.	That brother of Michael goes fishing many mushrooms.	false
+60	transitive	61	1.10_tran_V_valency	skatearound	clash	This teacher's plumbers can't skate around many movie theaters.	This teacher's plumbers can't clash many movie theaters.	false
+61	transitive	62	1.10_tran_V_valency	runaround	mutter	Cousins of Stephanie run around all art galleries.	Cousins of Stephanie mutter all art galleries.	false
+62	transitive	63	1.10_tran_V_valency	question	confer	These drivers questioned sons of Janice.	These drivers confer sons of Janice.	false
+63	transitive	65	1.10_tran_V_valency	disagreewith	comehere	The Borgias disagreed with the teenager's granddaughters.	The Borgias come here the teenager's granddaughters.	false
+64	transitive	67	1.10_tran_V_valency	runaround	fall	All grandmothers of Debra run around some art galleries.	All grandmothers of Debra fall some art galleries.	false
+65	transitive	68	1.10_tran_V_valency	escapefrom	cry	Jerry wasn't escaping from a waitress.	Jerry wasn't crying a waitress.	false
+66	transitive	69	1.10_tran_V_valency	talkto	sigh	Naomi talked to Guy.	Naomi sighed Guy.	false
+67	transitive	70	1.10_tran_V_valency	discuss	lie	Doctors' lawyer discussed the niece of Lucille.	Doctors' lawyer lies the niece of Lucille.	false
+68	transitive	71	1.10_tran_V_valency	talkto	complain	Guy's daughters talk to Jesus.	Guy's daughters complained Jesus.	false
+69	transitive	72	1.10_tran_V_valency	admire	escape	That girl can admire Meredith.	That girl can escape Meredith.	false
+70	transitive	73	1.10_tran_V_valency	question	shrug	Some actors' tutor hadn't questioned Candice's mentors.	Some actors' tutor hadn't shrugged Candice's mentors.	false
+71	transitive	74	1.10_tran_V_valency	heal	talk	Some student wasn't healing that guy.	Some student wasn't talking that guy.	false
+72	transitive	75	1.10_tran_V_valency	sell	suffer	Lawrence's grandson won't sell every glove.	Lawrence's grandson won't suffer every glove.	false
+73	transitive	76	1.10_tran_V_valency	pass	cry	Stacy's ex-wife passes these grocery stores.	Stacy's ex-wife cries these grocery stores.	false
+74	transitive	77	1.10_tran_V_valency	discover	doaround	Carrie did discover Daniel.	Carrie did joke around Daniel.	false
+75	transitive	78	1.10_tran_V_valency	reference	compromise	Alicia wasn't referencing Victoria.	Alicia wasn't compromising Victoria.	false
+76	transitive	79	1.10_tran_V_valency	scan	blink	John scans Leslie's tutors.	John blinked Leslie's tutors.	false
+77	transitive	80	1.10_tran_V_valency	worry	chat	A girl's supervisors worries boys' son.	A girl's supervisors chatted boys' son.	false
+78	transitive	81	1.10_tran_V_valency	hat	communicate	Jacqueline's sons hated the Borgias.	Jacqueline's sons communicated the Borgias.	false
+79	transitive	82	1.10_tran_V_valency	resemble	fall	Some shawl might resemble many prints of the screen.	Some shawl might fall many prints of the screen.	false
+80	transitive	83	1.10_tran_V_valency	upset	fall	A carriage upsets Amanda.	A carriage fell Amanda.	false
+81	transitive	84	1.10_tran_V_valency	attack	cooperate	Some senators have attacked Pamela.	Some senators have cooperated Pamela.	false
+82	transitive	86	1.10_tran_V_valency	buy	complain	Some teacher's nieces buy this high school.	Some teacher's nieces complain this high school.	false
+83	transitive	87	1.10_tran_V_valency	alarm	fall	A lot of photographs have alarmed some pedestrians.	A lot of photographs have fallen some pedestrians.	false
+84	transitive	88	1.10_tran_V_valency	runaround	conspire	Carolyn's grandfathers ran around these grocery stores.	Carolyn's grandfathers conspired these grocery stores.	false
+85	transitive	89	1.10_tran_V_valency	complainabout	comehere	Wendy complains about Lissa.	Wendy comes here Lissa.	false
+86	transitive	90	1.10_tran_V_valency	help	shrug	Many children's son helped Robert.	Many children's son shrugged Robert.	false
+87	transitive	91	1.10_tran_V_valency	exit	scream	Sonia's teachers exit a hill.	Sonia's teachers screamed a hill.	false
+88	transitive	93	1.10_tran_V_valency	reveal	slumpover	Rodney has revealed some restaurant.	Rodney has slumped over some restaurant.	false
+89	transitive	94	1.10_tran_V_valency	talkto	chuckle	Laura talks to Carrie.	Laura chuckled Carrie.	false
+90	transitive	95	1.10_tran_V_valency	investigate	shrug	Margaret is investigating Rodney's hairdressers.	Margaret is shrugging Rodney's hairdressers.	false
+91	transitive	96	1.10_tran_V_valency	lift	wave	Many fathers of Florence lifted every light.	Many fathers of Florence waved every light.	false
+92	transitive	97	1.10_tran_V_valency	drop	comehere	Florence's wife hadn't dropped by that lake.	Florence's wife hadn't come here that lake.	false
+93	transitive	98	1.10_tran_V_valency	sell	fall	Tanya's cousins sell some drawing.	Tanya's cousins fell some drawing.	false
+94	transitive	99	1.10_tran_V_valency	tour	litter	Most cashiers tour that movie theater.	Most cashiers littered that movie theater.	false
+95	transitive	100	1.10_tran_V_valency	discover	speakup	Erin's employees were discovering this rug.	Erin's employees were speaking up this rug.	false
+96	transitive	101	1.10_tran_V_valency	runaround	scream	Kristin ran around some glacier.	Kristin screams some glacier.	false
+97	transitive	102	1.10_tran_V_valency	shock	comehere	Some rabbits hadn't shocked John's hairdresser.	Some rabbits hadn't come here John's hairdresser.	false
+98	transitive	104	1.10_tran_V_valency	tour	weep	Men tour some closets.	Men weep some closets.	false
+99	transitive	105	1.10_tran_V_valency	like	concur	The lady liked Craig.	The lady concurred Craig.	false
+100	transitive	106	1.10_tran_V_valency	carefor	smile	Kimberley will care for Cynthia.	Kimberley will smile Cynthia.	false
+101	transitive	107	1.10_tran_V_valency	lift	comehere	Peter isn't lifting some fork.	Peter isn't coming here some fork.	false
+102	transitive	108	1.10_tran_V_valency	help	cooperate	That son of Brad helps some actresses.	That son of Brad cooperates some actresses.	false
+103	transitive	109	1.10_tran_V_valency	carefor	jokearound	Cheryl hasn't cared for Amanda.	Cheryl hasn't joked around Amanda.	false
+104	transitive	110	1.10_tran_V_valency	discuss	nod	Allison is discussing every brother of Jane.	Allison is nodding every brother of Jane.	false
+105	transitive	112	1.10_tran_V_valency	disturb	rot	All bananas disturb Gina.	All bananas rot Gina.	false
+106	transitive	113	1.10_tran_V_valency	discover	fall	Russell's sisters discover some unicycle.	Russell's sisters fall some unicycle.	false
+107	transitive	114	1.10_tran_V_valency	embarrass	fall	A print of many windows embarrasses Noah.	A print of many windows fell Noah.	false
+108	transitive	115	1.10_tran_V_valency	boastabout	conspire	These banks boasted about Eric's bosses.	These banks conspire Eric's bosses.	false
+109	transitive	116	1.10_tran_V_valency	looklike	fall	That picture of that newspaper article looked like some screen.	That picture of that newspaper article fell some screen.	false
+110	transitive	117	1.10_tran_V_valency	observe	laugh	The patients observe Jessica.	The patients laughed Jessica.	false
+111	transitive	118	1.10_tran_V_valency	talkabout	go	Some children are talking about Amy.	Some children are going fishing Amy.	false
+112	transitive	119	1.10_tran_V_valency	have	disagree	That movie about the Lutherans had irritated Julia.	That movie about the Lutherans had disagreed Julia.	false
+113	transitive	120	1.10_tran_V_valency	bore	scream	Brenda's students were boring Beth.	Brenda's students were screaming Beth.	false
+114	transitive	121	1.10_tran_V_valency	distract	disagree	Fathers of Amelia distract many teachers.	Fathers of Amelia disagreed many teachers.	false
+115	transitive	123	1.10_tran_V_valency	break	work	Every woman's classmate broke a lot of chairs.	Every woman's classmate works hard a lot of chairs.	false
+116	transitive	124	1.10_tran_V_valency	watch	confer	Tiffany's contractors watch the father of Kristen.	Tiffany's contractors confer the father of Kristen.	false
+117	transitive	125	1.10_tran_V_valency	biketo	work	Most guests aren't biking to Spain.	Most guests aren't working hard Spain.	false
+118	transitive	126	1.10_tran_V_valency	bring	mutter	Sarah brought the photograph of this cilantro.	Sarah mutters the photograph of this cilantro.	false
+119	transitive	127	1.10_tran_V_valency	aggravate	comehere	Angela hasn't aggravated the senator's piano teachers.	Angela hasn't come here the senator's piano teachers.	false
+120	transitive	128	1.10_tran_V_valency	shock	fall	A mountain shocks Walter.	A mountain fell Walter.	false
+121	transitive	129	1.10_tran_V_valency	clean	die	Carmen's podiatrists have cleaned that picture.	Carmen's podiatrists have died that picture.	false
+122	transitive	130	1.10_tran_V_valency	fleefrom	blink	Laurie was fleeing from most lakes.	Laurie was blinking most lakes.	false
+123	transitive	131	1.10_tran_V_valency	reveal	complain	Anne's wife revealed Julie.	Anne's wife complained Julie.	false
+124	transitive	132	1.10_tran_V_valency	praise	go	This waitress had praised these guys.	This waitress had gone fishing these guys.	false
+125	transitive	133	1.10_tran_V_valency	reveal	sigh	Every teacher doesn't reveal Bruce.	Every teacher doesn't sigh Bruce.	false
+126	transitive	134	1.10_tran_V_valency	aggravate	mutter	Lisa is aggravating Liam.	Lisa is muttering Liam.	false
+127	transitive	135	1.10_tran_V_valency	fix	grin	Vanessa does fix that couch.	Vanessa does grin that couch.	false
+128	transitive	136	1.10_tran_V_valency	have	speakup	This friend of Joseph had these pants.	This friend of Joseph spoke up these pants.	false
+129	transitive	137	1.10_tran_V_valency	reference	scream	Richard would reference Phillip's tutor.	Richard would scream Phillip's tutor.	false
+130	transitive	138	1.10_tran_V_valency	confuse	fall	This college campus confused Nancy.	This college campus falls Nancy.	false
+131	transitive	139	1.10_tran_V_valency	climbup	complain	Rodney's friend might climb up a hill.	Rodney's friend might complain a hill.	false
+132	transitive	140	1.10_tran_V_valency	criticize	correspond	Cheryl's hairdressers criticize that child.	Cheryl's hairdressers corresponded that child.	false
+133	transitive	141	1.10_tran_V_valency	arriveat	complain	Dan hadn't arrived at all public parks.	Dan hadn't complained all public parks.	false
+134	transitive	142	1.10_tran_V_valency	discuss	shout	These children discuss a dancer.	These children shouted a dancer.	false
+135	transitive	143	1.10_tran_V_valency	kiss	shrug	Erin kisses Sonia.	Erin shrugs Sonia.	false
+136	transitive	144	1.10_tran_V_valency	describe	comehere	Jill isn't describing Matt.	Jill isn't coming here Matt.	false
+137	transitive	145	1.10_tran_V_valency	boastabout	work	Gary boasted about Mitchell's ex-wife.	Gary works hard Mitchell's ex-wife.	false
+138	transitive	146	1.10_tran_V_valency	boycott	jokearound	Naomi has boycotted some glaciers.	Naomi has joked around some glaciers.	false
+139	transitive	147	1.10_tran_V_valency	bother	complain	Patricia's brothers are bothering Melanie's piano teacher.	Patricia's brothers are complaining Melanie's piano teacher.	false
+140	transitive	148	1.10_tran_V_valency	remember	die	Bruce shouldn't remember Andrew.	Bruce shouldn't die Andrew.	false
+141	transitive	149	1.10_tran_V_valency	escapefrom	shrug	Mary escapes from many boys' doctors.	Mary shrugged many boys' doctors.	false
+142	transitive	150	1.10_tran_V_valency	kiss	fall	Tina wasn't kissing Steven.	Tina wasn't falling Steven.	false
+143	transitive	151	1.10_tran_V_valency	stun	fall	This teacher's partners stunned Walter.	This teacher's partners fall Walter.	false
+144	transitive	152	1.10_tran_V_valency	stun	concur	The Lutherans' boyfriend shouldn't stun Joseph's nephews.	The Lutherans' boyfriend shouldn't concur Joseph's nephews.	false
+145	transitive	153	1.10_tran_V_valency	astound	disagree	Some story astounds Tanya.	Some story disagreed Tanya.	false
+146	transitive	154	1.10_tran_V_valency	heal	weep	Donald did heal James.	Donald did weep James.	false
+147	transitive	155	1.10_tran_V_valency	heal	struggle	Adam heals Bradley.	Adam struggles Bradley.	false
+148	transitive	156	1.10_tran_V_valency	disagreewith	disagree	Many documentaries about Winston Churchill had disagreed with Kevin's dermatologist.	Many documentaries about Winston Churchill had disagreed Kevin's dermatologist.	false
+149	transitive	157	1.10_tran_V_valency	fix	smile	George hadn't fixed the unicycle.	George hadn't smiled the unicycle.	false
+150	transitive	158	1.10_tran_V_valency	alarm	boast	Every teacher hasn't alarmed Homer.	Every teacher hasn't boasted Homer.	false
+151	transitive	159	1.10_tran_V_valency	hide	compromise	Tina's ex-wife hid Walter.	Tina's ex-wife compromised Walter.	false
+152	transitive	162	1.10_tran_V_valency	discover	concur	Every driver can discover Amy.	Every driver can concur Amy.	false
+153	transitive	163	1.10_tran_V_valency	drop	wave	This boy hadn't dropped by those hills.	This boy hadn't waved those hills.	false
+154	transitive	164	1.10_tran_V_valency	notice	grin	Leslie wasn't noticing Brett.	Leslie wasn't grinning Brett.	false
+155	transitive	165	1.10_tran_V_valency	shock	shrug	Liam should shock Joseph's supervisors.	Liam should shrug Joseph's supervisors.	false
+156	transitive	166	1.10_tran_V_valency	disagreewith	boast	Tonya disagrees with some people's associate.	Tonya boasted some people's associate.	false
+157	transitive	167	1.10_tran_V_valency	watch	suffer	Every grandmother of Christopher hasn't watched Diane.	Every grandmother of Christopher hasn't suffered Diane.	false
+158	transitive	168	1.10_tran_V_valency	clean	speakup	A waiter couldn't clean that glass.	A waiter couldn't speak up that glass.	false
+159	transitive	169	1.10_tran_V_valency	wear	talk	The Borgias' French teacher would wear the shoe.	The Borgias' French teacher would talk the shoe.	false
+160	transitive	170	1.10_tran_V_valency	climbup	talk	Patrick did climb up every slope.	Patrick did talk every slope.	false
+161	transitive	171	1.10_tran_V_valency	fix	blink	Theresa fixes many mirrors.	Theresa blinked many mirrors.	false
+162	transitive	172	1.10_tran_V_valency	disagreewith	reply	Most children's nieces were disagreeing with Dan.	Most children's nieces were replying Dan.	false
+163	transitive	173	1.10_tran_V_valency	examine	communicate	Carl's dermatologists examine this essay.	Carl's dermatologists communicated this essay.	false
+164	transitive	174	1.10_tran_V_valency	astound	communicate	Alicia's tutors astound Stephanie.	Alicia's tutors communicated Stephanie.	false
+165	transitive	175	1.10_tran_V_valency	annoy	disagree	Commentaries about Winston Churchill haven't annoyed Rose's niece.	Commentaries about Winston Churchill haven't disagreed Rose's niece.	false
+166	transitive	176	1.10_tran_V_valency	investigate	sigh	Liam investigates Liam.	Liam sighed Liam.	false
+167	transitive	179	1.10_tran_V_valency	impress	fall	Many doctors impress Edward.	Many doctors fall Edward.	false
+168	transitive	180	1.10_tran_V_valency	workwith	suffer	Some grandson of Frank works with Jeffrey.	Some grandson of Frank suffers Jeffrey.	false
+169	transitive	181	1.10_tran_V_valency	impress	comehere	Galileo hasn't impressed Nina's daughter.	Galileo hasn't come here Nina's daughter.	false
+170	transitive	182	1.10_tran_V_valency	criticize	jokearound	Katherine criticizes Tonya.	Katherine jokes around Tonya.	false
+171	transitive	183	1.10_tran_V_valency	climbdown	jokearound	Teresa is climbing down some hills.	Teresa is joking around some hills.	false
+172	transitive	184	1.10_tran_V_valency	kiss	escape	Paula has kissed Kendra.	Paula has escaped Kendra.	false
+173	transitive	185	1.10_tran_V_valency	disgust	fall	Erin wouldn't disgust Matt.	Erin wouldn't fall Matt.	false
+174	transitive	186	1.10_tran_V_valency	hug	wave	Grace hugs Dawn.	Grace waved Dawn.	false
+175	transitive	187	1.10_tran_V_valency	describe	chuckle	Many nieces of Lori couldn't describe most malls.	Many nieces of Lori couldn't chuckle most malls.	false
+176	transitive	188	1.10_tran_V_valency	respect	chat	Katherine's ex-boyfriends respected Jason's bosses.	Katherine's ex-boyfriends chat Jason's bosses.	false
+177	transitive	189	1.10_tran_V_valency	aggravate	fall	All pies aggravate Janice.	All pies fell Janice.	false
+178	transitive	190	1.10_tran_V_valency	skatearound	scream	Kayla's students haven't skated around the museums.	Kayla's students haven't screamed the museums.	false
+179	transitive	191	1.10_tran_V_valency	reference	shrug	Those waiters referenced Lori.	Those waiters shrug Lori.	false
+180	transitive	192	1.10_tran_V_valency	returnto	mutter	Russell is returning to Alicia's grandmother.	Russell is muttering Alicia's grandmother.	false
+181	transitive	193	1.10_tran_V_valency	know	fall	Chad knows Brett.	Chad falls Brett.	false
+182	transitive	194	1.10_tran_V_valency	remember	sigh	Stephen's best friend hadn't remembered Spain.	Stephen's best friend hadn't sighed Spain.	false
+183	transitive	195	1.10_tran_V_valency	explore	go	Every waiter's brother explores some hill.	Every waiter's brother goes fishing some hill.	false
+184	transitive	196	1.10_tran_V_valency	praise	talk	Tamara's hairdresser wasn't praising Matt.	Tamara's hairdresser wasn't talking Matt.	false
+185	transitive	197	1.10_tran_V_valency	hat	grin	Vincent hated William.	Vincent grinned William.	false
+186	transitive	198	1.10_tran_V_valency	confuse	comehere	Keith didn't confuse Joseph's granddaughters.	Keith didn't come here Joseph's granddaughters.	false
+187	transitive	199	1.10_tran_V_valency	fix	go	These men fix that skateboard.	These men went fishing that skateboard.	false
+188	transitive	200	1.10_tran_V_valency	messup	smile	Bradley messed up some library.	Bradley smiles some library.	false
+189	transitive	201	1.10_tran_V_valency	disgust	jokearound	Adam would disgust Bethany's supervisors.	Adam would joke around Bethany's supervisors.	false
+190	transitive	202	1.10_tran_V_valency	heal	respond	Teresa's partners heal Mark.	Teresa's partners responded Mark.	false
+191	transitive	204	1.10_tran_V_valency	walkthrough	react	Those doctors' dentist walks through that library.	Those doctors' dentist reacts that library.	false
+192	transitive	205	1.10_tran_V_valency	help	retaliate	Some museum did help Dana's sons.	Some museum did retaliate Dana's sons.	false
+193	transitive	206	1.10_tran_V_valency	hug	nod	Sandra is hugging the senators.	Sandra is nodding the senators.	false
+194	transitive	207	1.10_tran_V_valency	kiss	weep	Steven's ex-wife does kiss Todd.	Steven's ex-wife does weep Todd.	false
+195	transitive	208	1.10_tran_V_valency	help	laugh	Every father of Allison isn't helping Sharon.	Every father of Allison isn't laughing Sharon.	false
+196	transitive	212	1.10_tran_V_valency	hire	nod	Homer had hired Brian's grandson.	Homer had nodded Brian's grandson.	false
+197	transitive	214	1.10_tran_V_valency	bother	respond	That school had bothered the grandmother of Galileo.	That school had responded the grandmother of Galileo.	false
+198	transitive	215	1.10_tran_V_valency	dislike	suffer	Every senator disliked all ladies.	Every senator suffered all ladies.	false
+199	transitive	216	1.10_tran_V_valency	disturb	fall	Many sketches of Russell disturb Heather.	Many sketches of Russell fell Heather.	false
+200	transitive	217	1.10_tran_V_valency	fleefrom	negotiate	Many teenagers had fled from Jerry's wife.	Many teenagers had negotiated Jerry's wife.	false
+201	transitive	218	1.10_tran_V_valency	conceal	comehere	The person won't conceal Dennis.	The person won't come here Dennis.	false
+202	transitive	219	1.10_tran_V_valency	heal	slumpover	Melanie had healed Joel.	Melanie had slumped over Joel.	false
+203	transitive	220	1.10_tran_V_valency	dropby	escape	Melinda's best friend drops by public parks.	Melinda's best friend escaped public parks.	false
+204	transitive	222	1.10_tran_V_valency	fleefrom	nod	Gerald would flee from many nephews of Ellen.	Gerald would nod many nephews of Ellen.	false
+205	transitive	223	1.10_tran_V_valency	break	boast	April can't break all trucks.	April can't boast all trucks.	false
+206	transitive	224	1.10_tran_V_valency	admire	smile	All doctors didn't admire screens.	All doctors didn't smile screens.	false
+207	transitive	226	1.10_tran_V_valency	attack	jokearound	Connie attacks Karen.	Connie jokes around Karen.	false
+208	transitive	227	1.10_tran_V_valency	lift	jokearound	Heather lifted some blouse.	Heather jokes around some blouse.	false
+209	transitive	229	1.10_tran_V_valency	arriveat	compromise	Elaine arrived at the cafe.	Elaine compromised the cafe.	false
+210	transitive	231	1.10_tran_V_valency	lift	retaliate	Most girls lifted these eggplants.	Most girls retaliate these eggplants.	false
+211	transitive	233	1.10_tran_V_valency	tour	fall	Matt hasn't toured this lake.	Matt hasn't fallen asleep this lake.	false
+212	transitive	235	1.10_tran_V_valency	disturb	boast	Rose wasn't disturbing Mark.	Rose wasn't boasting Mark.	false
+213	transitive	236	1.10_tran_V_valency	escapefrom	go	Alan's mentees aren't escaping from Curtis.	Alan's mentees aren't going fishing Curtis.	false
+214	transitive	237	1.10_tran_V_valency	disagreewith	cry	Gina's tutor hasn't disagreed with Amelia.	Gina's tutor hasn't cried Amelia.	false
+215	transitive	238	1.10_tran_V_valency	criticize	flirt	Pedestrians criticize most ladies.	Pedestrians flirt most ladies.	false
+216	transitive	239	1.10_tran_V_valency	carefor	sigh	Tracy cared for waiters.	Tracy sighed waiters.	false
+217	transitive	240	1.10_tran_V_valency	messup	cry	The Impressionists mess up every grocery store.	The Impressionists cried every grocery store.	false
+218	transitive	241	1.10_tran_V_valency	love	fall	Kristen won't love Kimberley.	Kristen won't fall asleep Kimberley.	false
+219	transitive	242	1.10_tran_V_valency	see	laugh	Christine sees every pepper.	Christine laughs every pepper.	false
+220	transitive	243	1.10_tran_V_valency	have	nod	Brian had some hospitals.	Brian nodded some hospitals.	false
+221	transitive	244	1.10_tran_V_valency	descend	testify	These girls couldn't descend that hill.	These girls couldn't testify that hill.	false
+222	transitive	245	1.10_tran_V_valency	conceal	confer	Irene's French teachers conceal that broccoli.	Irene's French teachers conferred that broccoli.	false
+223	transitive	246	1.10_tran_V_valency	ascend	shout	Ann ascends these mountains.	Ann shouts these mountains.	false
+224	transitive	247	1.10_tran_V_valency	worry	react	A lot of granddaughters of Sherry worries every nephew of Cynthia.	A lot of granddaughters of Sherry react every nephew of Cynthia.	false
+225	transitive	248	1.10_tran_V_valency	conceal	mutter	Amelia's guest couldn't conceal Gary.	Amelia's guest couldn't mutter Gary.	false
+226	transitive	249	1.10_tran_V_valency	pass	laugh	Carmen's sister should pass the cafe.	Carmen's sister should laugh the cafe.	false
+227	transitive	250	1.10_tran_V_valency	fleefrom	concur	These waiters flee from Aaron.	These waiters concur Aaron.	false
+228	transitive	251	1.10_tran_V_valency	bore	fall	These projectors haven't bored Jessica.	These projectors haven't fallen Jessica.	false
+229	transitive	252	1.10_tran_V_valency	climbup	comehere	Some fish climbed up mountains.	Some fish comes here mountains.	false
+230	transitive	253	1.10_tran_V_valency	escapefrom	mutter	Alan's dermatologist hasn't escaped from Vincent.	Alan's dermatologist hasn't muttered Vincent.	false
+231	transitive	254	1.10_tran_V_valency	skatearound	shout	Marla wasn't skated around the cafe.	Marla wasn't shouting the cafe.	false
+232	transitive	255	1.10_tran_V_valency	walkthrough	cry	All grandsons of Stacy walk through some art gallery.	All grandsons of Stacy cried some art gallery.	false
+233	transitive	256	1.10_tran_V_valency	pass	fall	Some drivers aren't passing these public parks.	Some drivers aren't falling these public parks.	false
+234	transitive	257	1.10_tran_V_valency	runaround	escape	Christine runs around these schools.	Christine escaped these schools.	false
+235	transitive	258	1.10_tran_V_valency	approach	fall	Stacey approaches William.	Stacey falls William.	false
+236	transitive	260	1.10_tran_V_valency	clean	cooperate	Cindy's podiatrists cleaned most public parks.	Cindy's podiatrists cooperated most public parks.	false
+237	transitive	261	1.10_tran_V_valency	soundlike	concur	Dan sounded like the woman.	Dan concurred the woman.	false
+238	transitive	262	1.10_tran_V_valency	hurt	shrug	Some waiter's mentee hurt a niece of Cindy.	Some waiter's mentee shrugs a niece of Cindy.	false
+239	transitive	263	1.10_tran_V_valency	boycott	lie	Larry shouldn't boycott this art gallery.	Larry shouldn't lie this art gallery.	false
+240	transitive	264	1.10_tran_V_valency	bother	go	Deborah bothered most customers.	Deborah went fishing most customers.	false
+241	transitive	265	1.10_tran_V_valency	heal	concur	Nicole heals Todd.	Nicole concurs Todd.	false
+242	transitive	266	1.10_tran_V_valency	disturb	suffer	Regina disturbs Matt's guests.	Regina suffers Matt's guests.	false
+243	transitive	267	1.10_tran_V_valency	clean	murmur	Homer cleans many banks.	Homer murmurs many banks.	false
+244	transitive	268	1.10_tran_V_valency	looklike	weep	Elaine can't look like this photograph of these blouses.	Elaine can't weep this photograph of these blouses.	false
+245	transitive	269	1.10_tran_V_valency	impress	talk	A lot of cousins of some student weren't impressing Guy's students.	A lot of cousins of some student weren't talking Guy's students.	false
+246	transitive	270	1.10_tran_V_valency	examine	chuckle	Ella examines a nephew of some customers.	Ella chuckled a nephew of some customers.	false
+247	transitive	272	1.10_tran_V_valency	thinkabout	chat	Becky's classmates think about Florence's dermatologist.	Becky's classmates chatted Florence's dermatologist.	false
+248	transitive	273	1.10_tran_V_valency	hire	testify	Donna's mother hires Amanda.	Donna's mother testifies Amanda.	false
+249	transitive	274	1.10_tran_V_valency	remember	cry	Every patient remembers the friends of Eric.	Every patient cried the friends of Eric.	false
+250	transitive	275	1.10_tran_V_valency	thinkabout	slumpover	Most grandfathers of Gregory think about some fish.	Most grandfathers of Gregory slumped over some fish.	false

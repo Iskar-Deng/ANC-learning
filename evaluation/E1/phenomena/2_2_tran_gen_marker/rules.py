@@ -8,8 +8,8 @@ from pathlib import Path
 from typing import Any, Dict, List, NamedTuple
 
 
-PHENOMENON_ID = "1.5"
-PHENOMENON_NAME = "tran_P_marker"
+PHENOMENON_ID = "2.2"
+PHENOMENON_NAME = "tran_gen_marker"
 TEMPLATE_PATH = Path(__file__).with_name("templates.json")
 
 
@@ -21,6 +21,12 @@ class NpSpan(NamedTuple):
     @property
     def head_index(self) -> int:
         return self.start + self.head_offset
+
+    @property
+    def genitive_index(self) -> int | None:
+        if len(self.tokens) != 2:
+            return None
+        return self.start + (1 - self.head_offset)
 
     @property
     def text(self) -> str:
@@ -43,21 +49,22 @@ def load_templates() -> List[Dict[str, Any]]:
 TEMPLATES = load_templates()
 
 
-def marker_value(mark: str | None) -> str:
-    return mark or "0"
-
-
-def strip_suffix(token: str, suffix: str) -> str:
-    if not token.endswith(suffix):
-        raise ValueError(f"Expected token ending in {suffix!r}, got: {token}")
-    stem = token[: -len(suffix)]
-    if not stem:
-        raise ValueError(f"Could not strip suffix {suffix!r} from token: {token}")
-    return stem
-
-
 def finite_verb_like(token: str) -> bool:
     return token.endswith("s") and not token.endswith("ca") and not token.endswith("ge")
+
+
+def has_suffix(token: str, suffix: str) -> bool:
+    return token.lower().endswith(suffix)
+
+
+def replace_suffix(token: str, old: str, new: str) -> str:
+    if not has_suffix(token, old):
+        raise ValueError(f"Token {token!r} does not end in {old!r}")
+    return token[: -len(old)] + new
+
+
+def marker_value(mark: str | None) -> str:
+    return mark or "0"
 
 
 def head_matches_marker(token: str, expected_mark: str | None) -> bool:
@@ -219,19 +226,23 @@ def stable_row_index(row: Dict[str, Any] | None, fallback_index: int) -> int:
     return fallback_index
 
 
-def foil_for_p(row: Dict[str, Any] | None, fallback_index: int, alignment: str) -> tuple[str, str]:
-    use_ge_foil = stable_row_index(row, fallback_index) % 2 == 0
+def target_role_from_source_index(source_index: int) -> str:
+    if 1 <= source_index <= 40:
+        return "A"
+    if 41 <= source_index <= 80:
+        return "P"
+    if 81 <= source_index <= 120:
+        return "A"
+    if 121 <= source_index <= 160:
+        return "P"
+    return "A" if source_index % 2 == 1 else "P"
 
-    if use_ge_foil:
-        return "ge", "replace_transitive_p_marker_with_ge"
 
-    if alignment == "nom-acc":
-        return "0", "remove_ca_from_transitive_p"
-
-    if alignment == "erg-abs":
-        return "ca", "add_ca_to_transitive_p"
-
-    raise ValueError(f"Unsupported alignment: {alignment}")
+def bad_marker_from_source_index(source_index: int) -> tuple[str, str]:
+    bad_marker = "ca" if source_index % 2 == 1 else "0"
+    if bad_marker == "ca":
+        return bad_marker, "replace_genitive_ge_with_ca"
+    return bad_marker, "delete_genitive_ge"
 
 
 def perturb(
@@ -244,9 +255,18 @@ def perturb(
 
     clause_wo = language_config["clause_wo"]
     np_wo = language_config["np_wo"]
-    alignment = language_config["alignment"]
     good_a_mark = language_config["FIN_A_MARK"]
     good_p_mark = language_config["FIN_P_MARK"]
+
+    pseudo_english = row.get("pseudo_english") if row is not None else None
+    if isinstance(pseudo_english, str) and "nmz" in pseudo_english:
+        return {
+            "skip": True,
+            "skip_reason": "pseudo_english_contains_nominalization_artifact",
+            "good": good_sentence,
+            "tokens": tokens,
+            "pseudo_english": pseudo_english,
+        }
 
     parsed = find_template_match(
         tokens=tokens,
@@ -264,41 +284,49 @@ def perturb(
             "tokens": tokens,
             "clause_wo": clause_wo,
             "np_wo": np_wo,
-            "alignment": alignment,
-            "good_a_mark": marker_value(good_a_mark),
-            "good_p_mark": marker_value(good_p_mark),
+            "a_mark": marker_value(good_a_mark),
+            "p_mark": marker_value(good_p_mark),
         }
 
-    target_index = parsed.p.head_index
-    target_token = tokens[target_index]
-    bad_value, perturbation_label = foil_for_p(row, source_index, alignment)
+    stable_index = stable_row_index(row, source_index)
+    target_role = target_role_from_source_index(stable_index)
+    target_np = parsed.a if target_role == "A" else parsed.p
+    target_index = target_np.genitive_index
+    if target_index is None:
+        return {
+            "skip": True,
+            "skip_reason": f"target_{target_role.lower()}_is_not_genitive",
+            "good": good_sentence,
+            "tokens": tokens,
+            "target_role": target_role,
+            "template": parsed.template_name,
+        }
 
+    target_token = tokens[target_index]
+    bad_marker, perturbation = bad_marker_from_source_index(stable_index)
     bad_tokens = tokens[:]
-    if marker_value(good_p_mark) == "0":
-        if bad_value == "0":
-            raise ValueError("P is already zero-marked")
-        bad_tokens[target_index] = target_token + bad_value
-    elif good_p_mark == "ca":
-        p_stem = strip_suffix(target_token, "ca")
-        if bad_value == "0":
-            bad_tokens[target_index] = p_stem
-        elif bad_value == "ge":
-            bad_tokens[target_index] = p_stem + "ge"
-        else:
-            raise ValueError(f"Unsupported bad_value for ca-marked P: {bad_value}")
+    if bad_marker == "ca":
+        bad_tokens[target_index] = replace_suffix(target_token, "ge", "ca")
+    elif bad_marker == "0":
+        bad_tokens[target_index] = replace_suffix(target_token, "ge", "")
     else:
-        raise ValueError(f"Unsupported GOOD P marker: {good_p_mark!r}")
+        raise ValueError(f"Unsupported bad marker: {bad_marker}")
 
     return {
         "bad": " ".join(bad_tokens),
-        "target_role": "P",
+        "target_role": f"{target_role}_genitive_marker",
+        "target_argument": target_role,
         "target_index": target_index,
         "target_token": target_token,
         "a_span": parsed.a.text,
         "p_span": parsed.p.text,
         "verb_token": parsed.verb_token,
-        "good_value": marker_value(good_p_mark),
-        "bad_value": bad_value,
+        "verb_index": parsed.verb_index,
+        "good_value": "ge",
+        "bad_value": bad_marker,
+        "a_marker": marker_value(good_a_mark),
+        "p_marker": marker_value(good_p_mark),
+        "target_np_span": target_np.text,
         "template": parsed.template_name,
-        "perturbation": perturbation_label,
+        "perturbation": perturbation,
     }

@@ -3,14 +3,17 @@
 
 from __future__ import annotations
 
+import csv
 import json
+from collections import defaultdict, deque
 from pathlib import Path
-from typing import Any, Dict, List, NamedTuple
+from typing import Any, Deque, Dict, List, NamedTuple
 
 
-PHENOMENON_ID = "1.5"
-PHENOMENON_NAME = "tran_P_marker"
+PHENOMENON_ID = "1.10"
+PHENOMENON_NAME = "tran_V_valency"
 TEMPLATE_PATH = Path(__file__).with_name("templates.json")
+VALENCY_PATH = Path(__file__).with_name("blimp_valency.tsv")
 
 
 class NpSpan(NamedTuple):
@@ -40,20 +43,28 @@ def load_templates() -> List[Dict[str, Any]]:
         return json.load(infile)
 
 
+def normalize_stem(stem: str) -> str:
+    return stem.lower().replace(" ", "")
+
+
+def load_valency_rows() -> Dict[str, Deque[Dict[str, str]]]:
+    rows_by_stem: Dict[str, Deque[Dict[str, str]]] = defaultdict(deque)
+    with VALENCY_PATH.open(encoding="utf-8", newline="") as infile:
+        reader = csv.DictReader(infile, delimiter="\t")
+        for row in reader:
+            if row.get("use_for") != "1.10_tran_V_valency":
+                continue
+            good_stem = normalize_stem(row["good_stem"])
+            rows_by_stem[good_stem].append(row)
+    return rows_by_stem
+
+
 TEMPLATES = load_templates()
+VALENCY_ROWS = load_valency_rows()
 
 
 def marker_value(mark: str | None) -> str:
     return mark or "0"
-
-
-def strip_suffix(token: str, suffix: str) -> str:
-    if not token.endswith(suffix):
-        raise ValueError(f"Expected token ending in {suffix!r}, got: {token}")
-    stem = token[: -len(suffix)]
-    if not stem:
-        raise ValueError(f"Could not strip suffix {suffix!r} from token: {token}")
-    return stem
 
 
 def finite_verb_like(token: str) -> bool:
@@ -208,30 +219,25 @@ def template_shape_from_pseudo(row: Dict[str, Any] | None) -> tuple[int, int] | 
     return a_len, p_len
 
 
-def stable_row_index(row: Dict[str, Any] | None, fallback_index: int) -> int:
-    if row is not None:
-        for key in ("id", "source_id", "pseudo_index", "pair_index"):
-            value = row.get(key)
-            try:
-                return int(value)
-            except (TypeError, ValueError):
-                pass
-    return fallback_index
+def stem_from_finite(token: str) -> str:
+    token = token.lower()
+    if token.endswith("s"):
+        token = token[:-1]
+    return normalize_stem(token)
 
 
-def foil_for_p(row: Dict[str, Any] | None, fallback_index: int, alignment: str) -> tuple[str, str]:
-    use_ge_foil = stable_row_index(row, fallback_index) % 2 == 0
+def finite_form(stem: str, sentence_initial: bool) -> str:
+    token = normalize_stem(stem) + "s"
+    if sentence_initial:
+        return token[:1].upper() + token[1:]
+    return token
 
-    if use_ge_foil:
-        return "ge", "replace_transitive_p_marker_with_ge"
 
-    if alignment == "nom-acc":
-        return "0", "remove_ca_from_transitive_p"
-
-    if alignment == "erg-abs":
-        return "ca", "add_ca_to_transitive_p"
-
-    raise ValueError(f"Unsupported alignment: {alignment}")
+def take_next_valency_row(good_stem: str) -> Dict[str, str] | None:
+    rows = VALENCY_ROWS.get(good_stem)
+    if not rows:
+        return None
+    return rows.popleft()
 
 
 def perturb(
@@ -242,9 +248,18 @@ def perturb(
 ) -> Dict[str, Any]:
     tokens = good_sentence.strip().split()
 
+    pseudo_english = row.get("pseudo_english") if row is not None else None
+    if isinstance(pseudo_english, str) and "nmz" in pseudo_english:
+        return {
+            "skip": True,
+            "skip_reason": "pseudo_english_contains_nominalization_artifact",
+            "good": good_sentence,
+            "tokens": tokens,
+            "pseudo_english": pseudo_english,
+        }
+
     clause_wo = language_config["clause_wo"]
     np_wo = language_config["np_wo"]
-    alignment = language_config["alignment"]
     good_a_mark = language_config["FIN_A_MARK"]
     good_p_mark = language_config["FIN_P_MARK"]
 
@@ -264,41 +279,42 @@ def perturb(
             "tokens": tokens,
             "clause_wo": clause_wo,
             "np_wo": np_wo,
-            "alignment": alignment,
             "good_a_mark": marker_value(good_a_mark),
             "good_p_mark": marker_value(good_p_mark),
         }
 
-    target_index = parsed.p.head_index
-    target_token = tokens[target_index]
-    bad_value, perturbation_label = foil_for_p(row, source_index, alignment)
+    verb_index = parsed.verb_index
+    verb_token = parsed.verb_token
+    good_stem = stem_from_finite(verb_token)
+    valency_row = take_next_valency_row(good_stem)
+    if valency_row is None:
+        return {
+            "skip": True,
+            "skip_reason": "no_unused_blimp_valency_pair_for_good_stem",
+            "good": good_sentence,
+            "tokens": tokens,
+            "good_stem": good_stem,
+        }
 
+    bad_stem = normalize_stem(valency_row["bad_stem"])
     bad_tokens = tokens[:]
-    if marker_value(good_p_mark) == "0":
-        if bad_value == "0":
-            raise ValueError("P is already zero-marked")
-        bad_tokens[target_index] = target_token + bad_value
-    elif good_p_mark == "ca":
-        p_stem = strip_suffix(target_token, "ca")
-        if bad_value == "0":
-            bad_tokens[target_index] = p_stem
-        elif bad_value == "ge":
-            bad_tokens[target_index] = p_stem + "ge"
-        else:
-            raise ValueError(f"Unsupported bad_value for ca-marked P: {bad_value}")
-    else:
-        raise ValueError(f"Unsupported GOOD P marker: {good_p_mark!r}")
+    bad_tokens[verb_index] = finite_form(bad_stem, sentence_initial=(verb_index == 0))
 
     return {
         "bad": " ".join(bad_tokens),
-        "target_role": "P",
-        "target_index": target_index,
-        "target_token": target_token,
+        "target_role": "V_valency",
+        "target_index": verb_index,
+        "target_token": verb_token,
         "a_span": parsed.a.text,
         "p_span": parsed.p.text,
-        "verb_token": parsed.verb_token,
-        "good_value": marker_value(good_p_mark),
-        "bad_value": bad_value,
+        "good_value": "transitive_verb",
+        "bad_value": "intransitive_verb",
+        "good_stem": good_stem,
+        "bad_stem": bad_stem,
+        "blimp_source_uid": valency_row["source_uid"],
+        "blimp_pair_id": valency_row["pair_id"],
+        "blimp_sentence_good": valency_row["sentence_good"],
+        "blimp_sentence_bad": valency_row["sentence_bad"],
         "template": parsed.template_name,
-        "perturbation": perturbation_label,
+        "perturbation": "replace_transitive_verb_with_blimp_intransitive_verb",
     }

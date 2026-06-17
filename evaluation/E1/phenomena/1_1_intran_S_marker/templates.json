@@ -1,0 +1,76 @@
+[
+  {
+    "name": "sv_simple_s",
+    "clause_wo": ["sov", "svo"],
+    "np_wo": ["gn", "ng"],
+    "token_count": 2,
+    "verb_index": 1,
+    "subject_start": 0,
+    "subject_len": 1,
+    "subject_head_offset": 0,
+    "required_suffixes": []
+  },
+  {
+    "name": "sv_genitive_s_gn",
+    "clause_wo": ["sov", "svo"],
+    "np_wo": ["gn"],
+    "token_count": 3,
+    "verb_index": 2,
+    "subject_start": 0,
+    "subject_len": 2,
+    "subject_head_offset": 1,
+    "required_suffixes": [
+      {"relative_index": 0, "suffix": "ge"}
+    ]
+  },
+  {
+    "name": "sv_genitive_s_ng",
+    "clause_wo": ["sov", "svo"],
+    "np_wo": ["ng"],
+    "token_count": 3,
+    "verb_index": 2,
+    "subject_start": 0,
+    "subject_len": 2,
+    "subject_head_offset": 0,
+    "required_suffixes": [
+      {"relative_index": 1, "suffix": "ge"}
+    ]
+  },
+  {
+    "name": "vs_simple_s",
+    "clause_wo": ["vos"],
+    "np_wo": ["gn", "ng"],
+    "token_count": 2,
+    "verb_index": 0,
+    "subject_start": 1,
+    "subject_len": 1,
+    "subject_head_offset": 0,
+    "required_suffixes": []
+  },
+  {
+    "name": "vs_genitive_s_gn",
+    "clause_wo": ["vos"],
+    "np_wo": ["gn"],
+    "token_count": 3,
+    "verb_index": 0,
+    "subject_start": 1,
+    "subject_len": 2,
+    "subject_head_offset": 1,
+    "required_suffixes": [
+      {"relative_index": 0, "suffix": "ge"}
+    ]
+  },
+  {
+    "name": "vs_genitive_s_ng",
+    "clause_wo": ["vos"],
+    "np_wo": ["ng"],
+    "token_count": 3,
+    "verb_index": 0,
+    "subject_start": 1,
+    "subject_len": 2,
+    "subject_head_offset": 0,
+    "required_suffixes": [
+      {"relative_index": 1, "suffix": "ge"}
+    ]
+  }
+]

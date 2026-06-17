@@ -11,6 +11,7 @@ MAX_GEN=20
 SKIP_EXISTING=false
 DRY_RUN=false
 NOHUP_MODE=false
+PYTHON_BIN="${PYTHON:-python}"
 
 usage() {
   cat <<EOF
@@ -30,6 +31,7 @@ Options:
   --skip-existing              Skip languages whose selected output already exists
   --nohup                      Run raw generation in background; selection is not run in this mode
   --dry-run                    Print commands without running them
+  --python PATH                Python executable. Default: \$PYTHON or python
   -h, --help                   Show this help message
 
 Example:
@@ -78,6 +80,10 @@ while [[ $# -gt 0 ]]; do
     --dry-run)
       DRY_RUN=true
       shift
+      ;;
+    --python)
+      PYTHON_BIN="$2"
+      shift 2
       ;;
     -h|--help)
       usage
@@ -213,6 +219,7 @@ echo "Log dir:        $LOG_DIR"
 echo "Workers:        $WORKERS"
 echo "Chunksize:      $CHUNKSIZE"
 echo "Max gen:        $MAX_GEN"
+echo "Python:         $PYTHON_BIN"
 echo "Nohup mode:     $NOHUP_MODE"
 echo
 
@@ -274,13 +281,13 @@ for grammar_root in "${grammar_dirs[@]}"; do
     echo "Log: $gen_log"
 
     if [[ "$DRY_RUN" == true ]]; then
-      echo "+ nohup python3 -m language_generation.generate_from_mrs_bank --grammar $grammar_dat --input $MRS_JSONL --out $raw_out --no-mrs --workers $WORKERS --chunksize $CHUNKSIZE --max-gen $MAX_GEN > $gen_log 2>&1 &"
+      echo "+ nohup $PYTHON_BIN -m language_generation.generate_from_mrs_bank --grammar $grammar_dat --input $MRS_JSONL --out $raw_out --no-mrs --workers $WORKERS --chunksize $CHUNKSIZE --max-gen $MAX_GEN > $gen_log 2>&1 &"
       record_success "$lang_id" "dry_run_nohup"
       count=$((count + 1))
       continue
     fi
 
-    nohup python3 -m language_generation.generate_from_mrs_bank \
+    nohup "$PYTHON_BIN" -m language_generation.generate_from_mrs_bank \
       --grammar "$grammar_dat" \
       --input "$MRS_JSONL" \
       --out "$raw_out" \
@@ -297,8 +304,8 @@ for grammar_root in "${grammar_dirs[@]}"; do
 
   echo "[1/2] Generating raw output..."
   if [[ "$DRY_RUN" == true ]]; then
-    echo "+ python3 -m language_generation.generate_from_mrs_bank --grammar $grammar_dat --input $MRS_JSONL --out $raw_out --no-mrs --workers $WORKERS --chunksize $CHUNKSIZE --max-gen $MAX_GEN > $gen_log 2>&1"
-  elif ! python3 -m language_generation.generate_from_mrs_bank \
+    echo "+ $PYTHON_BIN -m language_generation.generate_from_mrs_bank --grammar $grammar_dat --input $MRS_JSONL --out $raw_out --no-mrs --workers $WORKERS --chunksize $CHUNKSIZE --max-gen $MAX_GEN > $gen_log 2>&1"
+  elif ! "$PYTHON_BIN" -m language_generation.generate_from_mrs_bank \
     --grammar "$grammar_dat" \
     --input "$MRS_JSONL" \
     --out "$raw_out" \
@@ -325,11 +332,11 @@ for grammar_root in "${grammar_dirs[@]}"; do
 
   echo "[2/2] Selecting overgeneration output..."
   if [[ "$DRY_RUN" == true ]]; then
-    echo "+ python language_generation/select_overgen.py --input $raw_out --out $selected_out --save-details $details_out > $select_log 2>&1"
+    echo "+ $PYTHON_BIN language_generation/select_overgen.py --input $raw_out --out $selected_out --save-details $details_out > $select_log 2>&1"
     record_success "$lang_id" "dry_run"
     count=$((count + 1))
     continue
-  elif ! python language_generation/select_overgen.py \
+  elif ! "$PYTHON_BIN" language_generation/select_overgen.py \
     --input "$raw_out" \
     --out "$selected_out" \
     --save-details "$details_out" \

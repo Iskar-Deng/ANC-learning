@@ -3,11 +3,14 @@
 
 from __future__ import annotations
 
+import json
+from pathlib import Path
 from typing import Any, Dict, List
 
 
 PHENOMENON_ID = "1.1"
 PHENOMENON_NAME = "intran_S_marker"
+TEMPLATES_PATH = Path(__file__).with_name("templates.json")
 
 
 def foil_marker_for_row(row: Dict[str, Any] | None, fallback_index: int) -> str:
@@ -26,53 +29,71 @@ def foil_marker_for_row(row: Dict[str, Any] | None, fallback_index: int) -> str:
     return "ca" if index % 2 else "ge"
 
 
-def split_intransitive_clause(tokens: List[str], clause_wo: str) -> tuple[List[str], int]:
-    """
-    Return (subject_tokens, subject_start_index).
+def load_templates() -> List[Dict[str, Any]]:
+    with TEMPLATES_PATH.open("r", encoding="utf-8") as f:
+        templates = json.load(f)
 
-    Expected generated GOOD shape:
-      SOV/SVO: S V-s
-      VOS:     V-s S
+    if not isinstance(templates, list):
+        raise ValueError(f"Expected template list in {TEMPLATES_PATH}")
 
-    S may be one token or a possessive/genitive NP:
-      GN: poss-ge head
-      NG: head poss-ge
-    """
-    if len(tokens) < 2:
-        raise ValueError(f"Expected at least two tokens, got: {tokens}")
-
-    if clause_wo in {"sov", "svo"}:
-        return tokens[:-1], 0
-
-    if clause_wo == "vos":
-        return tokens[1:], 1
-
-    raise ValueError(f"Unsupported clause_wo: {clause_wo}")
+    return templates
 
 
-def subject_head_offset(subject_tokens: List[str], np_wo: str) -> int:
-    """
-    Locate the head of S inside the subject NP.
+TEMPLATES = load_templates()
 
-    Simple S:
-      dog
 
-    GN:
-      his-ge dog        -> head is last token
+def finite_verb_like(token: str) -> bool:
+    return token.endswith("s")
 
-    NG:
-      dog his-ge        -> head is first token
-    """
-    if len(subject_tokens) == 1:
-        return 0
 
-    if np_wo == "gn":
-        return len(subject_tokens) - 1
+def template_matches(
+    template: Dict[str, Any],
+    tokens: List[str],
+    clause_wo: str,
+    np_wo: str,
+) -> bool:
+    if clause_wo not in template["clause_wo"]:
+        return False
 
-    if np_wo == "ng":
-        return 0
+    if np_wo not in template["np_wo"]:
+        return False
 
-    raise ValueError(f"Unsupported np_wo: {np_wo}")
+    if len(tokens) != template["token_count"]:
+        return False
+
+    verb_index = template["verb_index"]
+    if not finite_verb_like(tokens[verb_index]):
+        return False
+
+    subject_start = template["subject_start"]
+    for requirement in template.get("required_suffixes", []):
+        token_index = subject_start + requirement["relative_index"]
+        if not tokens[token_index].endswith(requirement["suffix"]):
+            return False
+
+    return True
+
+
+def find_template_match(
+    tokens: List[str],
+    clause_wo: str,
+    np_wo: str,
+) -> Dict[str, Any]:
+    matches = [
+        template
+        for template in TEMPLATES
+        if template_matches(template, tokens, clause_wo, np_wo)
+    ]
+
+    if len(matches) != 1:
+        return {
+            "skip": True,
+            "skip_reason": "template_match_count_not_one",
+            "template_match_count": len(matches),
+            "matched_templates": [template["name"] for template in matches],
+        }
+
+    return matches[0]
 
 
 def perturb(
@@ -86,9 +107,22 @@ def perturb(
     clause_wo = language_config["clause_wo"]
     np_wo = language_config["np_wo"]
 
-    subject_tokens, subject_start = split_intransitive_clause(tokens, clause_wo)
-    head_offset = subject_head_offset(subject_tokens, np_wo)
+    template = find_template_match(tokens, clause_wo, np_wo)
+    if template.get("skip"):
+        return {
+            **template,
+            "good": good_sentence,
+            "tokens": tokens,
+            "clause_wo": clause_wo,
+            "np_wo": np_wo,
+        }
+
+    subject_start = template["subject_start"]
+    subject_len = template["subject_len"]
+    subject_tokens = tokens[subject_start : subject_start + subject_len]
+    head_offset = template["subject_head_offset"]
     target_index = subject_start + head_offset
+    verb_index = template["verb_index"]
 
     foil_marker = foil_marker_for_row(row, source_index)
 
@@ -101,7 +135,9 @@ def perturb(
         "target_index": target_index,
         "target_token": tokens[target_index],
         "subject_span": " ".join(subject_tokens),
+        "verb_token": tokens[verb_index],
         "good_value": "0",
         "bad_value": foil_marker,
+        "template": template["name"],
         "perturbation": f"add_{foil_marker}_to_intransitive_s_head",
     }

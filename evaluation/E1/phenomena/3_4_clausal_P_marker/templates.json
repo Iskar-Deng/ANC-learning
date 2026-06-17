@@ -1,0 +1,9 @@
+[
+  {
+    "name": "cv_embedded_tv",
+    "embedded_construction": "tv",
+    "matrix_a_lens": [1, 2],
+    "embedded_a_lens": [1, 2],
+    "embedded_p_lens": [1, 2]
+  }
+]

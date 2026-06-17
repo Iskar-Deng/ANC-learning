@@ -204,4 +204,3 @@ def parse_transitive_good(
         raise ValueError(f"Expected exactly one transitive parse, got {len(parses)} for: {tokens}")
 
     return parses[0]
-
