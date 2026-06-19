@@ -1,0 +1,16 @@
+{
+  "model": "models/english_baseline/seed_42",
+  "pairs_dir": "e1_materials/1_10_tran_V_valency/pairs",
+  "out_dir": "evaluation/baseline/outputs/english_baseline_seed_42/1_10_tran_V_valency_e1_sampled",
+  "pair_files": 96,
+  "rows_total": 9600,
+  "unique_sentences": 200,
+  "score_mode": "bos_eos",
+  "mean_language_accuracy": 0.6799999999999998,
+  "min_language_accuracy": 0.68,
+  "max_language_accuracy": 0.68,
+  "micro_accuracy": 0.68,
+  "micro_ties": 0,
+  "micro_tie_rate": 0.0,
+  "micro_mean_delta_good_minus_bad": 0.19685016870498656
+}

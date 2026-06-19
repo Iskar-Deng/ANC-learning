@@ -1,0 +1,251 @@
+pair_index	id	language	phenomenon_id	good_score	bad_score	delta	correct	tie	good	bad
+1	1			-5.88763189	-6.47818565	0.59055376	1	0	Diane watched Alan.	Diane screamed Alan.
+2	2			-6.87746716	-7.00249624	0.12502909	1	0	This cousin of Theodore buys some mushroom.	This cousin of Theodore wept some mushroom.
+3	3			-6.86112499	-7.07285595	0.21173096	1	0	Rhonda was arguing about this nephew of Dana.	Rhonda was going fishing this nephew of Dana.
+4	4			-6.82718182	-6.86948538	0.04230356	1	0	A lot of actresses' nieces have toured that art gallery.	A lot of actresses' nieces have coped that art gallery.
+5	5			-7.26297665	-7.23822546	-0.02475119	0	0	Debra wears many skirts.	Debra slumps over many skirts.
+6	6			-6.53749132	-6.57625341	0.03876209	1	0	Chad's daughters embarrasses Erin's girlfriend.	Chad's daughters screamed Erin's girlfriend.
+7	7			-7.00155020	-6.99021769	-0.01133251	0	0	Elaine criticized Jill.	Elaine shrugs Jill.
+8	8			-6.23136377	-6.23028469	-0.00107908	0	0	The pedestrians question some people.	The pedestrians wave some people.
+9	9			-5.04996729	-5.89597178	0.84600449	1	0	Vanessa has gone to a lot of college campuses.	Vanessa has smiled a lot of college campuses.
+10	10			-6.62797928	-7.84850883	1.22052956	1	0	Those committees listened to Kristen.	Those committees react Kristen.
+11	11			-5.99565697	-6.49958086	0.50392389	1	0	Most pedestrians' father might climb up the slope.	Most pedestrians' father might murmur the slope.
+12	12			-5.62753105	-5.50256205	-0.12496901	0	0	Theresa shouldn't scan this essay.	Theresa shouldn't murmur this essay.
+13	13			-7.05464697	-7.18774366	0.13309669	1	0	Andrea's ex-husbands toured this art gallery.	Andrea's ex-husbands cry this art gallery.
+14	14			-5.30988073	-5.28806686	-0.02181387	0	0	A lot of girls' son hadn't insulted Jerry.	A lot of girls' son hadn't sighed Jerry.
+15	15			-6.01440001	-6.26470184	0.25030184	1	0	Denise has escaped from Marie's grandsons.	Denise has fallen Marie's grandsons.
+16	16			-4.67999697	-5.07861090	0.39861393	1	0	Grace is investigating a lot of girls' ex-wife.	Grace is going fishing a lot of girls' ex-wife.
+17	17			-4.89325523	-5.97773170	1.08447647	1	0	Donna talked about Anna's friends.	Donna replies Anna's friends.
+18	18			-6.98999405	-6.44939280	-0.54060125	0	0	Many sisters of some guest forget Eva.	Many sisters of some guest murmured Eva.
+19	19			-5.33203983	-4.72484064	-0.60719919	0	0	The truck hadn't astounded a bank.	The truck hadn't fallen a bank.
+20	20			-7.25433350	-7.26089048	0.00655699	1	0	April's mentees weren't kissing Matt's nephews.	April's mentees weren't chuckling Matt's nephews.
+21	21			-7.26398897	-7.61623812	0.35224915	1	0	Phillip isn't observing Winston Churchill.	Phillip isn't grinning Winston Churchill.
+22	22			-5.86115026	-5.54608917	-0.31506109	0	0	Bill explores the bank.	Bill wept the bank.
+23	23			-7.21211481	-7.36342716	0.15131235	1	0	These grandmothers of Rebecca remembered Angela.	These grandmothers of Rebecca flirted Angela.
+24	24			-7.60655928	-8.21707630	0.61051702	1	0	Many universities describe Samantha.	Many universities reacted Samantha.
+25	25			-5.30097389	-5.76511097	0.46413708	1	0	A lot of grandmothers of Melanie go to the mall.	A lot of grandmothers of Melanie murmured the mall.
+26	26			-6.83028555	-7.18644619	0.35616064	1	0	Stacy's cousins haven't scanned many drivers' oncologists.	Stacy's cousins haven't concurred many drivers' oncologists.
+27	27			-6.43431425	-6.07810402	-0.35621023	0	0	Ella's tutor can't fire every adult.	Ella's tutor can't talk every adult.
+28	28			-7.87809849	-7.22982025	-0.64827824	0	0	Christopher researched most public parks.	Christopher suffered most public parks.
+29	29			-6.74278259	-6.51742887	-0.22535372	0	0	Melinda explores those closets.	Melinda slumped over those closets.
+30	30			-5.78663111	-5.26053667	-0.52609444	0	0	Some mother of Diane wasn't distracting a lot of students' ex-girlfriends.	Some mother of Diane wasn't coming here a lot of students' ex-girlfriends.
+31	31			-5.54916286	-5.52026081	-0.02890205	0	0	Robert hasn't escaped from Brenda.	Robert hasn't talked Brenda.
+32	32			-5.07905340	-5.53888226	0.45982885	1	0	Marcus wasn't running around that high school.	Marcus wasn't smiling that high school.
+33	33			-6.83506870	-6.82155657	-0.01351213	0	0	Monet hadn't examined most commentaries.	Monet hadn't wept most commentaries.
+34	34			-7.33855867	-8.63512135	1.29656267	1	0	Many actresses escape from Cynthia.	Many actresses weep Cynthia.
+35	35			-5.66206169	-5.51368332	-0.14837837	0	0	Amy's cousins distracts a lot of women.	Amy's cousins reply a lot of women.
+36	36			-6.82859707	-6.60763025	-0.22096682	0	0	Many senators' niece admires Brian's ex-husband.	Many senators' niece chuckled Brian's ex-husband.
+37	37			-4.36633158	-4.44502497	0.07869339	1	0	Carmen's father isn't cleaning a lot of cups.	Carmen's father isn't waving a lot of cups.
+38	38			-5.66818047	-6.27184963	0.60366917	1	0	Rose couldn't like Liam's employees.	Rose couldn't go fishing Liam's employees.
+39	39			-5.51376867	-6.06213474	0.54836607	1	0	Daniel's ex-husband resembles a lot of prints of actresses.	Daniel's ex-husband compromises a lot of prints of actresses.
+40	40			-6.53173590	-6.68925571	0.15751982	1	0	Heidi sells every banana.	Heidi sighed every banana.
+41	41			-6.89265251	-6.40075016	-0.49190235	0	0	Phillip's senators alarm the driver.	Phillip's senators shouted the driver.
+42	42			-6.00422001	-6.61183834	0.60761833	1	0	The actress can notice every student.	The actress can weep every student.
+43	43			-6.07342577	-6.78156042	0.70813465	1	0	The mothers of Kimberley think about all universities.	The mothers of Kimberley sighed all universities.
+44	44			-8.19161797	-7.93853617	-0.25308180	0	0	The Clintons heal Kimberley.	The Clintons retaliated Kimberley.
+45	45			-6.87593699	-7.32051086	0.44457388	1	0	Most schools hurt Marcus.	Most schools fall Marcus.
+46	46			-6.68474531	-7.39853334	0.71378803	1	0	Phillip knows Jill's senator.	Phillip reacts Jill's senator.
+47	47			-7.17165756	-6.92730474	-0.24435282	0	0	Sabrina was criticizing Jennifer.	Sabrina was falling Jennifer.
+48	48			-6.88681507	-7.13952160	0.25270653	1	0	Lori was exploring art galleries.	Lori was compromising art galleries.
+49	49			-5.94742680	-6.03250456	0.08507776	1	0	Beth will embarrass Eric.	Beth will concur Eric.
+50	50			-5.33001041	-5.60405588	0.27404547	1	0	The guy hadn't skated around schools.	The guy hadn't complained schools.
+51	51			-6.56072617	-6.95979357	0.39906740	1	0	Ella's teachers hire Nina.	Ella's teachers clashed Nina.
+52	52			-6.90211487	-7.20651388	0.30439901	1	0	Every cashier astounded Barbara's nieces.	Every cashier boasts Barbara's nieces.
+53	53			-7.01661301	-7.11803007	0.10141706	1	0	That mushroom irritates Michael's daughters.	That mushroom rotted Michael's daughters.
+54	54			-6.55598116	-7.16638184	0.61040068	1	0	Valerie's electricians arrive at the rivers.	Valerie's electricians smiled the rivers.
+55	55			-7.70086145	-7.91713333	0.21627188	1	0	Every hospital shocked Donald.	Every hospital boasts Donald.
+56	56			-5.93445778	-6.76476049	0.83030272	1	0	Patricia did lift that hat.	Patricia did slump over that hat.
+57	57			-6.33729315	-6.97203541	0.63474226	1	0	Irene resembled every painting.	Irene testifies every painting.
+58	58			-7.49453259	-8.40247440	0.90794182	1	0	Michelle praises Bradley.	Michelle testifies Bradley.
+59	59			-7.00118351	-6.93736029	-0.06382322	0	0	That brother of Michael revealed many mushrooms.	That brother of Michael goes fishing many mushrooms.
+60	60			-7.06684446	-7.29209805	0.22525358	1	0	This teacher's plumbers can't skate around many movie theaters.	This teacher's plumbers can't clash many movie theaters.
+61	61			-6.96871376	-7.09536219	0.12664843	1	0	Cousins of Stephanie run around all art galleries.	Cousins of Stephanie mutter all art galleries.
+62	62			-7.28240776	-7.51423216	0.23182440	1	0	These drivers questioned sons of Janice.	These drivers confer sons of Janice.
+63	63			-6.44376564	-6.56047058	0.11670494	1	0	The Borgias disagreed with the teenager's granddaughters.	The Borgias come here the teenager's granddaughters.
+64	64			-7.46456861	-7.77973509	0.31516647	1	0	All grandmothers of Debra run around some art galleries.	All grandmothers of Debra fall some art galleries.
+65	65			-5.52774811	-5.18484592	-0.34290218	0	0	Jerry wasn't escaping from a waitress.	Jerry wasn't crying a waitress.
+66	66			-5.61813879	-6.30026960	0.68213081	1	0	Naomi talked to Guy.	Naomi sighed Guy.
+67	67			-7.05070829	-6.93383455	-0.11687374	0	0	Doctors' lawyer discussed the niece of Lucille.	Doctors' lawyer lies the niece of Lucille.
+68	68			-5.58494568	-7.05556631	1.47062063	1	0	Guy's daughters talk to Jesus.	Guy's daughters complained Jesus.
+69	69			-6.14030361	-5.75574923	-0.38455439	0	0	That girl can admire Meredith.	That girl can escape Meredith.
+70	70			-7.58817196	-7.77346849	0.18529654	1	0	Some actors' tutor hadn't questioned Candice's mentors.	Some actors' tutor hadn't shrugged Candice's mentors.
+71	71			-5.47488403	-5.03712797	-0.43775606	0	0	Some student wasn't healing that guy.	Some student wasn't talking that guy.
+72	72			-5.62358809	-5.84657574	0.22298765	1	0	Lawrence's grandson won't sell every glove.	Lawrence's grandson won't suffer every glove.
+73	73			-6.51605272	-6.62935066	0.11329794	1	0	Stacy's ex-wife passes these grocery stores.	Stacy's ex-wife cries these grocery stores.
+74	74			-6.73731899	-7.03098011	0.29366112	1	0	Carrie did discover Daniel.	Carrie did joke around Daniel.
+75	75			-6.12166023	-5.83481264	-0.28684759	0	0	Alicia wasn't referencing Victoria.	Alicia wasn't compromising Victoria.
+76	76			-7.14483166	-6.76528311	-0.37954855	0	0	John scans Leslie's tutors.	John blinked Leslie's tutors.
+77	77			-7.21460724	-6.97888470	-0.23572254	0	0	A girl's supervisors worries boys' son.	A girl's supervisors chatted boys' son.
+78	78			-6.06084919	-6.54411030	0.48326111	1	0	Jacqueline's sons hated the Borgias.	Jacqueline's sons communicated the Borgias.
+79	79			-6.05723619	-6.04565334	-0.01158285	0	0	Some shawl might resemble many prints of the screen.	Some shawl might fall many prints of the screen.
+80	80			-7.05051851	-6.08186769	-0.96865082	0	0	A carriage upsets Amanda.	A carriage fell Amanda.
+81	81			-6.63713598	-6.89026022	0.25312424	1	0	Some senators have attacked Pamela.	Some senators have cooperated Pamela.
+82	82			-6.43350649	-6.78448868	0.35098219	1	0	Some teacher's nieces buy this high school.	Some teacher's nieces complain this high school.
+83	83			-5.89287663	-5.29362917	-0.59924746	0	0	A lot of photographs have alarmed some pedestrians.	A lot of photographs have fallen some pedestrians.
+84	84			-6.36812162	-6.47103643	0.10291481	1	0	Carolyn's grandfathers ran around these grocery stores.	Carolyn's grandfathers conspired these grocery stores.
+85	85			-6.13890600	-5.91350412	-0.22540188	0	0	Wendy complains about Lissa.	Wendy comes here Lissa.
+86	86			-6.18370008	-6.76580143	0.58210135	1	0	Many children's son helped Robert.	Many children's son shrugged Robert.
+87	87			-5.89162874	-5.58023500	-0.31139374	0	0	Sonia's teachers exit a hill.	Sonia's teachers screamed a hill.
+88	88			-6.01559639	-6.15923548	0.14363909	1	0	Rodney has revealed some restaurant.	Rodney has slumped over some restaurant.
+89	89			-6.02191877	-6.95441055	0.93249178	1	0	Laura talks to Carrie.	Laura chuckled Carrie.
+90	90			-5.61249208	-5.80003262	0.18754053	1	0	Margaret is investigating Rodney's hairdressers.	Margaret is shrugging Rodney's hairdressers.
+91	91			-6.34482002	-6.31637955	-0.02844048	0	0	Many fathers of Florence lifted every light.	Many fathers of Florence waved every light.
+92	92			-5.09610224	-4.98043633	-0.11566591	0	0	Florence's wife hadn't dropped by that lake.	Florence's wife hadn't come here that lake.
+93	93			-6.00618267	-6.09668493	0.09050226	1	0	Tanya's cousins sell some drawing.	Tanya's cousins fell some drawing.
+94	94			-7.07524300	-7.46001863	0.38477564	1	0	Most cashiers tour that movie theater.	Most cashiers littered that movie theater.
+95	95			-6.52378988	-5.96338034	-0.56040955	0	0	Erin's employees were discovering this rug.	Erin's employees were speaking up this rug.
+96	96			-6.59707737	-8.13886929	1.54179192	1	0	Kristin ran around some glacier.	Kristin screams some glacier.
+97	97			-5.48530102	-5.08116388	-0.40413713	0	0	Some rabbits hadn't shocked John's hairdresser.	Some rabbits hadn't come here John's hairdresser.
+98	98			-7.12929583	-7.18828249	0.05898666	1	0	Men tour some closets.	Men weep some closets.
+99	99			-5.81582832	-6.73231745	0.91648912	1	0	The lady liked Craig.	The lady concurred Craig.
+100	100			-6.19729948	-6.98624706	0.78894758	1	0	Kimberley will care for Cynthia.	Kimberley will smile Cynthia.
+101	101			-5.69371271	-5.06710196	-0.62661076	0	0	Peter isn't lifting some fork.	Peter isn't coming here some fork.
+102	102			-6.91351509	-6.97607422	0.06255913	1	0	That son of Brad helps some actresses.	That son of Brad cooperates some actresses.
+103	103			-5.78849220	-7.02120686	1.23271465	1	0	Cheryl hasn't cared for Amanda.	Cheryl hasn't joked around Amanda.
+104	104			-6.11219692	-6.20352840	0.09133148	1	0	Allison is discussing every brother of Jane.	Allison is nodding every brother of Jane.
+105	105			-8.16960239	-7.92225313	-0.24734926	0	0	All bananas disturb Gina.	All bananas rot Gina.
+106	106			-6.57959747	-6.62220335	0.04260588	1	0	Russell's sisters discover some unicycle.	Russell's sisters fall some unicycle.
+107	107			-7.06007862	-6.76743364	-0.29264498	0	0	A print of many windows embarrasses Noah.	A print of many windows fell Noah.
+108	108			-7.01485682	-7.07604551	0.06118870	1	0	These banks boasted about Eric's bosses.	These banks conspire Eric's bosses.
+109	109			-6.03609085	-6.57263374	0.53654289	1	0	That picture of that newspaper article looked like some screen.	That picture of that newspaper article fell some screen.
+110	110			-6.74637222	-6.37286615	-0.37350607	0	0	The patients observe Jessica.	The patients laughed Jessica.
+111	111			-3.96758413	-5.42551041	1.45792627	1	0	Some children are talking about Amy.	Some children are going fishing Amy.
+112	112			-6.72538900	-6.64226198	-0.08312702	0	0	That movie about the Lutherans had irritated Julia.	That movie about the Lutherans had disagreed Julia.
+113	113			-6.51376390	-6.36642027	-0.14734364	0	0	Brenda's students were boring Beth.	Brenda's students were screaming Beth.
+114	114			-7.40254307	-7.23516512	-0.16737795	0	0	Fathers of Amelia distract many teachers.	Fathers of Amelia disagreed many teachers.
+115	115			-5.50675869	-5.92784071	0.42108202	1	0	Every woman's classmate broke a lot of chairs.	Every woman's classmate works hard a lot of chairs.
+116	116			-6.48805285	-6.86286688	0.37481403	1	0	Tiffany's contractors watch the father of Kristen.	Tiffany's contractors confer the father of Kristen.
+117	117			-6.31899977	-6.02795506	-0.29104471	0	0	Most guests aren't biking to Spain.	Most guests aren't working hard Spain.
+118	118			-6.28652096	-7.08795452	0.80143356	1	0	Sarah brought the photograph of this cilantro.	Sarah mutters the photograph of this cilantro.
+119	119			-6.85446405	-6.30889130	-0.54557276	0	0	Angela hasn't aggravated the senator's piano teachers.	Angela hasn't come here the senator's piano teachers.
+120	120			-7.82995462	-6.27611923	-1.55383539	0	0	A mountain shocks Walter.	A mountain fell Walter.
+121	121			-6.88323641	-6.70783663	-0.17539978	0	0	Carmen's podiatrists have cleaned that picture.	Carmen's podiatrists have died that picture.
+122	122			-5.50362253	-6.01449347	0.51087093	1	0	Laurie was fleeing from most lakes.	Laurie was blinking most lakes.
+123	123			-6.06901264	-6.26452732	0.19551468	1	0	Anne's wife revealed Julie.	Anne's wife complained Julie.
+124	124			-6.40311956	-6.18423414	-0.21888542	0	0	This waitress had praised these guys.	This waitress had gone fishing these guys.
+125	125			-5.96460724	-6.37167692	0.40706968	1	0	Every teacher doesn't reveal Bruce.	Every teacher doesn't sigh Bruce.
+126	126			-6.97253656	-6.34492874	-0.62760782	0	0	Lisa is aggravating Liam.	Lisa is muttering Liam.
+127	127			-6.43287134	-7.51539993	1.08252859	1	0	Vanessa does fix that couch.	Vanessa does grin that couch.
+128	128			-5.73631048	-6.23654175	0.50023127	1	0	This friend of Joseph had these pants.	This friend of Joseph spoke up these pants.
+129	129			-7.72468758	-6.77953339	-0.94515419	0	0	Richard would reference Phillip's tutor.	Richard would scream Phillip's tutor.
+130	130			-7.81934118	-7.54589987	-0.27344131	0	0	This college campus confused Nancy.	This college campus falls Nancy.
+131	131			-5.10949612	-5.96193504	0.85243893	1	0	Rodney's friend might climb up a hill.	Rodney's friend might complain a hill.
+132	132			-6.31827879	-6.09510565	-0.22317314	0	0	Cheryl's hairdressers criticize that child.	Cheryl's hairdressers corresponded that child.
+133	133			-5.59763861	-6.81482601	1.21718740	1	0	Dan hadn't arrived at all public parks.	Dan hadn't complained all public parks.
+134	134			-5.39619446	-5.51615477	0.11996031	1	0	These children discuss a dancer.	These children shouted a dancer.
+135	135			-7.39963293	-7.00865126	-0.39098167	0	0	Erin kisses Sonia.	Erin shrugs Sonia.
+136	136			-5.82454348	-5.27846146	-0.54608202	0	0	Jill isn't describing Matt.	Jill isn't coming here Matt.
+137	137			-6.22816277	-6.37559414	0.14743137	1	0	Gary boasted about Mitchell's ex-wife.	Gary works hard Mitchell's ex-wife.
+138	138			-7.61483622	-7.10587883	-0.50895739	0	0	Naomi has boycotted some glaciers.	Naomi has joked around some glaciers.
+139	139			-6.16526461	-6.32488632	0.15962172	1	0	Patricia's brothers are bothering Melanie's piano teacher.	Patricia's brothers are complaining Melanie's piano teacher.
+140	140			-5.58535337	-5.97115564	0.38580227	1	0	Bruce shouldn't remember Andrew.	Bruce shouldn't die Andrew.
+141	141			-6.27439451	-6.29316473	0.01877022	1	0	Mary escapes from many boys' doctors.	Mary shrugged many boys' doctors.
+142	142			-5.59688282	-5.73378658	0.13690376	1	0	Tina wasn't kissing Steven.	Tina wasn't falling Steven.
+143	143			-6.82425404	-6.79682302	-0.02743101	0	0	This teacher's partners stunned Walter.	This teacher's partners fall Walter.
+144	144			-6.88989258	-6.47223520	-0.41765738	0	0	The Lutherans' boyfriend shouldn't stun Joseph's nephews.	The Lutherans' boyfriend shouldn't concur Joseph's nephews.
+145	145			-7.23790550	-6.79748964	-0.44041586	0	0	Some story astounds Tanya.	Some story disagreed Tanya.
+146	146			-6.81876755	-6.96553421	0.14676666	1	0	Donald did heal James.	Donald did weep James.
+147	147			-7.75516033	-7.79259729	0.03743696	1	0	Adam heals Bradley.	Adam struggles Bradley.
+148	148			-7.72088718	-8.17021561	0.44932842	1	0	Many documentaries about Winston Churchill had disagreed with Kevin's dermatologist.	Many documentaries about Winston Churchill had disagreed Kevin's dermatologist.
+149	149			-5.38485193	-5.55310059	0.16824865	1	0	George hadn't fixed the unicycle.	George hadn't smiled the unicycle.
+150	150			-6.37140608	-6.75151920	0.38011312	1	0	Every teacher hasn't alarmed Homer.	Every teacher hasn't boasted Homer.
+151	151			-5.68150997	-5.85954189	0.17803192	1	0	Tina's ex-wife hid Walter.	Tina's ex-wife compromised Walter.
+152	152			-6.45552731	-6.72810173	0.27257442	1	0	Every driver can discover Amy.	Every driver can concur Amy.
+153	153			-4.98377895	-5.56144333	0.57766438	1	0	This boy hadn't dropped by those hills.	This boy hadn't waved those hills.
+154	154			-6.16298294	-6.49287891	0.32989597	1	0	Leslie wasn't noticing Brett.	Leslie wasn't grinning Brett.
+155	155			-6.86655331	-7.23943901	0.37288570	1	0	Liam should shock Joseph's supervisors.	Liam should shrug Joseph's supervisors.
+156	156			-6.58301258	-6.86033726	0.27732468	1	0	Tonya disagrees with some people's associate.	Tonya boasted some people's associate.
+157	157			-6.55550480	-6.63109446	0.07558966	1	0	Every grandmother of Christopher hasn't watched Diane.	Every grandmother of Christopher hasn't suffered Diane.
+158	158			-5.10844517	-5.13166046	0.02321529	1	0	A waiter couldn't clean that glass.	A waiter couldn't speak up that glass.
+159	159			-6.12458181	-6.30019903	0.17561722	1	0	The Borgias' French teacher would wear the shoe.	The Borgias' French teacher would talk the shoe.
+160	160			-6.55120087	-7.05577469	0.50457382	1	0	Patrick did climb up every slope.	Patrick did talk every slope.
+161	161			-6.71445990	-6.94039583	0.22593594	1	0	Theresa fixes many mirrors.	Theresa blinked many mirrors.
+162	162			-6.41627455	-6.84871292	0.43243837	1	0	Most children's nieces were disagreeing with Dan.	Most children's nieces were replying Dan.
+163	163			-7.27221155	-7.45464659	0.18243504	1	0	Carl's dermatologists examine this essay.	Carl's dermatologists communicated this essay.
+164	164			-6.41792727	-6.64973974	0.23181248	1	0	Alicia's tutors astound Stephanie.	Alicia's tutors communicated Stephanie.
+165	165			-7.35979891	-7.57643461	0.21663570	1	0	Commentaries about Winston Churchill haven't annoyed Rose's niece.	Commentaries about Winston Churchill haven't disagreed Rose's niece.
+166	166			-6.85291147	-6.02424622	-0.82866526	0	0	Liam investigates Liam.	Liam sighed Liam.
+167	167			-7.54365301	-7.12444305	-0.41920996	0	0	Many doctors impress Edward.	Many doctors fall Edward.
+168	168			-6.44853258	-7.34233522	0.89380264	1	0	Some grandson of Frank works with Jeffrey.	Some grandson of Frank suffers Jeffrey.
+169	169			-6.06634712	-5.45558596	-0.61076117	0	0	Galileo hasn't impressed Nina's daughter.	Galileo hasn't come here Nina's daughter.
+170	170			-7.71977806	-6.97306347	-0.74671459	0	0	Katherine criticizes Tonya.	Katherine jokes around Tonya.
+171	171			-5.73471594	-6.05429983	0.31958389	1	0	Teresa is climbing down some hills.	Teresa is joking around some hills.
+172	172			-6.86803770	-6.45962191	-0.40841579	0	0	Paula has kissed Kendra.	Paula has escaped Kendra.
+173	173			-6.32404327	-5.60566807	-0.71837521	0	0	Erin wouldn't disgust Matt.	Erin wouldn't fall Matt.
+174	174			-6.47421408	-6.14390516	-0.33030891	0	0	Grace hugs Dawn.	Grace waved Dawn.
+175	175			-7.72886229	-8.14678574	0.41792345	1	0	Many nieces of Lori couldn't describe most malls.	Many nieces of Lori couldn't chuckle most malls.
+176	176			-6.66428852	-6.79560566	0.13131714	1	0	Katherine's ex-boyfriends respected Jason's bosses.	Katherine's ex-boyfriends chat Jason's bosses.
+177	177			-7.65358734	-7.61610317	-0.03748417	0	0	All pies aggravate Janice.	All pies fell Janice.
+178	178			-6.43188143	-6.93262815	0.50074673	1	0	Kayla's students haven't skated around the museums.	Kayla's students haven't screamed the museums.
+179	179			-8.43376446	-8.49071217	0.05694771	1	0	Those waiters referenced Lori.	Those waiters shrug Lori.
+180	180			-5.67365360	-6.49211311	0.81845951	1	0	Russell is returning to Alicia's grandmother.	Russell is muttering Alicia's grandmother.
+181	181			-6.27287436	-6.64551020	0.37263584	1	0	Chad knows Brett.	Chad falls Brett.
+182	182			-5.81959629	-6.13777208	0.31817579	1	0	Stephen's best friend hadn't remembered Spain.	Stephen's best friend hadn't sighed Spain.
+183	183			-6.88913345	-6.58259869	-0.30653477	0	0	Every waiter's brother explores some hill.	Every waiter's brother goes fishing some hill.
+184	184			-6.07441711	-5.55208254	-0.52233458	0	0	Tamara's hairdresser wasn't praising Matt.	Tamara's hairdresser wasn't talking Matt.
+185	185			-5.65301657	-5.78854990	0.13553333	1	0	Vincent hated William.	Vincent grinned William.
+186	186			-6.43684673	-5.96592951	-0.47091722	0	0	Keith didn't confuse Joseph's granddaughters.	Keith didn't come here Joseph's granddaughters.
+187	187			-5.70133877	-5.62850189	-0.07283688	0	0	These men fix that skateboard.	These men went fishing that skateboard.
+188	188			-5.65582132	-7.03380632	1.37798500	1	0	Bradley messed up some library.	Bradley smiles some library.
+189	189			-8.34109402	-7.60098362	-0.74011040	0	0	Adam would disgust Bethany's supervisors.	Adam would joke around Bethany's supervisors.
+190	190			-7.02772856	-6.57552576	-0.45220280	0	0	Teresa's partners heal Mark.	Teresa's partners responded Mark.
+191	191			-6.62402201	-7.45439672	0.83037472	1	0	Those doctors' dentist walks through that library.	Those doctors' dentist reacts that library.
+192	192			-6.41166019	-7.51699829	1.10533810	1	0	Some museum did help Dana's sons.	Some museum did retaliate Dana's sons.
+193	193			-5.54181957	-5.81899309	0.27717352	1	0	Sandra is hugging the senators.	Sandra is nodding the senators.
+194	194			-6.70525837	-6.89154530	0.18628693	1	0	Steven's ex-wife does kiss Todd.	Steven's ex-wife does weep Todd.
+195	195			-6.32597589	-6.61236858	0.28639269	1	0	Every father of Allison isn't helping Sharon.	Every father of Allison isn't laughing Sharon.
+196	196			-5.84154606	-6.14254951	0.30100346	1	0	Homer had hired Brian's grandson.	Homer had nodded Brian's grandson.
+197	197			-6.54645681	-6.42837048	-0.11808634	0	0	That school had bothered the grandmother of Galileo.	That school had responded the grandmother of Galileo.
+198	198			-7.37586355	-6.85945988	-0.51640368	0	0	Every senator disliked all ladies.	Every senator suffered all ladies.
+199	199			-7.95354843	-7.68747330	-0.26607513	0	0	Many sketches of Russell disturb Heather.	Many sketches of Russell fell Heather.
+200	200			-5.56213856	-6.50041580	0.93827724	1	0	Many teenagers had fled from Jerry's wife.	Many teenagers had negotiated Jerry's wife.
+201	201			-5.34001923	-4.64440823	-0.69561100	0	0	The person won't conceal Dennis.	The person won't come here Dennis.
+202	202			-6.63165379	-6.84409666	0.21244287	1	0	Melanie had healed Joel.	Melanie had slumped over Joel.
+203	203			-6.31415415	-6.46678162	0.15262747	1	0	Melinda's best friend drops by public parks.	Melinda's best friend escaped public parks.
+204	204			-6.00581598	-6.36519194	0.35937595	1	0	Gerald would flee from many nephews of Ellen.	Gerald would nod many nephews of Ellen.
+205	205			-5.76962662	-6.48128223	0.71165562	1	0	April can't break all trucks.	April can't boast all trucks.
+206	206			-6.32618809	-6.13726997	-0.18891811	0	0	All doctors didn't admire screens.	All doctors didn't smile screens.
+207	207			-6.55334330	-6.32619715	-0.22714615	0	0	Connie attacks Karen.	Connie jokes around Karen.
+208	208			-5.55972624	-5.84967613	0.28994989	1	0	Heather lifted some blouse.	Heather jokes around some blouse.
+209	209			-4.90052414	-6.75304413	1.85251999	1	0	Elaine arrived at the cafe.	Elaine compromised the cafe.
+210	210			-7.39737940	-7.92222404	0.52484465	1	0	Most girls lifted these eggplants.	Most girls retaliate these eggplants.
+211	211			-6.10037041	-5.87573910	-0.22463131	0	0	Matt hasn't toured this lake.	Matt hasn't fallen asleep this lake.
+212	212			-6.01421785	-6.44811106	0.43389320	1	0	Rose wasn't disturbing Mark.	Rose wasn't boasting Mark.
+213	213			-7.08920002	-6.93275261	-0.15644741	0	0	Alan's mentees aren't escaping from Curtis.	Alan's mentees aren't going fishing Curtis.
+214	214			-6.09580994	-6.35124874	0.25543880	1	0	Gina's tutor hasn't disagreed with Amelia.	Gina's tutor hasn't cried Amelia.
+215	215			-8.64294147	-9.10724068	0.46429920	1	0	Pedestrians criticize most ladies.	Pedestrians flirt most ladies.
+216	216			-5.86906290	-6.58418417	0.71512127	1	0	Tracy cared for waiters.	Tracy sighed waiters.
+217	217			-6.61866951	-6.58104992	-0.03761959	0	0	The Impressionists mess up every grocery store.	The Impressionists cried every grocery store.
+218	218			-5.83284855	-6.04711056	0.21426201	1	0	Kristen won't love Kimberley.	Kristen won't fall asleep Kimberley.
+219	219			-6.50366068	-6.89482641	0.39116573	1	0	Christine sees every pepper.	Christine laughs every pepper.
+220	220			-5.49732971	-6.74129725	1.24396753	1	0	Brian had some hospitals.	Brian nodded some hospitals.
+221	221			-5.17649651	-5.32323694	0.14674044	1	0	These girls couldn't descend that hill.	These girls couldn't testify that hill.
+222	222			-7.11889553	-7.31203938	0.19314384	1	0	Irene's French teachers conceal that broccoli.	Irene's French teachers conferred that broccoli.
+223	223			-6.89666843	-6.88528252	-0.01138592	0	0	Ann ascends these mountains.	Ann shouts these mountains.
+224	224			-6.62475109	-6.72692919	0.10217810	1	0	A lot of granddaughters of Sherry worries every nephew of Cynthia.	A lot of granddaughters of Sherry react every nephew of Cynthia.
+225	225			-6.49482250	-6.54024315	0.04542065	1	0	Amelia's guest couldn't conceal Gary.	Amelia's guest couldn't mutter Gary.
+226	226			-5.07120895	-5.36749363	0.29628468	1	0	Carmen's sister should pass the cafe.	Carmen's sister should laugh the cafe.
+227	227			-7.23364162	-7.25372696	0.02008533	1	0	These waiters flee from Aaron.	These waiters concur Aaron.
+228	228			-7.05388403	-6.78530121	-0.26858282	0	0	These projectors haven't bored Jessica.	These projectors haven't fallen Jessica.
+229	229			-5.93556881	-5.95860815	0.02303934	1	0	Some fish climbed up mountains.	Some fish comes here mountains.
+230	230			-6.56128645	-6.91848993	0.35720348	1	0	Alan's dermatologist hasn't escaped from Vincent.	Alan's dermatologist hasn't muttered Vincent.
+231	231			-5.48990154	-5.49256849	0.00266695	1	0	Marla wasn't skated around the cafe.	Marla wasn't shouting the cafe.
+232	232			-7.34385204	-7.62501335	0.28116131	1	0	All grandsons of Stacy walk through some art gallery.	All grandsons of Stacy cried some art gallery.
+233	233			-6.30293846	-6.39389133	0.09095287	1	0	Some drivers aren't passing these public parks.	Some drivers aren't falling these public parks.
+234	234			-5.53676605	-5.79607821	0.25931215	1	0	Christine runs around these schools.	Christine escaped these schools.
+235	235			-6.51046038	-6.86840010	0.35793972	1	0	Stacey approaches William.	Stacey falls William.
+236	236			-7.69775724	-7.68393946	-0.01381779	0	0	Cindy's podiatrists cleaned most public parks.	Cindy's podiatrists cooperated most public parks.
+237	237			-4.74917364	-6.18907118	1.43989754	1	0	Dan sounded like the woman.	Dan concurred the woman.
+238	238			-7.36826944	-7.36087751	-0.00739193	0	0	Some waiter's mentee hurt a niece of Cindy.	Some waiter's mentee shrugs a niece of Cindy.
+239	239			-7.23786259	-6.60625696	-0.63160563	0	0	Larry shouldn't boycott this art gallery.	Larry shouldn't lie this art gallery.
+240	240			-7.54706669	-7.11295271	-0.43411398	0	0	Deborah bothered most customers.	Deborah went fishing most customers.
+241	241			-6.68519449	-6.42835760	-0.25683689	0	0	Nicole heals Todd.	Nicole concurs Todd.
+242	242			-6.92319584	-6.69728804	-0.22590780	0	0	Regina disturbs Matt's guests.	Regina suffers Matt's guests.
+243	243			-7.09969473	-7.34978247	0.25008774	1	0	Homer cleans many banks.	Homer murmurs many banks.
+244	244			-5.09378386	-5.87912655	0.78534269	1	0	Elaine can't look like this photograph of these blouses.	Elaine can't weep this photograph of these blouses.
+245	245			-5.83578682	-5.59745312	-0.23833370	0	0	A lot of cousins of some student weren't impressing Guy's students.	A lot of cousins of some student weren't talking Guy's students.
+246	246			-6.04872465	-5.84850454	-0.20022011	0	0	Ella examines a nephew of some customers.	Ella chuckled a nephew of some customers.
+247	247			-6.32207727	-6.83882380	0.51674652	1	0	Becky's classmates think about Florence's dermatologist.	Becky's classmates chatted Florence's dermatologist.
+248	248			-6.84653282	-7.02576160	0.17922878	1	0	Donna's mother hires Amanda.	Donna's mother testifies Amanda.
+249	249			-6.21147346	-6.16345882	-0.04801464	0	0	Every patient remembers the friends of Eric.	Every patient cried the friends of Eric.
+250	250			-6.63264275	-7.10660887	0.47396612	1	0	Most grandfathers of Gregory think about some fish.	Most grandfathers of Gregory slumped over some fish.

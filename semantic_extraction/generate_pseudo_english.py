@@ -21,6 +21,8 @@ JsonDict = Dict[str, Any]
 
 
 class PseudoEnglishGenerator:
+    MAX_ANC_NESTING = 3
+
     # Conservative English ANC suffix whitelist.
     # Ordered roughly from longer/more specific to shorter/more general.
     ANC_SUFFIXES: Tuple[str, ...] = (
@@ -533,16 +535,21 @@ class PseudoEnglishGenerator:
         rec: JsonDict,
         context_rec: Optional[JsonDict] = None,
         role: Optional[str] = None,
+        anc_depth: int = 0,
+        used_modifier_tokens: Optional[Set[int]] = None,
     ) -> Tuple[str, bool]:
-        anc = self._extract_anc_info_for_noun(
-            rec=rec,
-            context_rec=context_rec,
-            role=role,
-            noun_lemma=noun_lemma,
-            expected_construction=None,
-        )
-        if anc is not None:
-            return self._render_anc_np(anc), True
+        if anc_depth < self.MAX_ANC_NESTING:
+            anc = self._extract_anc_info_for_noun(
+                rec=rec,
+                context_rec=context_rec,
+                role=role,
+                noun_lemma=noun_lemma,
+                expected_construction=None,
+                anc_depth=anc_depth,
+                used_modifier_tokens=used_modifier_tokens,
+            )
+            if anc is not None:
+                return self._render_anc_np(anc), True
 
         return (
             *self._realize_ordinary_noun_with_gen(
@@ -550,6 +557,8 @@ class PseudoEnglishGenerator:
                 rec,
                 context_rec=context_rec,
                 role=role,
+                anc_depth=anc_depth,
+                used_modifier_tokens=used_modifier_tokens,
             ),
         )
 
@@ -652,22 +661,39 @@ class PseudoEnglishGenerator:
         token_index = role_info.get("token_index")
         return token_index if isinstance(token_index, int) else None
 
+    def _mark_modifier_used(
+        self,
+        used_modifier_tokens: Optional[Set[int]],
+        nm: Optional[JsonDict],
+    ) -> Set[int]:
+        used = set(used_modifier_tokens or set())
+        if nm is None:
+            return used
+
+        token_index = nm.get("token_index")
+        if isinstance(token_index, int):
+            used.add(token_index)
+        return used
+
     def _find_nominal_modifier(
         self,
         noun_lemma: str,
         rec: JsonDict,
         context_rec: Optional[JsonDict] = None,
         role: Optional[str] = None,
+        used_modifier_tokens: Optional[Set[int]] = None,
     ) -> Optional[JsonDict]:
         noun_tok = self._canon_token(noun_lemma)
         target_token_index = self._argument_token_index(rec, role)
         source_rec = context_rec or rec
+        used_tokens = used_modifier_tokens or set()
 
         nominal_modifiers = source_rec.get("nominal_modifiers") or []
         matches = [
             nm
             for nm in nominal_modifiers
             if self._canon_token(nm.get("noun_lemma", "")) == noun_tok
+            and nm.get("token_index") not in used_tokens
         ]
 
         if target_token_index is not None:
@@ -690,6 +716,8 @@ class PseudoEnglishGenerator:
         rec: JsonDict,
         context_rec: Optional[JsonDict] = None,
         role: Optional[str] = None,
+        anc_depth: int = 0,
+        used_modifier_tokens: Optional[Set[int]] = None,
     ) -> Tuple[str, bool]:
         noun_tok = self._canon_token(noun_lemma)
         nm = self._find_nominal_modifier(
@@ -697,7 +725,9 @@ class PseudoEnglishGenerator:
             rec,
             context_rec=context_rec,
             role=role,
+            used_modifier_tokens=used_modifier_tokens,
         )
+        child_used = self._mark_modifier_used(used_modifier_tokens, nm)
 
         if nm is not None:
             modifiers = nm.get("modifiers") or {}
@@ -710,6 +740,8 @@ class PseudoEnglishGenerator:
                         rec,
                         context_rec=context_rec,
                         role=None,
+                        anc_depth=anc_depth,
+                        used_modifier_tokens=child_used,
                     )
                     return f"{self._add_genitive_marker_to_np(possessor_tok)} {noun_tok}", possessor_has_anc
 
@@ -751,6 +783,8 @@ class PseudoEnglishGenerator:
         expected_construction: Optional[str] = None,
         context_rec: Optional[JsonDict] = None,
         role: Optional[str] = None,
+        anc_depth: int = 0,
+        used_modifier_tokens: Optional[Set[int]] = None,
     ) -> Optional[Dict[str, Optional[str]]]:
         noun_tok = self._canon_token(noun_lemma)
 
@@ -763,7 +797,9 @@ class PseudoEnglishGenerator:
             rec,
             context_rec=context_rec,
             role=role,
+            used_modifier_tokens=used_modifier_tokens,
         )
+        child_used = self._mark_modifier_used(used_modifier_tokens, target_nm)
 
         poss_mods: List[JsonDict] = []
         of_mods: List[JsonDict] = []
@@ -792,6 +828,8 @@ class PseudoEnglishGenerator:
                     rec,
                     context_rec=context_rec,
                     role=None,
+                    anc_depth=anc_depth + 1,
+                    used_modifier_tokens=child_used,
                 )
         elif by_mods:
             raw_subj = by_mods[0].get("object_head_lemma") or by_mods[0].get("object_head_text")
@@ -801,6 +839,8 @@ class PseudoEnglishGenerator:
                     rec,
                     context_rec=context_rec,
                     role=None,
+                    anc_depth=anc_depth + 1,
+                    used_modifier_tokens=child_used,
                 )
 
         if of_mods:
@@ -811,6 +851,8 @@ class PseudoEnglishGenerator:
                     rec,
                     context_rec=context_rec,
                     role=None,
+                    anc_depth=anc_depth + 1,
+                    used_modifier_tokens=child_used,
                 )
 
         overt_arg_count = int(subj_arg is not None) + int(obj_arg is not None)

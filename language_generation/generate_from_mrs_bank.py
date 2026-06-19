@@ -3,10 +3,10 @@
 
 import argparse
 import json
+import multiprocessing as mp
 import subprocess
 import sys
 import time
-from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 from typing import Any, Dict, Iterator, List, Optional, Set, Tuple
 
@@ -14,6 +14,15 @@ from delphin import ace
 from tqdm import tqdm
 
 from utils import ACE_BIN
+
+
+_WORKER_GRAMMAR: Optional[str] = None
+_WORKER_MAX_GEN: int = 200
+_WORKER_KEEP_MRS: bool = False
+_WORKER_ACE_MODE: str = "oneoff"
+_WORKER_RESTART_EVERY: int = 5000
+_WORKER_GENERATOR: Any = None
+_WORKER_GENERATED_SINCE_RESTART: int = 0
 
 
 def iter_rows(path: Path) -> Iterator[Dict[str, Any]]:
@@ -93,13 +102,119 @@ def generate_results(grammar_dat: str, mrs: str, max_gen: int) -> List[Dict[str,
     return results
 
 
-def process_row(task: Tuple[str, int, bool, Dict[str, Any]]) -> Tuple[str, Optional[Dict[str, Any]]]:
+def make_generator(grammar_dat: str, max_gen: int) -> Any:
+    cmdargs = ["-n", str(max_gen)]
+
+    try:
+        return ace.ACEGenerator(
+            grammar_dat,
+            executable=ACE_BIN,
+            cmdargs=cmdargs,
+            stderr=subprocess.DEVNULL,
+        )
+    except TypeError:
+        return ace.ACEGenerator(
+            grammar_dat,
+            executable=ACE_BIN,
+            cmdargs=cmdargs,
+        )
+
+
+def close_generator(generator: Any) -> None:
+    if generator is None:
+        return
+
+    close = getattr(generator, "close", None)
+    if callable(close):
+        try:
+            close()
+        except Exception:
+            pass
+
+
+def init_worker(
+    grammar_dat: str,
+    max_gen: int,
+    keep_mrs: bool,
+    ace_mode: str,
+    restart_every: int,
+) -> None:
+    global _WORKER_GRAMMAR
+    global _WORKER_MAX_GEN
+    global _WORKER_KEEP_MRS
+    global _WORKER_ACE_MODE
+    global _WORKER_RESTART_EVERY
+    global _WORKER_GENERATOR
+    global _WORKER_GENERATED_SINCE_RESTART
+
+    _WORKER_GRAMMAR = grammar_dat
+    _WORKER_MAX_GEN = max_gen
+    _WORKER_KEEP_MRS = keep_mrs
+    _WORKER_ACE_MODE = ace_mode
+    _WORKER_RESTART_EVERY = restart_every
+    _WORKER_GENERATOR = None
+    _WORKER_GENERATED_SINCE_RESTART = 0
+
+
+def get_worker_generator() -> Any:
+    global _WORKER_GENERATOR
+    global _WORKER_GENERATED_SINCE_RESTART
+
+    if _WORKER_GRAMMAR is None:
+        raise RuntimeError("Worker grammar was not initialized")
+
+    if _WORKER_GENERATOR is None:
+        _WORKER_GENERATOR = make_generator(_WORKER_GRAMMAR, _WORKER_MAX_GEN)
+        _WORKER_GENERATED_SINCE_RESTART = 0
+        return _WORKER_GENERATOR
+
+    if _WORKER_RESTART_EVERY > 0 and _WORKER_GENERATED_SINCE_RESTART >= _WORKER_RESTART_EVERY:
+        close_generator(_WORKER_GENERATOR)
+        _WORKER_GENERATOR = make_generator(_WORKER_GRAMMAR, _WORKER_MAX_GEN)
+        _WORKER_GENERATED_SINCE_RESTART = 0
+
+    return _WORKER_GENERATOR
+
+
+def restart_worker_generator() -> None:
+    global _WORKER_GENERATOR
+    global _WORKER_GENERATED_SINCE_RESTART
+
+    close_generator(_WORKER_GENERATOR)
+    _WORKER_GENERATOR = None
+    _WORKER_GENERATED_SINCE_RESTART = 0
+
+
+def generate_results_persistent(mrs: str) -> List[Dict[str, Any]]:
+    global _WORKER_GENERATED_SINCE_RESTART
+
+    if not isinstance(mrs, str) or not mrs.strip():
+        return []
+
+    generator = get_worker_generator()
+
+    try:
+        resp = generator.interact(mrs)
+    except Exception:
+        restart_worker_generator()
+        generator = get_worker_generator()
+        resp = generator.interact(mrs)
+
+    _WORKER_GENERATED_SINCE_RESTART += 1
+
+    results = resp.get("results", [])
+    if not isinstance(results, list):
+        return []
+    return results
+
+
+def process_row(task: Tuple[str, int, bool, str, Dict[str, Any]]) -> Tuple[str, Optional[Dict[str, Any]]]:
     """
       ("skipped", None)
       ("ok", out_entry)
       ("overgen", out_entry)
     """
-    grammar, max_gen, keep_mrs, row = task
+    grammar, max_gen, keep_mrs, ace_mode, row = task
 
     mrs_id = row.get("id")
     mrs = row.get("mrs")
@@ -108,7 +223,10 @@ def process_row(task: Tuple[str, int, bool, Dict[str, Any]]) -> Tuple[str, Optio
         return ("skipped", None)
 
     try:
-        results = generate_results(grammar, mrs, max_gen)
+        if ace_mode == "persistent":
+            results = generate_results_persistent(mrs)
+        else:
+            results = generate_results(grammar, mrs, max_gen)
     except Exception:
         return ("skipped", None)
 
@@ -138,20 +256,47 @@ def process_row(task: Tuple[str, int, bool, Dict[str, Any]]) -> Tuple[str, Optio
     return ("ok", out_entry)
 
 
-def build_task_iter(
+def process_row_worker(row: Dict[str, Any]) -> Tuple[str, Optional[Dict[str, Any]]]:
+    if _WORKER_GRAMMAR is None:
+        raise RuntimeError("Worker grammar was not initialized")
+
+    return process_row(
+        (
+            _WORKER_GRAMMAR,
+            _WORKER_MAX_GEN,
+            _WORKER_KEEP_MRS,
+            _WORKER_ACE_MODE,
+            row,
+        )
+    )
+
+
+def process_chunk_worker(chunk: List[Dict[str, Any]]) -> Tuple[List[Tuple[str, Optional[Dict[str, Any]]]], int]:
+    return [process_row_worker(row) for row in chunk], len(chunk)
+
+
+def iter_row_chunks(
     in_path: Path,
-    grammar: str,
-    max_gen: int,
-    keep_mrs: bool,
     done_ids: Set[Any],
     skip_done: bool,
-) -> Iterator[Tuple[str, int, bool, Dict[str, Any]]]:
+    chunksize: int,
+) -> Iterator[List[Dict[str, Any]]]:
+    chunk: List[Dict[str, Any]] = []
+
     for row in iter_rows(in_path):
         if skip_done:
             row_id = row.get("id")
             if row_id in done_ids:
                 continue
-        yield (grammar, max_gen, keep_mrs, row)
+
+        chunk.append(row)
+
+        if len(chunk) >= chunksize:
+            yield chunk
+            chunk = []
+
+    if chunk:
+        yield chunk
 
 
 def log_progress(processed: int, total: Optional[int], start_time: float) -> None:
@@ -182,6 +327,18 @@ def main() -> None:
 
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--chunksize", type=int, default=50)
+    ap.add_argument(
+        "--ace-mode",
+        choices=("oneoff", "persistent"),
+        default="oneoff",
+        help="Use one ACE process per item, or keep one ACEGenerator per worker. Default: oneoff",
+    )
+    ap.add_argument(
+        "--restart-every",
+        type=int,
+        default=5000,
+        help="In persistent mode, restart each worker's ACEGenerator after this many items. Use 0 to disable.",
+    )
 
     ap.add_argument("--resume", action="store_true")
     ap.add_argument("--no-mrs", action="store_true")
@@ -195,6 +352,9 @@ def main() -> None:
     )
 
     args = ap.parse_args()
+
+    if args.restart_every < 0:
+        raise ValueError("--restart-every must be >= 0")
 
     in_path = Path(args.input)
     out_path = Path(args.out)
@@ -226,20 +386,29 @@ def main() -> None:
 
     mode = "a" if args.resume else "w"
 
-    task_iter = build_task_iter(
+    chunk_iter = iter_row_chunks(
         in_path=in_path,
-        grammar=args.grammar,
-        max_gen=args.max_gen,
-        keep_mrs=not args.no_mrs,
         done_ids=done_ids,
         skip_done=args.resume,
+        chunksize=args.chunksize,
     )
 
     start_time = time.time()
+    ctx = mp.get_context("spawn")
 
     with out_path.open(mode, encoding="utf-8") as f:
-        with ProcessPoolExecutor(max_workers=args.workers) as ex:
-            results_iter = ex.map(process_row, task_iter, chunksize=args.chunksize)
+        with ctx.Pool(
+            processes=args.workers,
+            initializer=init_worker,
+            initargs=(
+                args.grammar,
+                args.max_gen,
+                not args.no_mrs,
+                args.ace_mode,
+                args.restart_every,
+            ),
+        ) as pool:
+            results_iter = pool.imap(process_chunk_worker, chunk_iter, chunksize=1)
 
             if use_tqdm:
                 iterator = tqdm(
@@ -248,46 +417,49 @@ def main() -> None:
                     desc="Generating sentences",
                     dynamic_ncols=True,
                 )
-                for status, out_entry in iterator:
-                    processed_rows += 1
+                for chunk_results, n_input in iterator:
+                    processed_rows += n_input
+                    iterator.update(n_input - 1)
 
-                    if status == "skipped" or out_entry is None:
-                        skipped_rows += 1
-                        continue
+                    for status, out_entry in chunk_results:
+                        if status == "skipped" or out_entry is None:
+                            skipped_rows += 1
+                            continue
 
-                    if status == "overgen":
-                        overgen_rows += 1
+                        if status == "overgen":
+                            overgen_rows += 1
 
-                    if args.print_sentences:
-                        mrs_id = out_entry["id"]
-                        surfaces = out_entry["sent"]
-                        sent_str = ", ".join(surfaces) if surfaces else "-"
-                        print(f"{mrs_id:>2}  {len(surfaces):<3}  {sent_str}", flush=True)
+                        if args.print_sentences:
+                            mrs_id = out_entry["id"]
+                            surfaces = out_entry["sent"]
+                            sent_str = ", ".join(surfaces) if surfaces else "-"
+                            print(f"{mrs_id:>2}  {len(surfaces):<3}  {sent_str}", flush=True)
 
-                    f.write(json.dumps(out_entry, ensure_ascii=False) + "\n")
-                    kept_rows += 1
+                        f.write(json.dumps(out_entry, ensure_ascii=False) + "\n")
+                        kept_rows += 1
             else:
-                for status, out_entry in results_iter:
-                    processed_rows += 1
+                for chunk_results, n_input in results_iter:
+                    processed_rows += n_input
 
                     if args.log_every > 0 and processed_rows % args.log_every == 0:
                         log_progress(processed_rows, total_remaining, start_time)
 
-                    if status == "skipped" or out_entry is None:
-                        skipped_rows += 1
-                        continue
+                    for status, out_entry in chunk_results:
+                        if status == "skipped" or out_entry is None:
+                            skipped_rows += 1
+                            continue
 
-                    if status == "overgen":
-                        overgen_rows += 1
+                        if status == "overgen":
+                            overgen_rows += 1
 
-                    if args.print_sentences:
-                        mrs_id = out_entry["id"]
-                        surfaces = out_entry["sent"]
-                        sent_str = ", ".join(surfaces) if surfaces else "-"
-                        print(f"{mrs_id:>2}  {len(surfaces):<3}  {sent_str}", flush=True)
+                        if args.print_sentences:
+                            mrs_id = out_entry["id"]
+                            surfaces = out_entry["sent"]
+                            sent_str = ", ".join(surfaces) if surfaces else "-"
+                            print(f"{mrs_id:>2}  {len(surfaces):<3}  {sent_str}", flush=True)
 
-                    f.write(json.dumps(out_entry, ensure_ascii=False) + "\n")
-                    kept_rows += 1
+                        f.write(json.dumps(out_entry, ensure_ascii=False) + "\n")
+                        kept_rows += 1
 
                 if processed_rows > 0 and (args.log_every <= 0 or processed_rows % args.log_every != 0):
                     log_progress(processed_rows, total_remaining, start_time)

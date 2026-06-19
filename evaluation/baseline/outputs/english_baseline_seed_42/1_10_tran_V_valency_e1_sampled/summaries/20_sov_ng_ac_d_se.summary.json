@@ -1,0 +1,8 @@
+{
+  "language": "20_sov_ng_ac_d_se",
+  "n_pairs": 100,
+  "accuracy_strict": 0.68,
+  "ties": 0,
+  "tie_rate": 0.0,
+  "mean_delta_good_minus_bad": 0.19685016870498656
+}
