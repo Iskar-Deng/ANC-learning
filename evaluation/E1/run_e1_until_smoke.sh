@@ -14,6 +14,7 @@ CHUNKSIZE=50
 MAX_GEN=20
 SKIP_EXISTING_GENERATION=false
 PYTHON_BIN="${PYTHON:-python}"
+EXTERNAL_ANC_LEXICON=""
 
 usage() {
   cat <<EOF
@@ -35,6 +36,7 @@ Options:
   --max-gen N                  Max generations per MRS. Default: 20
   --skip-existing-generation   Pass through to run_all_language_generation.sh
   --python PATH                Python executable. Default: \$PYTHON or python
+  --external-anc-lexicon PATH  Optional pseudo-English ANC lexicon seed
   -h, --help                   Show this help message
 
 Example:
@@ -82,6 +84,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --python)
       PYTHON_BIN="$2"
+      shift 2
+      ;;
+    --external-anc-lexicon)
+      EXTERNAL_ANC_LEXICON="$2"
       shift 2
       ;;
     -h|--help)
@@ -145,6 +151,7 @@ echo "Smoke language:    ${SMOKE_LANG:-random after generation}"
 echo "Sample size:       $SAMPLE_SIZE"
 echo "Seed:              $SEED"
 echo "Python:            $PYTHON_BIN"
+echo "External ANC lex:  ${EXTERNAL_ANC_LEXICON:-none}"
 echo
 
 echo "========== 1. Extract English Sources =========="
@@ -158,11 +165,19 @@ cat "$EXTRACT_STATS"
 echo
 
 echo "========== 2. Generate Pseudo-English =========="
-"$PYTHON_BIN" semantic_extraction/generate_pseudo_english.py \
-  --input "$EXTRACT" \
-  --out-jsonl "$PSEUDO" \
-  --out-lexicon "$LEXICON" \
+PSEUDO_CMD=(
+  "$PYTHON_BIN" semantic_extraction/generate_pseudo_english.py
+  --input "$EXTRACT"
+  --out-jsonl "$PSEUDO"
+  --out-lexicon "$LEXICON"
   --out-stats "$PSEUDO_STATS"
+)
+
+if [[ -n "$EXTERNAL_ANC_LEXICON" ]]; then
+  PSEUDO_CMD+=(--external-anc-lexicon "$EXTERNAL_ANC_LEXICON")
+fi
+
+"${PSEUDO_CMD[@]}"
 
 echo
 echo "----- pseudo-English sample -----"

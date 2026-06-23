@@ -267,6 +267,9 @@ class PseudoEnglishGenerator:
                 )
                 self.anc_noun_to_candidates[noun] = candidates
 
+        self._refresh_anc_lexicon_counts()
+
+    def _refresh_anc_lexicon_counts(self) -> None:
         iv_count = 0
         tv_count = 0
         multi_source = 0
@@ -287,6 +290,40 @@ class PseudoEnglishGenerator:
             "multi_source": multi_source,
             "total_anc_nouns": len(self.anc_noun_to_candidates),
         }
+
+    def merge_external_anc_lexicon(self, path: str) -> None:
+        """
+        Optionally seed ANC candidates from a previously built lexicon.
+
+        This is deliberately opt-in so normal pseudo-English generation is
+        unchanged. Only nouns observed in the current input are imported.
+        """
+        with open(path, encoding="utf-8") as infile:
+            data = json.load(infile)
+
+        external = data.get("anc_noun_to_candidates", {})
+        if not isinstance(external, dict):
+            raise ValueError(f"external ANC lexicon missing anc_noun_to_candidates: {path}")
+
+        for noun in sorted(self.noun_lemmas):
+            candidates = external.get(noun)
+            if not isinstance(candidates, list):
+                continue
+
+            valid_candidates = []
+            for cand in candidates:
+                if not isinstance(cand, dict):
+                    continue
+                if cand.get("construction") not in {"iv", "tv"}:
+                    continue
+                if not isinstance(cand.get("verb"), str):
+                    continue
+                valid_candidates.append(dict(cand))
+
+            if valid_candidates:
+                self.anc_noun_to_candidates[noun] = valid_candidates
+
+        self._refresh_anc_lexicon_counts()
 
     def iter_outputs(self, records: Iterable[JsonDict], total: Optional[int] = None) -> Iterator[JsonDict]:
         new_sid = 1
@@ -980,6 +1017,15 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Do not pre-count input lines for tqdm total",
     )
+    parser.add_argument(
+        "--external-anc-lexicon",
+        default=None,
+        help=(
+            "Optional previously built lexicon JSON. When supplied, ANC "
+            "candidates for nouns observed in the current input are imported "
+            "from its anc_noun_to_candidates map."
+        ),
+    )
     return parser.parse_args()
 
 
@@ -995,6 +1041,8 @@ def main() -> None:
 
     # pass 2: build ANC noun lexicon
     gen.build_anc_lexicon()
+    if args.external_anc_lexicon:
+        gen.merge_external_anc_lexicon(args.external_anc_lexicon)
 
     # pass 3: realize pseudo-English and collect ANC stats
     write_jsonl_stream(
