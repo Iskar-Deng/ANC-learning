@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from typing import Any, Dict
 
-from language_generation.select_overgen import derive_language_config
+from utils import derive_language_config
 
 
 JsonDict = Dict[str, Any]

@@ -150,6 +150,9 @@ def perturb(
         "anc_overt_arguments": ",".join(template.overt_arguments) if template.overt_arguments else "none",
         "template": template.name,
         "anc_wo": language_config["anc_wo"],
+        "anc_wo_choice": language_config.get("anc_wo_choice", language_config["anc_wo"]),
+        "anc_iv_order": language_config.get("anc_iv_order", ""),
+        "anc_tv_order": language_config.get("anc_tv_order", ""),
         "strategy": language_config["strategy"],
         "perturbation": "replace_anc_nonfinite_ing_with_finite_s",
     }

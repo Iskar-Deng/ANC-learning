@@ -6,9 +6,19 @@ from __future__ import annotations
 import argparse
 import json
 import random
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Sequence, Tuple
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from utils import (
+    derive_language_config as derive_shared_language_config,
+    expected_ap_order as expected_shared_ap_order,
+)
 
 
 JsonDict = Dict[str, Any]
@@ -289,15 +299,7 @@ def derive_anc_marks(strategy: str, fin_marks: Dict[str, str]) -> Dict[str, str]
 
 
 def derive_language_config(language: str) -> JsonDict:
-    params = parse_language_id(language)
-    fin_marks = derive_fin_marks(params["alignment"])
-    anc_marks = derive_anc_marks(params["strategy"], fin_marks)
-
-    return {
-        **params,
-        **fin_marks,
-        **anc_marks,
-    }
+    return derive_shared_language_config(language)
 
 
 def expected_ap_order(anc_wo: str) -> Tuple[str, str]:
@@ -305,13 +307,7 @@ def expected_ap_order(anc_wo: str) -> Tuple[str, str]:
     Return the expected relative order of A and P inside a transitive ANC.
     S is treated as the transitive subject position A; O is treated as P.
     """
-    if "s" not in anc_wo or "o" not in anc_wo:
-        raise ValueError(f"Invalid ANC word order: {anc_wo}")
-
-    if anc_wo.index("s") < anc_wo.index("o"):
-        return ("A", "P")
-
-    return ("P", "A")
+    return expected_shared_ap_order(anc_wo)
 
 
 def nonempty_marks(marks: Sequence[str]) -> List[str]:
@@ -548,7 +544,7 @@ def role_for_token(token: str, anc_a_mark: str, anc_p_mark: str) -> Optional[str
 
 def choose_by_ap_order_swap(
     sents: List[str],
-    anc_wo: str,
+    anc_tv_order: str,
     anc_a_mark: str,
     anc_p_mark: str,
     rng: random.Random,
@@ -557,7 +553,7 @@ def choose_by_ap_order_swap(
     Rule 1:
     If candidates differ only by the order of two tokens, and those tokens can
     be identified as A/P by their ANC markers, choose the candidate matching
-    the expected A/P order from ANC_WO.
+    the expected A/P order from the effective transitive ANC order.
     """
     if len(sents) <= 1:
         return None
@@ -572,7 +568,7 @@ def choose_by_ap_order_swap(
     if not is_two_token_swap_at_positions(sents, positions):
         return None
 
-    expected = expected_ap_order(anc_wo)
+    expected = expected_ap_order(anc_tv_order)
     i, j = positions
 
     good: List[str] = []
@@ -628,7 +624,7 @@ def choose_sentence(
 
     ordered = choose_by_ap_order_swap(
         sents=sents,
-        anc_wo=config["anc_wo"],
+        anc_tv_order=config.get("anc_tv_order", config["anc_wo"]),
         anc_a_mark=config["ANC_A_MARK"],
         anc_p_mark=config["ANC_P_MARK"],
         rng=rng,
@@ -782,13 +778,16 @@ def main() -> None:
     print(f"Complement system: {config['comp_system']}")
     print(f"ANC strategy: {config['strategy']}")
     print(f"ANC WO: {config['anc_wo']}")
+    print(f"ANC WO choice: {config.get('anc_wo_choice', config['anc_wo'])}")
+    print(f"Effective ANC IV order: {config.get('anc_iv_order', '')}")
+    print(f"Effective ANC TV order: {config.get('anc_tv_order', '')}")
     print(
         "ANC marks: "
         f"S={config['ANC_S_MARK'] or '0'}, "
         f"A={config['ANC_A_MARK'] or '0'}, "
         f"P={config['ANC_P_MARK'] or '0'}"
     )
-    print(f"Expected A/P order: {'-'.join(expected_ap_order(config['anc_wo']))}")
+    print(f"Expected A/P order: {'-'.join(expected_ap_order(config.get('anc_tv_order', config['anc_wo'])))}")
     print()
     print(f"Total input rows: {total_input_rows}")
     print(f"Total unique ids: {total_unique_ids}")
