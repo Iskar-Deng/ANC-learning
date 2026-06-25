@@ -37,7 +37,16 @@ class PseudoEnglishGenerator:
         "ing",
     )
 
-    def __init__(self, similarity_threshold: float = 0.70) -> None:
+    def __init__(
+        self,
+        similarity_threshold: float = 0.70,
+        force_anc_source_construction: Optional[str] = None,
+    ) -> None:
+        if force_anc_source_construction not in {None, "iv", "tv"}:
+            raise ValueError(
+                "force_anc_source_construction must be one of None, 'iv', or 'tv'"
+            )
+
         self.noun_lemmas: Set[str] = set()
 
         self.iv_verbs: Set[str] = set()
@@ -55,6 +64,7 @@ class PseudoEnglishGenerator:
         # common_prefix_len / len(stem) >= threshold
         # common_prefix_len / len(verb) >= threshold
         self.similarity_threshold = similarity_threshold
+        self.force_anc_source_construction = force_anc_source_construction
 
         # ========= stats =========
         self.total_input_records = 0
@@ -423,6 +433,7 @@ class PseudoEnglishGenerator:
                 "anc_suffixes": list(self.ANC_SUFFIXES),
                 "anc_source_constructions": ["iv", "tv"],
                 "exclude_cv_as_anc_source": True,
+                "force_anc_source_construction": self.force_anc_source_construction,
             },
         }
 
@@ -581,7 +592,7 @@ class PseudoEnglishGenerator:
                 context_rec=context_rec,
                 role=role,
                 noun_lemma=noun_lemma,
-                expected_construction=None,
+                expected_construction=self.force_anc_source_construction,
                 anc_depth=anc_depth,
                 used_modifier_tokens=used_modifier_tokens,
             )
@@ -1026,6 +1037,16 @@ def parse_args() -> argparse.Namespace:
             "from its anc_noun_to_candidates map."
         ),
     )
+    parser.add_argument(
+        "--force-anc-source-construction",
+        choices=["iv", "tv"],
+        default=None,
+        help=(
+            "Optional ANC candidate filter. When set, nominalizations are only "
+            "realized from candidates with this source construction; nouns "
+            "without such a candidate fall back to ordinary noun realization."
+        ),
+    )
     return parser.parse_args()
 
 
@@ -1034,7 +1055,10 @@ def main() -> None:
 
     total = None if args.no_count else count_nonempty_lines(args.input)
 
-    gen = PseudoEnglishGenerator(similarity_threshold=args.similarity_threshold)
+    gen = PseudoEnglishGenerator(
+        similarity_threshold=args.similarity_threshold,
+        force_anc_source_construction=args.force_anc_source_construction,
+    )
 
     # pass 1: collect nouns + verb inventories
     gen.collect_base_lexicon(iter_jsonl(args.input), total=total)

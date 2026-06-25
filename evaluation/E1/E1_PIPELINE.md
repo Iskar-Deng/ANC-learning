@@ -31,7 +31,7 @@ models/<language>/seed_42/checkpoint-70000
 Use the same `<PHENOMENON>` name throughout, for example:
 
 ```text
-1_1_intran_S_marker
+1_1_intran_V_form
 ```
 
 ## 1. Extract English Sources

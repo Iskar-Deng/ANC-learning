@@ -24,7 +24,7 @@ Usage:
 Runs E1 after smoke inspection: batch pairs, score models, and aggregate.
 
 Required:
-  --phenomenon NAME            e.g. 1_2_intran_V_form
+  --phenomenon NAME            e.g. 1_1_intran_V_form
 
 Options:
   --sample-size N              Batch pair sample size. Default: 100
@@ -40,7 +40,7 @@ Options:
   -h, --help                   Show this help message
 
 Example:
-  $0 --phenomenon 1_2_intran_V_form
+  $0 --phenomenon 1_1_intran_V_form
 EOF
 }
 

@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Any, Dict, List, NamedTuple
 
 
-PHENOMENON_ID = "1.5"
+PHENOMENON_ID = "1.6"
 PHENOMENON_NAME = "tran_P_marker"
 TEMPLATE_PATH = Path(__file__).with_name("templates.json")
 
