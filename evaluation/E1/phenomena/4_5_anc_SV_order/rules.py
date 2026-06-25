@@ -172,22 +172,23 @@ def bad_anc_s_marker(language_config: Dict[str, Any], good_marker: str) -> str:
     )
 
 
-def anc_s_is_before_verb(anc_wo: str) -> bool:
-    if anc_wo in {"sov", "svo"}:
+def anc_s_is_before_verb(anc_order: str) -> bool:
+    order = anc_order.lower()
+    if order in {"sv", "sov", "svo"}:
         return True
-    if anc_wo in {"vos", "ovs"}:
+    if order in {"vs", "vos", "ovs"}:
         return False
-    raise ValueError(f"Unsupported anc_wo: {anc_wo}")
+    raise ValueError(f"Unsupported ANC intransitive order: {anc_order}")
 
 
 def find_target_s_index(
     tokens: List[str],
     anc_verb: VerbToken,
-    anc_wo: str,
+    anc_order: str,
     np_wo: str,
     expected_head: str,
 ) -> int | None:
-    if anc_s_is_before_verb(anc_wo):
+    if anc_s_is_before_verb(anc_order):
         candidate_indices = range(anc_verb.index - 1, -1, -1)
     else:
         candidate_indices = range(anc_verb.index + 1, len(tokens))
@@ -254,7 +255,7 @@ def perturb(
     target_index = find_target_s_index(
         tokens,
         anc_verb,
-        language_config["anc_wo"],
+        language_config.get("anc_iv_order", language_config["anc_wo"]),
         language_config["np_wo"],
         expected_s_head,
     )
@@ -266,6 +267,9 @@ def perturb(
             "tokens": tokens,
             "anc_verb_index": anc_verb.index,
             "anc_wo": language_config["anc_wo"],
+            "anc_wo_choice": language_config.get("anc_wo_choice", language_config["anc_wo"]),
+            "anc_iv_order": language_config.get("anc_iv_order", ""),
+            "anc_tv_order": language_config.get("anc_tv_order", ""),
             "source_index": source_index,
             "profile": template.profile,
             "pseudo_english": pseudo_english,
@@ -306,6 +310,9 @@ def perturb(
             "strategy": language_config["strategy"],
             "alignment": language_config["alignment"],
             "anc_wo": language_config["anc_wo"],
+            "anc_wo_choice": language_config.get("anc_wo_choice", language_config["anc_wo"]),
+            "anc_iv_order": language_config.get("anc_iv_order", ""),
+            "anc_tv_order": language_config.get("anc_tv_order", ""),
             "source_index": source_index,
             "profile": template.profile,
             "pseudo_english": pseudo_english,
@@ -336,6 +343,9 @@ def perturb(
         "anc_overt_arguments": ",".join(template.overt_arguments),
         "template": template.name,
         "anc_wo": language_config["anc_wo"],
+        "anc_wo_choice": language_config.get("anc_wo_choice", language_config["anc_wo"]),
+        "anc_iv_order": language_config.get("anc_iv_order", ""),
+        "anc_tv_order": language_config.get("anc_tv_order", ""),
         "strategy": language_config["strategy"],
         "alignment": language_config["alignment"],
         "perturbation": "swap_anc_s_and_verb_order",

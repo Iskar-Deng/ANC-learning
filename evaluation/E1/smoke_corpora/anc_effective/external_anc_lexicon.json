@@ -1,0 +1,33 @@
+{
+  "anc_noun_to_candidates": {
+    "arrival": [{"verb": "arrive", "construction": "iv", "score": 1.0, "stem": "arrive", "suffix": "al"}],
+    "improvement": [{"verb": "improve", "construction": "iv", "score": 1.0, "stem": "improve", "suffix": "ment"}],
+    "recovery": [{"verb": "recover", "construction": "iv", "score": 1.0, "stem": "recover", "suffix": "y"}],
+    "departure": [{"verb": "depart", "construction": "iv", "score": 1.0, "stem": "depart", "suffix": "ure"}],
+    "movement": [{"verb": "move", "construction": "iv", "score": 1.0, "stem": "move", "suffix": "ment"}],
+    "disappearance": [{"verb": "disappear", "construction": "iv", "score": 1.0, "stem": "disappear", "suffix": "ance"}],
+    "expansion": [{"verb": "expand", "construction": "iv", "score": 1.0, "stem": "expand", "suffix": "ion"}],
+    "development": [{"verb": "develop", "construction": "iv", "score": 1.0, "stem": "develop", "suffix": "ment"}],
+    "progression": [{"verb": "progress", "construction": "iv", "score": 1.0, "stem": "progress", "suffix": "ion"}],
+    "performance": [{"verb": "perform", "construction": "iv", "score": 1.0, "stem": "perform", "suffix": "ance"}],
+    "reaction": [{"verb": "react", "construction": "iv", "score": 1.0, "stem": "react", "suffix": "ion"}],
+    "deterioration": [{"verb": "deteriorate", "construction": "iv", "score": 1.0, "stem": "deteriorate", "suffix": "ion"}],
+    "deceleration": [{"verb": "decelerate", "construction": "iv", "score": 1.0, "stem": "decelerate", "suffix": "ion"}],
+    "appearance": [{"verb": "appear", "construction": "iv", "score": 1.0, "stem": "appear", "suffix": "ance"}],
+    "reading": [{"verb": "read", "construction": "tv", "score": 1.0, "stem": "read", "suffix": "ing"}],
+    "cleaning": [{"verb": "clean", "construction": "tv", "score": 1.0, "stem": "clean", "suffix": "ing"}],
+    "examination": [{"verb": "examine", "construction": "tv", "score": 1.0, "stem": "examine", "suffix": "ion"}],
+    "repair": [{"verb": "repair", "construction": "tv", "score": 1.0, "stem": "repair", "suffix": "0"}],
+    "explanation": [{"verb": "explain", "construction": "tv", "score": 1.0, "stem": "explain", "suffix": "ion"}],
+    "selection": [{"verb": "select", "construction": "tv", "score": 1.0, "stem": "select", "suffix": "ion"}],
+    "purchase": [{"verb": "purchase", "construction": "tv", "score": 1.0, "stem": "purchase", "suffix": "0"}],
+    "description": [{"verb": "describe", "construction": "tv", "score": 1.0, "stem": "describe", "suffix": "ion"}],
+    "rejection": [{"verb": "reject", "construction": "tv", "score": 1.0, "stem": "reject", "suffix": "ion"}],
+    "removal": [{"verb": "remove", "construction": "tv", "score": 1.0, "stem": "remove", "suffix": "al"}],
+    "delivery": [{"verb": "deliver", "construction": "tv", "score": 1.0, "stem": "deliver", "suffix": "y"}],
+    "arrest": [{"verb": "arrest", "construction": "tv", "score": 1.0, "stem": "arrest", "suffix": "0"}],
+    "painting": [{"verb": "paint", "construction": "tv", "score": 1.0, "stem": "paint", "suffix": "ing"}],
+    "throwing": [{"verb": "throw", "construction": "tv", "score": 1.0, "stem": "throw", "suffix": "ing"}],
+    "payment": [{"verb": "pay", "construction": "tv", "score": 1.0, "stem": "pay", "suffix": "ment"}]
+  }
+}
