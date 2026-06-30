@@ -1,0 +1,240 @@
+The arrival surprised the guard.
+The departure worried the driver.
+The disappearance bothered the family.
+The movement confused the child.
+The improvement pleased the coach.
+The decline affected the company.
+The increase annoyed the tenant.
+The recovery impressed the doctor.
+The return helped the team.
+The escape frightened the clerk.
+The fall injured the rider.
+The rise changed the market.
+The opening pleased the crowd.
+The closing delayed the customers.
+The collapse shocked the neighbors.
+The landing scared the passengers.
+The growth surprised the owner.
+The wait annoyed the nurse.
+The visit pleased the patient.
+The knock interrupted the lesson.
+The scream frightened the baby.
+The laugh annoyed the speaker.
+The jump impressed the judge.
+The walk helped the patient.
+The run tired the athlete.
+The swim impressed the tourists.
+The dance delighted the guests.
+The turn confused the driver.
+The shift worried the supervisor.
+The change affected the class.
+The pause bothered the audience.
+The start surprised the referee.
+The stop delayed the bus.
+The travel exhausted the group.
+The climb impressed the guide.
+The drop alarmed the trader.
+The advance worried the captain.
+The retreat surprised the soldiers.
+The drift confused the sailor.
+The slide scared the children.
+The child’s arrival surprised the guard.
+The train’s departure worried the passenger.
+The student’s disappearance bothered the teacher.
+The dog’s movement scared the cat.
+The patient’s improvement pleased the doctor.
+The company’s decline affected the staff.
+The price’s increase annoyed the buyer.
+The runner’s recovery impressed the coach.
+The team’s return helped the fans.
+The prisoner’s escape frightened the town.
+The rider’s fall alarmed the nurse.
+The stock’s rise changed the plan.
+The door’s opening surprised the clerk.
+The store’s closing delayed the shoppers.
+The wall’s collapse shocked the workers.
+The plane’s landing scared the passenger.
+The child’s growth surprised the family.
+The customer’s wait annoyed the manager.
+Maria’s visit pleased the patient.
+The neighbor’s knock interrupted the meal.
+The baby’s scream frightened the dog.
+The boy’s laugh annoyed the librarian.
+The girl’s jump impressed the judge.
+The patient’s walk helped the nurse.
+The athlete’s run tired the trainer.
+The tourist’s swim impressed the lifeguard.
+The dancer’s dance delighted the guests.
+The driver’s turn confused the cyclist.
+The manager’s shift worried the staff.
+The schedule’s change affected the class.
+The speaker’s pause bothered the crowd.
+The race’s start surprised the runner.
+The bus’s stop delayed the commuters.
+The family’s travel exhausted the children.
+The climber’s climb impressed the guide.
+The temperature’s drop alarmed the farmer.
+The army’s advance worried the mayor.
+The soldiers’ retreat surprised the captain.
+The boat’s drift confused the sailor.
+The child’s slide scared the parent.
+The cleaning pleased the manager.
+The reading impressed the class.
+The writing confused the editor.
+The repair helped the owner.
+The translation pleased the client.
+The inspection worried the staff.
+The payment surprised the clerk.
+The discussion helped the team.
+The review annoyed the writer.
+The check delayed the cashier.
+The test worried the students.
+The search bothered the neighbors.
+The selection pleased the coach.
+The removal affected the tenant.
+The delivery helped the shop.
+The sale surprised the agent.
+The purchase pleased the family.
+The recording impressed the producer.
+The printing delayed the office.
+The painting pleased the visitors.
+The cooking delighted the guests.
+The washing helped the nurse.
+The drawing impressed the teacher.
+The editing annoyed the author.
+The copying delayed the assistant.
+The filing helped the lawyer.
+The packing tired the workers.
+The loading delayed the driver.
+The signing pleased the buyer.
+The approval helped the contractor.
+The rejection upset the applicant.
+The measurement confused the student.
+The examination worried the patient.
+The explanation helped the child.
+The assignment annoyed the intern.
+The collection pleased the museum.
+The replacement helped the mechanic.
+The arrangement confused the singer.
+The decoration delighted the host.
+The production impressed the sponsor.
+The teacher’s reading impressed the class.
+The student’s writing confused the editor.
+The cleaner’s cleaning pleased the manager.
+The mechanic’s repair helped the owner.
+The translator’s translation pleased the client.
+The officer’s inspection worried the staff.
+The customer’s payment surprised the clerk.
+The lawyer’s discussion helped the team.
+The critic’s review annoyed the writer.
+The cashier’s check delayed the line.
+The teacher’s test worried the students.
+The police officer’s search bothered the neighbors.
+The coach’s selection pleased the fans.
+The landlord’s removal affected the tenant.
+The courier’s delivery helped the shop.
+The agent’s sale surprised the owner.
+The family’s purchase pleased the seller.
+The singer’s recording impressed the producer.
+The assistant’s printing delayed the office.
+The artist’s painting pleased the visitors.
+The chef’s cooking delighted the guests.
+The nurse’s washing helped the patient.
+The child’s drawing impressed the teacher.
+The editor’s editing annoyed the author.
+The clerk’s copying delayed the assistant.
+The lawyer’s filing helped the client.
+The workers’ packing tired the manager.
+The driver’s loading delayed the crew.
+The buyer’s signing pleased the agent.
+The board’s approval helped the contractor.
+The manager’s rejection upset the applicant.
+The student’s measurement confused the teacher.
+The doctor’s examination worried the patient.
+The parent’s explanation helped the child.
+The supervisor’s assignment annoyed the intern.
+The museum’s collection pleased the donor.
+The mechanic’s replacement helped the driver.
+The singer’s arrangement confused the band.
+The host’s decoration delighted the guests.
+The studio’s production impressed the sponsor.
+The reading of the note confused the student.
+The cleaning of the room pleased the manager.
+The writing of the letter worried the teacher.
+The repair of the car helped the owner.
+The translation of the article pleased the editor.
+The inspection of the kitchen bothered the cook.
+The payment of the bill surprised the waiter.
+The discussion of the plan helped the team.
+The review of the book annoyed the author.
+The check of the bag delayed the traveler.
+The test of the alarm scared the child.
+The search of the house worried the family.
+The selection of the player pleased the coach.
+The removal of the sign confused the driver.
+The delivery of the package helped the shop.
+The sale of the house surprised the neighbors.
+The purchase of the ticket pleased the child.
+The recording of the song impressed the producer.
+The printing of the report delayed the office.
+The painting of the wall pleased the tenant.
+The cooking of the meal delighted the guests.
+The washing of the blanket helped the nurse.
+The drawing of the map confused the tourist.
+The editing of the draft annoyed the writer.
+The copying of the file delayed the clerk.
+The filing of the papers helped the lawyer.
+The packing of the boxes tired the workers.
+The loading of the truck delayed the driver.
+The signing of the form pleased the clerk.
+The approval of the budget helped the director.
+The rejection of the request upset the student.
+The measurement of the room confused the buyer.
+The examination of the patient worried the nurse.
+The explanation of the rule helped the class.
+The assignment of the task annoyed the intern.
+The collection of the rent pleased the landlord.
+The replacement of the part helped the mechanic.
+The arrangement of the chairs confused the host.
+The decoration of the hall delighted the guests.
+The production of the show impressed the sponsor.
+The teacher’s reading of the note confused the student.
+The cleaner’s cleaning of the room pleased the manager.
+The student’s writing of the letter worried the teacher.
+The mechanic’s repair of the car helped the owner.
+The translator’s translation of the article pleased the editor.
+The officer’s inspection of the kitchen bothered the cook.
+The customer’s payment of the bill surprised the waiter.
+The lawyer’s discussion of the plan helped the team.
+The critic’s review of the book annoyed the author.
+The guard’s check of the bag delayed the traveler.
+The technician’s test of the alarm scared the child.
+The officer’s search of the house worried the family.
+The coach’s selection of the player pleased the fans.
+The worker’s removal of the sign confused the driver.
+The courier’s delivery of the package helped the shop.
+The agent’s sale of the house surprised the neighbors.
+The parent’s purchase of the ticket pleased the child.
+The singer’s recording of the song impressed the producer.
+The assistant’s printing of the report delayed the office.
+The painter’s painting of the wall pleased the tenant.
+The chef’s cooking of the meal delighted the guests.
+The nurse’s washing of the blanket helped the patient.
+The guide’s drawing of the map confused the tourist.
+The editor’s editing of the draft annoyed the writer.
+The clerk’s copying of the file delayed the assistant.
+The lawyer’s filing of the papers helped the client.
+The workers’ packing of the boxes tired the supervisor.
+The driver’s loading of the truck delayed the crew.
+The buyer’s signing of the form pleased the clerk.
+The board’s approval of the budget helped the director.
+The manager’s rejection of the request upset the student.
+The buyer’s measurement of the room confused the agent.
+The doctor’s examination of the patient worried the nurse.
+The parent’s explanation of the rule helped the class.
+The supervisor’s assignment of the task annoyed the intern.
+The landlord’s collection of the rent pleased the owner.
+The mechanic’s replacement of the part helped the driver.
+The host’s arrangement of the chairs confused the guests.
+The planner’s decoration of the hall delighted the family.
+The studio’s production of the show impressed the sponsor.

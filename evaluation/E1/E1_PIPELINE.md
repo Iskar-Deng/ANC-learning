@@ -259,6 +259,30 @@ python evaluation/E1/analyze_e1_scores.py \
   --lowest-n 20
 ```
 
+## 11. Publish Aggregate Tables
+
+Generated E1 working files remain under `e1_materials/` and are not tracked.
+Small paper-facing aggregate tables can be copied into:
+
+```text
+evaluation/E1/results/
+```
+
+The main tracked table is:
+
+```text
+evaluation/E1/results/e1_language_phenomenon_weighted_summary.tsv
+```
+
+It contains one row per language and phenomenon, with raw accuracy, BAD parse
+rate, and weighted accuracy:
+
+```text
+weighted_accuracy = raw_accuracy * (1 - bad_parse_rate)
+```
+
+Do not track `e1_bad_parse_by_pair.tsv`; it is large and fully regenerable.
+
 Main analysis outputs:
 
 ```text

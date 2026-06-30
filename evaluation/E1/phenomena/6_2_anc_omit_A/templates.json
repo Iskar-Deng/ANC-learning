@@ -1,0 +1,10 @@
+[
+  {
+    "name": "tv_with_p_anc_as_matrix_p",
+    "profile": "TV_P",
+    "source_start": 1,
+    "source_end": 196,
+    "source_construction": "tv",
+    "overt_arguments": ["P"]
+  }
+]

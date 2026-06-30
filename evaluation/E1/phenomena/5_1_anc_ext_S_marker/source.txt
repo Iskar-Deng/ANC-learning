@@ -1,0 +1,240 @@
+The arrival mattered.
+The departure continued.
+The appearance lasted.
+The disappearance lasted.
+The movement slowed.
+The migration continued.
+The improvement mattered.
+The failure hurt.
+The survival mattered.
+The performance improved.
+The arrival followed.
+The departure failed.
+The appearance changed.
+The disappearance worsened.
+The movement resumed.
+The migration slowed.
+The improvement continued.
+The failure mattered.
+The survival lasted.
+The performance ended.
+The arrival succeeded.
+The departure mattered.
+The appearance faded.
+The disappearance followed.
+The movement stopped.
+The migration resumed.
+The improvement slowed.
+The failure continued.
+The survival lasted.
+The performance mattered.
+The arrival ended.
+The departure followed.
+The appearance improved.
+The disappearance mattered.
+The movement continued.
+The migration failed.
+The improvement succeeded.
+The failure worsened.
+The survival continued.
+The performance failed.
+The child's arrival mattered.
+The train's departure followed.
+The guest's appearance mattered.
+The dog's disappearance lasted.
+The crowd's movement slowed.
+The family's migration continued.
+The patient's improvement mattered.
+The plan's failure hurt.
+The driver's survival mattered.
+The singer's performance improved.
+Maya's arrival mattered.
+The flight's departure failed.
+The garden's appearance changed.
+The cat's disappearance mattered.
+The river's movement slowed.
+The company's migration resumed.
+The team's improvement continued.
+The project's failure mattered.
+The climber's survival lasted.
+The actor's performance ended.
+The courier's arrival followed.
+The bus's departure mattered.
+The witness's appearance mattered.
+The file's disappearance mattered.
+The traffic's movement stopped.
+The birds' migration resumed.
+The student's improvement slowed.
+The engine's failure continued.
+The patient's survival lasted.
+The band's performance mattered.
+Daniel's arrival ended.
+The ferry's departure followed.
+The room's appearance improved.
+The package's disappearance mattered.
+The machine's movement continued.
+The herd's migration failed.
+The shop's improvement succeeded.
+The system's failure worsened.
+The crew's survival continued.
+The speaker's performance failed.
+The inspection ended.
+The selection mattered.
+The rejection followed.
+The description improved.
+The discussion continued.
+The explanation failed.
+The translation succeeded.
+The observation mattered.
+The cancellation followed.
+The decision mattered.
+The revision continued.
+The expansion slowed.
+The admission hurt.
+The admission followed.
+The payment failed.
+The replacement succeeded.
+The measurement mattered.
+The adjustment succeeded.
+The removal continued.
+The approval mattered.
+The refusal followed.
+The closure lasted.
+The repair failed.
+The sale ended.
+The purchase mattered.
+The arrest followed.
+The release succeeded.
+The change continued.
+The inspection resumed.
+The selection failed.
+The rejection mattered.
+The description lasted.
+The discussion ended.
+The explanation continued.
+The translation improved.
+The observation followed.
+The cancellation mattered.
+The decision failed.
+The revision succeeded.
+The expansion continued.
+The nurse's inspection continued.
+The committee's selection mattered.
+The editor's rejection followed.
+The reporter's description improved.
+The team's discussion lasted.
+The teacher's explanation failed.
+The intern's translation succeeded.
+The guard's observation mattered.
+The director's cancellation followed.
+The judge's decision mattered.
+The writer's revision continued.
+The firm's expansion slowed.
+The driver's cancellation mattered.
+The student's admission followed.
+The client's payment failed.
+The landlord's replacement succeeded.
+The technician's measurement mattered.
+The mechanic's adjustment succeeded.
+The crew's removal continued.
+The board's approval mattered.
+The manager's refusal followed.
+The city's closure lasted.
+The plumber's repair failed.
+The owner's sale ended.
+The buyer's purchase mattered.
+The officer's arrest followed.
+The agency's release succeeded.
+The council's change continued.
+Rina's inspection resumed.
+The panel's selection failed.
+The supervisor's rejection mattered.
+The designer's description lasted.
+The staff's discussion ended.
+The coach's explanation continued.
+The clerk's translation improved.
+The scientist's observation followed.
+The airline's cancellation mattered.
+The mayor's decision failed.
+The assistant's revision succeeded.
+The company's expansion continued.
+The inspection of the kitchen ended.
+The selection of a chair mattered.
+The rejection of the offer followed.
+The description of the street improved.
+The discussion of the budget continued.
+The explanation of the rule failed.
+The translation of the letter succeeded.
+The observation of the child mattered.
+The cancellation of the appointment followed.
+The decision of the case mattered.
+The revision of the report continued.
+The expansion of the store slowed.
+The description of the crash mattered.
+The admission of the mistake followed.
+The payment of the bill failed.
+The replacement of the window succeeded.
+The measurement of the room mattered.
+The adjustment of the seat succeeded.
+The removal of the sign continued.
+The approval of the plan mattered.
+The refusal of the request followed.
+The closure of the school lasted.
+The repair of the roof failed.
+The sale of the house ended.
+The purchase of the ticket mattered.
+The arrest of the suspect followed.
+The release of the report succeeded.
+The change of the password continued.
+The inspection of the office resumed.
+The selection of the winner failed.
+The rejection of the proposal mattered.
+The description of a problem lasted.
+The discussion of the issue ended.
+The explanation of the process continued.
+The translation of the article improved.
+The observation of the bird followed.
+The cancellation of the flight mattered.
+The decision of the claim failed.
+The revision of the plan succeeded.
+The expansion of the program continued.
+The inspector's inspection of the kitchen ended.
+The committee's selection of a chair mattered.
+The editor's rejection of the offer followed.
+The reporter's description of the street improved.
+The team's discussion of the budget continued.
+The teacher's explanation of the rule failed.
+The intern's translation of the letter succeeded.
+The guard's observation of the child mattered.
+The director's cancellation of the appointment followed.
+The judge's decision of the case mattered.
+The writer's revision of the report continued.
+The firm's expansion of the store slowed.
+The driver's description of the crash mattered.
+The student's admission of the mistake followed.
+The client's payment of the bill failed.
+The landlord's replacement of the window succeeded.
+The technician's measurement of the room mattered.
+The mechanic's adjustment of the seat succeeded.
+The crew's removal of the sign continued.
+The board's approval of the plan mattered.
+The manager's refusal of the request followed.
+The city's closure of the school lasted.
+The plumber's repair of the roof failed.
+The owner's sale of the house ended.
+The buyer's purchase of the ticket mattered.
+The officer's arrest of the suspect followed.
+The agency's release of the report succeeded.
+The council's change of the password continued.
+Rina's inspection of the office resumed.
+The panel's selection of the winner failed.
+The supervisor's rejection of the proposal mattered.
+The designer's description of a problem lasted.
+The staff's discussion of the issue ended.
+The coach's explanation of the process continued.
+The clerk's translation of the article improved.
+The scientist's observation of the bird followed.
+The airline's cancellation of the flight mattered.
+The mayor's decision of the claim failed.
+The assistant's revision of the plan succeeded.
+The company's expansion of the program continued.

@@ -8,7 +8,16 @@ external/
 grammars/
 logs/
 models/
-results/
+/results/
 smoke/
 .agents/
 .codex/
+
+# Regenerated evaluation outputs.
+evaluation/E2/generated/
+evaluation/E2/**/*.log
+evaluation/E2/**/logs/
+
+# Python/cache artifacts.
+evaluation/**/__pycache__/
+evaluation/**/*.pyc

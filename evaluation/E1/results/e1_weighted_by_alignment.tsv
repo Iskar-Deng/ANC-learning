@@ -1,0 +1,3 @@
+alignment	n_languages	n_pairs	raw_accuracy	bad_parse_rate	weighted_accuracy
+erg-abs	48	160800	0.873638	0.220858	0.680688
+nom-acc	48	160800	0.890808	0.157786	0.750251

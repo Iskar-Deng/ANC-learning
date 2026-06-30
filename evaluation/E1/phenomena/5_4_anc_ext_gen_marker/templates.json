@@ -1,0 +1,34 @@
+[
+  {
+    "name": "bare_iv_as_genitive_possessor",
+    "profile": "bare_IV",
+    "source_start": 1,
+    "source_end": 40,
+    "source_construction": "iv",
+    "overt_arguments": []
+  },
+  {
+    "name": "iv_with_s_as_genitive_possessor",
+    "profile": "IV_S",
+    "source_start": 41,
+    "source_end": 80,
+    "source_construction": "iv",
+    "overt_arguments": ["S"]
+  },
+  {
+    "name": "bare_tv_as_genitive_possessor",
+    "profile": "bare_TV",
+    "source_start": 81,
+    "source_end": 120,
+    "source_construction": "tv",
+    "overt_arguments": []
+  },
+  {
+    "name": "tv_with_a_as_genitive_possessor",
+    "profile": "TV_A",
+    "source_start": 121,
+    "source_end": 160,
+    "source_construction": "tv",
+    "overt_arguments": ["A"]
+  }
+]

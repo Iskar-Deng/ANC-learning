@@ -1,0 +1,10 @@
+[
+  {
+    "name": "bare_tv_anc_as_matrix_p",
+    "profile": "bare_TV",
+    "source_start": 1,
+    "source_end": 189,
+    "source_construction": "tv",
+    "overt_arguments": []
+  }
+]

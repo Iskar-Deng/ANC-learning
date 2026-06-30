@@ -1,0 +1,5 @@
+strategy	n_languages	n_pairs	raw_accuracy	bad_parse_rate	weighted_accuracy
+erg-poss	24	80400	0.890423	0.158818	0.749007
+nomn	24	80400	0.899017	0.161841	0.753520
+poss-acc	24	80400	0.879714	0.206940	0.697666
+sent	24	80400	0.859739	0.229689	0.662266
