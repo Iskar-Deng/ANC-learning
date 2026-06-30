@@ -1,97 +1,97 @@
-id	language	choices_file	clause_wo	np_wo	alignment	alignment_code	comp_system	comp_system_code	strategy	strategy_code	anc_wo
-00	00_sov_gn_ac_b_se	00_sov_gn_ac_b_se.choice	sov	gn	nom-acc	ac	balancing	b	sent	se	sov
-01	01_sov_gn_ac_b_pa	01_sov_gn_ac_b_pa.choice	sov	gn	nom-acc	ac	balancing	b	poss-acc	pa	sov
-02	02_sov_gn_ac_b_ep	02_sov_gn_ac_b_ep.choice	sov	gn	nom-acc	ac	balancing	b	erg-poss	ep	sov
-03	03_sov_gn_ac_b_no	03_sov_gn_ac_b_no.choice	sov	gn	nom-acc	ac	balancing	b	nomn	no	sov
-04	04_sov_gn_ac_d_se	04_sov_gn_ac_d_se.choice	sov	gn	nom-acc	ac	deranking	d	sent	se	sov
-05	05_sov_gn_ac_d_pa	05_sov_gn_ac_d_pa.choice	sov	gn	nom-acc	ac	deranking	d	poss-acc	pa	sov
-06	06_sov_gn_ac_d_ep	06_sov_gn_ac_d_ep.choice	sov	gn	nom-acc	ac	deranking	d	erg-poss	ep	sov
-07	07_sov_gn_ac_d_no	07_sov_gn_ac_d_no.choice	sov	gn	nom-acc	ac	deranking	d	nomn	no	sov
-08	08_sov_gn_er_b_se	08_sov_gn_er_b_se.choice	sov	gn	erg-abs	er	balancing	b	sent	se	sov
-09	09_sov_gn_er_b_pa	09_sov_gn_er_b_pa.choice	sov	gn	erg-abs	er	balancing	b	poss-acc	pa	sov
-10	10_sov_gn_er_b_ep	10_sov_gn_er_b_ep.choice	sov	gn	erg-abs	er	balancing	b	erg-poss	ep	sov
-11	11_sov_gn_er_b_no	11_sov_gn_er_b_no.choice	sov	gn	erg-abs	er	balancing	b	nomn	no	sov
-12	12_sov_gn_er_d_se	12_sov_gn_er_d_se.choice	sov	gn	erg-abs	er	deranking	d	sent	se	sov
-13	13_sov_gn_er_d_pa	13_sov_gn_er_d_pa.choice	sov	gn	erg-abs	er	deranking	d	poss-acc	pa	sov
-14	14_sov_gn_er_d_ep	14_sov_gn_er_d_ep.choice	sov	gn	erg-abs	er	deranking	d	erg-poss	ep	sov
-15	15_sov_gn_er_d_no	15_sov_gn_er_d_no.choice	sov	gn	erg-abs	er	deranking	d	nomn	no	sov
-16	16_sov_ng_ac_b_se	16_sov_ng_ac_b_se.choice	sov	ng	nom-acc	ac	balancing	b	sent	se	sov
-17	17_sov_ng_ac_b_pa	17_sov_ng_ac_b_pa.choice	sov	ng	nom-acc	ac	balancing	b	poss-acc	pa	ovs
-18	18_sov_ng_ac_b_ep	18_sov_ng_ac_b_ep.choice	sov	ng	nom-acc	ac	balancing	b	erg-poss	ep	vos
-19	19_sov_ng_ac_b_no	19_sov_ng_ac_b_no.choice	sov	ng	nom-acc	ac	balancing	b	nomn	no	ovs
-20	20_sov_ng_ac_d_se	20_sov_ng_ac_d_se.choice	sov	ng	nom-acc	ac	deranking	d	sent	se	sov
-21	21_sov_ng_ac_d_pa	21_sov_ng_ac_d_pa.choice	sov	ng	nom-acc	ac	deranking	d	poss-acc	pa	ovs
-22	22_sov_ng_ac_d_ep	22_sov_ng_ac_d_ep.choice	sov	ng	nom-acc	ac	deranking	d	erg-poss	ep	vos
-23	23_sov_ng_ac_d_no	23_sov_ng_ac_d_no.choice	sov	ng	nom-acc	ac	deranking	d	nomn	no	ovs
-24	24_sov_ng_er_b_se	24_sov_ng_er_b_se.choice	sov	ng	erg-abs	er	balancing	b	sent	se	sov
-25	25_sov_ng_er_b_pa	25_sov_ng_er_b_pa.choice	sov	ng	erg-abs	er	balancing	b	poss-acc	pa	ovs
-26	26_sov_ng_er_b_ep	26_sov_ng_er_b_ep.choice	sov	ng	erg-abs	er	balancing	b	erg-poss	ep	vos
-27	27_sov_ng_er_b_no	27_sov_ng_er_b_no.choice	sov	ng	erg-abs	er	balancing	b	nomn	no	ovs
-28	28_sov_ng_er_d_se	28_sov_ng_er_d_se.choice	sov	ng	erg-abs	er	deranking	d	sent	se	sov
-29	29_sov_ng_er_d_pa	29_sov_ng_er_d_pa.choice	sov	ng	erg-abs	er	deranking	d	poss-acc	pa	ovs
-30	30_sov_ng_er_d_ep	30_sov_ng_er_d_ep.choice	sov	ng	erg-abs	er	deranking	d	erg-poss	ep	vos
-31	31_sov_ng_er_d_no	31_sov_ng_er_d_no.choice	sov	ng	erg-abs	er	deranking	d	nomn	no	ovs
-32	32_svo_gn_ac_b_se	32_svo_gn_ac_b_se.choice	svo	gn	nom-acc	ac	balancing	b	sent	se	svo
-33	33_svo_gn_ac_b_pa	33_svo_gn_ac_b_pa.choice	svo	gn	nom-acc	ac	balancing	b	poss-acc	pa	svo
-34	34_svo_gn_ac_b_ep	34_svo_gn_ac_b_ep.choice	svo	gn	nom-acc	ac	balancing	b	erg-poss	ep	sov
-35	35_svo_gn_ac_b_no	35_svo_gn_ac_b_no.choice	svo	gn	nom-acc	ac	balancing	b	nomn	no	svo
-36	36_svo_gn_ac_d_se	36_svo_gn_ac_d_se.choice	svo	gn	nom-acc	ac	deranking	d	sent	se	svo
-37	37_svo_gn_ac_d_pa	37_svo_gn_ac_d_pa.choice	svo	gn	nom-acc	ac	deranking	d	poss-acc	pa	svo
-38	38_svo_gn_ac_d_ep	38_svo_gn_ac_d_ep.choice	svo	gn	nom-acc	ac	deranking	d	erg-poss	ep	sov
-39	39_svo_gn_ac_d_no	39_svo_gn_ac_d_no.choice	svo	gn	nom-acc	ac	deranking	d	nomn	no	svo
-40	40_svo_gn_er_b_se	40_svo_gn_er_b_se.choice	svo	gn	erg-abs	er	balancing	b	sent	se	svo
-41	41_svo_gn_er_b_pa	41_svo_gn_er_b_pa.choice	svo	gn	erg-abs	er	balancing	b	poss-acc	pa	svo
-42	42_svo_gn_er_b_ep	42_svo_gn_er_b_ep.choice	svo	gn	erg-abs	er	balancing	b	erg-poss	ep	sov
-43	43_svo_gn_er_b_no	43_svo_gn_er_b_no.choice	svo	gn	erg-abs	er	balancing	b	nomn	no	svo
-44	44_svo_gn_er_d_se	44_svo_gn_er_d_se.choice	svo	gn	erg-abs	er	deranking	d	sent	se	svo
-45	45_svo_gn_er_d_pa	45_svo_gn_er_d_pa.choice	svo	gn	erg-abs	er	deranking	d	poss-acc	pa	svo
-46	46_svo_gn_er_d_ep	46_svo_gn_er_d_ep.choice	svo	gn	erg-abs	er	deranking	d	erg-poss	ep	sov
-47	47_svo_gn_er_d_no	47_svo_gn_er_d_no.choice	svo	gn	erg-abs	er	deranking	d	nomn	no	svo
-48	48_svo_ng_ac_b_se	48_svo_ng_ac_b_se.choice	svo	ng	nom-acc	ac	balancing	b	sent	se	svo
-49	49_svo_ng_ac_b_pa	49_svo_ng_ac_b_pa.choice	svo	ng	nom-acc	ac	balancing	b	poss-acc	pa	vos
-50	50_svo_ng_ac_b_ep	50_svo_ng_ac_b_ep.choice	svo	ng	nom-acc	ac	balancing	b	erg-poss	ep	vos
-51	51_svo_ng_ac_b_no	51_svo_ng_ac_b_no.choice	svo	ng	nom-acc	ac	balancing	b	nomn	no	vos
-52	52_svo_ng_ac_d_se	52_svo_ng_ac_d_se.choice	svo	ng	nom-acc	ac	deranking	d	sent	se	svo
-53	53_svo_ng_ac_d_pa	53_svo_ng_ac_d_pa.choice	svo	ng	nom-acc	ac	deranking	d	poss-acc	pa	vos
-54	54_svo_ng_ac_d_ep	54_svo_ng_ac_d_ep.choice	svo	ng	nom-acc	ac	deranking	d	erg-poss	ep	vos
-55	55_svo_ng_ac_d_no	55_svo_ng_ac_d_no.choice	svo	ng	nom-acc	ac	deranking	d	nomn	no	vos
-56	56_svo_ng_er_b_se	56_svo_ng_er_b_se.choice	svo	ng	erg-abs	er	balancing	b	sent	se	svo
-57	57_svo_ng_er_b_pa	57_svo_ng_er_b_pa.choice	svo	ng	erg-abs	er	balancing	b	poss-acc	pa	vos
-58	58_svo_ng_er_b_ep	58_svo_ng_er_b_ep.choice	svo	ng	erg-abs	er	balancing	b	erg-poss	ep	vos
-59	59_svo_ng_er_b_no	59_svo_ng_er_b_no.choice	svo	ng	erg-abs	er	balancing	b	nomn	no	vos
-60	60_svo_ng_er_d_se	60_svo_ng_er_d_se.choice	svo	ng	erg-abs	er	deranking	d	sent	se	svo
-61	61_svo_ng_er_d_pa	61_svo_ng_er_d_pa.choice	svo	ng	erg-abs	er	deranking	d	poss-acc	pa	vos
-62	62_svo_ng_er_d_ep	62_svo_ng_er_d_ep.choice	svo	ng	erg-abs	er	deranking	d	erg-poss	ep	vos
-63	63_svo_ng_er_d_no	63_svo_ng_er_d_no.choice	svo	ng	erg-abs	er	deranking	d	nomn	no	vos
-64	64_vos_gn_ac_b_se	64_vos_gn_ac_b_se.choice	vos	gn	nom-acc	ac	balancing	b	sent	se	vos
-65	65_vos_gn_ac_b_pa	65_vos_gn_ac_b_pa.choice	vos	gn	nom-acc	ac	balancing	b	poss-acc	pa	svo
-66	66_vos_gn_ac_b_ep	66_vos_gn_ac_b_ep.choice	vos	gn	nom-acc	ac	balancing	b	erg-poss	ep	sov
-67	67_vos_gn_ac_b_no	67_vos_gn_ac_b_no.choice	vos	gn	nom-acc	ac	balancing	b	nomn	no	svo
-68	68_vos_gn_ac_d_se	68_vos_gn_ac_d_se.choice	vos	gn	nom-acc	ac	deranking	d	sent	se	vos
-69	69_vos_gn_ac_d_pa	69_vos_gn_ac_d_pa.choice	vos	gn	nom-acc	ac	deranking	d	poss-acc	pa	svo
-70	70_vos_gn_ac_d_ep	70_vos_gn_ac_d_ep.choice	vos	gn	nom-acc	ac	deranking	d	erg-poss	ep	sov
-71	71_vos_gn_ac_d_no	71_vos_gn_ac_d_no.choice	vos	gn	nom-acc	ac	deranking	d	nomn	no	svo
-72	72_vos_gn_er_b_se	72_vos_gn_er_b_se.choice	vos	gn	erg-abs	er	balancing	b	sent	se	vos
-73	73_vos_gn_er_b_pa	73_vos_gn_er_b_pa.choice	vos	gn	erg-abs	er	balancing	b	poss-acc	pa	svo
-74	74_vos_gn_er_b_ep	74_vos_gn_er_b_ep.choice	vos	gn	erg-abs	er	balancing	b	erg-poss	ep	sov
-75	75_vos_gn_er_b_no	75_vos_gn_er_b_no.choice	vos	gn	erg-abs	er	balancing	b	nomn	no	svo
-76	76_vos_gn_er_d_se	76_vos_gn_er_d_se.choice	vos	gn	erg-abs	er	deranking	d	sent	se	vos
-77	77_vos_gn_er_d_pa	77_vos_gn_er_d_pa.choice	vos	gn	erg-abs	er	deranking	d	poss-acc	pa	svo
-78	78_vos_gn_er_d_ep	78_vos_gn_er_d_ep.choice	vos	gn	erg-abs	er	deranking	d	erg-poss	ep	sov
-79	79_vos_gn_er_d_no	79_vos_gn_er_d_no.choice	vos	gn	erg-abs	er	deranking	d	nomn	no	svo
-80	80_vos_ng_ac_b_se	80_vos_ng_ac_b_se.choice	vos	ng	nom-acc	ac	balancing	b	sent	se	vos
-81	81_vos_ng_ac_b_pa	81_vos_ng_ac_b_pa.choice	vos	ng	nom-acc	ac	balancing	b	poss-acc	pa	vos
-82	82_vos_ng_ac_b_ep	82_vos_ng_ac_b_ep.choice	vos	ng	nom-acc	ac	balancing	b	erg-poss	ep	vos
-83	83_vos_ng_ac_b_no	83_vos_ng_ac_b_no.choice	vos	ng	nom-acc	ac	balancing	b	nomn	no	vos
-84	84_vos_ng_ac_d_se	84_vos_ng_ac_d_se.choice	vos	ng	nom-acc	ac	deranking	d	sent	se	vos
-85	85_vos_ng_ac_d_pa	85_vos_ng_ac_d_pa.choice	vos	ng	nom-acc	ac	deranking	d	poss-acc	pa	vos
-86	86_vos_ng_ac_d_ep	86_vos_ng_ac_d_ep.choice	vos	ng	nom-acc	ac	deranking	d	erg-poss	ep	vos
-87	87_vos_ng_ac_d_no	87_vos_ng_ac_d_no.choice	vos	ng	nom-acc	ac	deranking	d	nomn	no	vos
-88	88_vos_ng_er_b_se	88_vos_ng_er_b_se.choice	vos	ng	erg-abs	er	balancing	b	sent	se	vos
-89	89_vos_ng_er_b_pa	89_vos_ng_er_b_pa.choice	vos	ng	erg-abs	er	balancing	b	poss-acc	pa	vos
-90	90_vos_ng_er_b_ep	90_vos_ng_er_b_ep.choice	vos	ng	erg-abs	er	balancing	b	erg-poss	ep	vos
-91	91_vos_ng_er_b_no	91_vos_ng_er_b_no.choice	vos	ng	erg-abs	er	balancing	b	nomn	no	vos
-92	92_vos_ng_er_d_se	92_vos_ng_er_d_se.choice	vos	ng	erg-abs	er	deranking	d	sent	se	vos
-93	93_vos_ng_er_d_pa	93_vos_ng_er_d_pa.choice	vos	ng	erg-abs	er	deranking	d	poss-acc	pa	vos
-94	94_vos_ng_er_d_ep	94_vos_ng_er_d_ep.choice	vos	ng	erg-abs	er	deranking	d	erg-poss	ep	vos
-95	95_vos_ng_er_d_no	95_vos_ng_er_d_no.choice	vos	ng	erg-abs	er	deranking	d	nomn	no	vos
+id	language	choices_file	clause_wo	np_wo	alignment	alignment_code	comp_system	comp_system_code	strategy	strategy_code	anc_wo	anc_wo_choice	anc_iv_order	anc_tv_order
+00	00_sov_gn_ac_b_se	00_sov_gn_ac_b_se.choice	sov	gn	nom-acc	ac	balancing	b	sent	se	sov	sov	SV	APV
+01	01_sov_gn_ac_b_pa	01_sov_gn_ac_b_pa.choice	sov	gn	nom-acc	ac	balancing	b	poss-acc	pa	sov	sov	SV	APV
+02	02_sov_gn_ac_b_ep	02_sov_gn_ac_b_ep.choice	sov	gn	nom-acc	ac	balancing	b	erg-poss	ep	sov	sov	SV	APV
+03	03_sov_gn_ac_b_no	03_sov_gn_ac_b_no.choice	sov	gn	nom-acc	ac	balancing	b	nomn	no	sov	sov	SV	APV
+04	04_sov_gn_ac_d_se	04_sov_gn_ac_d_se.choice	sov	gn	nom-acc	ac	deranking	d	sent	se	sov	sov	SV	APV
+05	05_sov_gn_ac_d_pa	05_sov_gn_ac_d_pa.choice	sov	gn	nom-acc	ac	deranking	d	poss-acc	pa	sov	sov	SV	APV
+06	06_sov_gn_ac_d_ep	06_sov_gn_ac_d_ep.choice	sov	gn	nom-acc	ac	deranking	d	erg-poss	ep	sov	sov	SV	APV
+07	07_sov_gn_ac_d_no	07_sov_gn_ac_d_no.choice	sov	gn	nom-acc	ac	deranking	d	nomn	no	sov	sov	SV	APV
+08	08_sov_gn_er_b_se	08_sov_gn_er_b_se.choice	sov	gn	erg-abs	er	balancing	b	sent	se	sov	sov	SV	APV
+09	09_sov_gn_er_b_pa	09_sov_gn_er_b_pa.choice	sov	gn	erg-abs	er	balancing	b	poss-acc	pa	sov	sov	SV	APV
+10	10_sov_gn_er_b_ep	10_sov_gn_er_b_ep.choice	sov	gn	erg-abs	er	balancing	b	erg-poss	ep	sov	sov	SV	APV
+11	11_sov_gn_er_b_no	11_sov_gn_er_b_no.choice	sov	gn	erg-abs	er	balancing	b	nomn	no	sov	sov	SV	APV
+12	12_sov_gn_er_d_se	12_sov_gn_er_d_se.choice	sov	gn	erg-abs	er	deranking	d	sent	se	sov	sov	SV	APV
+13	13_sov_gn_er_d_pa	13_sov_gn_er_d_pa.choice	sov	gn	erg-abs	er	deranking	d	poss-acc	pa	sov	sov	SV	APV
+14	14_sov_gn_er_d_ep	14_sov_gn_er_d_ep.choice	sov	gn	erg-abs	er	deranking	d	erg-poss	ep	sov	sov	SV	APV
+15	15_sov_gn_er_d_no	15_sov_gn_er_d_no.choice	sov	gn	erg-abs	er	deranking	d	nomn	no	sov	sov	SV	APV
+16	16_sov_ng_ac_b_se	16_sov_ng_ac_b_se.choice	sov	ng	nom-acc	ac	balancing	b	sent	se	sov	sov	SV	APV
+17	17_sov_ng_ac_b_pa	17_sov_ng_ac_b_pa.choice	sov	ng	nom-acc	ac	balancing	b	poss-acc	pa	ovs	ovs	VS	PVA
+18	18_sov_ng_ac_b_ep	18_sov_ng_ac_b_ep.choice	sov	ng	nom-acc	ac	balancing	b	erg-poss	ep	vos	vos	VS	AVP
+19	19_sov_ng_ac_b_no	19_sov_ng_ac_b_no.choice	sov	ng	nom-acc	ac	balancing	b	nomn	no	ovs	ovs	VS	PVA
+20	20_sov_ng_ac_d_se	20_sov_ng_ac_d_se.choice	sov	ng	nom-acc	ac	deranking	d	sent	se	sov	sov	SV	APV
+21	21_sov_ng_ac_d_pa	21_sov_ng_ac_d_pa.choice	sov	ng	nom-acc	ac	deranking	d	poss-acc	pa	ovs	ovs	VS	PVA
+22	22_sov_ng_ac_d_ep	22_sov_ng_ac_d_ep.choice	sov	ng	nom-acc	ac	deranking	d	erg-poss	ep	vos	vos	VS	AVP
+23	23_sov_ng_ac_d_no	23_sov_ng_ac_d_no.choice	sov	ng	nom-acc	ac	deranking	d	nomn	no	ovs	ovs	VS	PVA
+24	24_sov_ng_er_b_se	24_sov_ng_er_b_se.choice	sov	ng	erg-abs	er	balancing	b	sent	se	sov	sov	SV	APV
+25	25_sov_ng_er_b_pa	25_sov_ng_er_b_pa.choice	sov	ng	erg-abs	er	balancing	b	poss-acc	pa	ovs	ovs	VS	PVA
+26	26_sov_ng_er_b_ep	26_sov_ng_er_b_ep.choice	sov	ng	erg-abs	er	balancing	b	erg-poss	ep	vos	vos	VS	AVP
+27	27_sov_ng_er_b_no	27_sov_ng_er_b_no.choice	sov	ng	erg-abs	er	balancing	b	nomn	no	ovs	ovs	VS	PVA
+28	28_sov_ng_er_d_se	28_sov_ng_er_d_se.choice	sov	ng	erg-abs	er	deranking	d	sent	se	sov	sov	SV	APV
+29	29_sov_ng_er_d_pa	29_sov_ng_er_d_pa.choice	sov	ng	erg-abs	er	deranking	d	poss-acc	pa	ovs	ovs	VS	PVA
+30	30_sov_ng_er_d_ep	30_sov_ng_er_d_ep.choice	sov	ng	erg-abs	er	deranking	d	erg-poss	ep	vos	vos	VS	AVP
+31	31_sov_ng_er_d_no	31_sov_ng_er_d_no.choice	sov	ng	erg-abs	er	deranking	d	nomn	no	ovs	ovs	VS	PVA
+32	32_svo_gn_ac_b_se	32_svo_gn_ac_b_se.choice	svo	gn	nom-acc	ac	balancing	b	sent	se	svo	svo	SV	AVP
+33	33_svo_gn_ac_b_pa	33_svo_gn_ac_b_pa.choice	svo	gn	nom-acc	ac	balancing	b	poss-acc	pa	svo	svo	SV	AVP
+34	34_svo_gn_ac_b_ep	34_svo_gn_ac_b_ep.choice	svo	gn	nom-acc	ac	balancing	b	erg-poss	ep	sov	sov	SV	PVA
+35	35_svo_gn_ac_b_no	35_svo_gn_ac_b_no.choice	svo	gn	nom-acc	ac	balancing	b	nomn	no	svo	svo	SV	AVP
+36	36_svo_gn_ac_d_se	36_svo_gn_ac_d_se.choice	svo	gn	nom-acc	ac	deranking	d	sent	se	svo	svo	SV	AVP
+37	37_svo_gn_ac_d_pa	37_svo_gn_ac_d_pa.choice	svo	gn	nom-acc	ac	deranking	d	poss-acc	pa	svo	svo	SV	AVP
+38	38_svo_gn_ac_d_ep	38_svo_gn_ac_d_ep.choice	svo	gn	nom-acc	ac	deranking	d	erg-poss	ep	sov	sov	SV	PVA
+39	39_svo_gn_ac_d_no	39_svo_gn_ac_d_no.choice	svo	gn	nom-acc	ac	deranking	d	nomn	no	svo	svo	SV	AVP
+40	40_svo_gn_er_b_se	40_svo_gn_er_b_se.choice	svo	gn	erg-abs	er	balancing	b	sent	se	svo	svo	SV	AVP
+41	41_svo_gn_er_b_pa	41_svo_gn_er_b_pa.choice	svo	gn	erg-abs	er	balancing	b	poss-acc	pa	svo	svo	SV	AVP
+42	42_svo_gn_er_b_ep	42_svo_gn_er_b_ep.choice	svo	gn	erg-abs	er	balancing	b	erg-poss	ep	sov	sov	SV	PVA
+43	43_svo_gn_er_b_no	43_svo_gn_er_b_no.choice	svo	gn	erg-abs	er	balancing	b	nomn	no	svo	svo	SV	AVP
+44	44_svo_gn_er_d_se	44_svo_gn_er_d_se.choice	svo	gn	erg-abs	er	deranking	d	sent	se	svo	svo	SV	AVP
+45	45_svo_gn_er_d_pa	45_svo_gn_er_d_pa.choice	svo	gn	erg-abs	er	deranking	d	poss-acc	pa	svo	svo	SV	AVP
+46	46_svo_gn_er_d_ep	46_svo_gn_er_d_ep.choice	svo	gn	erg-abs	er	deranking	d	erg-poss	ep	sov	sov	SV	PVA
+47	47_svo_gn_er_d_no	47_svo_gn_er_d_no.choice	svo	gn	erg-abs	er	deranking	d	nomn	no	svo	svo	SV	AVP
+48	48_svo_ng_ac_b_se	48_svo_ng_ac_b_se.choice	svo	ng	nom-acc	ac	balancing	b	sent	se	svo	svo	SV	AVP
+49	49_svo_ng_ac_b_pa	49_svo_ng_ac_b_pa.choice	svo	ng	nom-acc	ac	balancing	b	poss-acc	pa	vos	vos	VS	VPA
+50	50_svo_ng_ac_b_ep	50_svo_ng_ac_b_ep.choice	svo	ng	nom-acc	ac	balancing	b	erg-poss	ep	vos	vos	VS	VPA
+51	51_svo_ng_ac_b_no	51_svo_ng_ac_b_no.choice	svo	ng	nom-acc	ac	balancing	b	nomn	no	vos	vos	VS	VPA
+52	52_svo_ng_ac_d_se	52_svo_ng_ac_d_se.choice	svo	ng	nom-acc	ac	deranking	d	sent	se	svo	svo	SV	AVP
+53	53_svo_ng_ac_d_pa	53_svo_ng_ac_d_pa.choice	svo	ng	nom-acc	ac	deranking	d	poss-acc	pa	vos	vos	VS	VPA
+54	54_svo_ng_ac_d_ep	54_svo_ng_ac_d_ep.choice	svo	ng	nom-acc	ac	deranking	d	erg-poss	ep	vos	vos	VS	VPA
+55	55_svo_ng_ac_d_no	55_svo_ng_ac_d_no.choice	svo	ng	nom-acc	ac	deranking	d	nomn	no	vos	vos	VS	VPA
+56	56_svo_ng_er_b_se	56_svo_ng_er_b_se.choice	svo	ng	erg-abs	er	balancing	b	sent	se	svo	svo	SV	AVP
+57	57_svo_ng_er_b_pa	57_svo_ng_er_b_pa.choice	svo	ng	erg-abs	er	balancing	b	poss-acc	pa	vos	vos	VS	VPA
+58	58_svo_ng_er_b_ep	58_svo_ng_er_b_ep.choice	svo	ng	erg-abs	er	balancing	b	erg-poss	ep	vos	vos	VS	VPA
+59	59_svo_ng_er_b_no	59_svo_ng_er_b_no.choice	svo	ng	erg-abs	er	balancing	b	nomn	no	vos	vos	VS	VPA
+60	60_svo_ng_er_d_se	60_svo_ng_er_d_se.choice	svo	ng	erg-abs	er	deranking	d	sent	se	svo	svo	SV	AVP
+61	61_svo_ng_er_d_pa	61_svo_ng_er_d_pa.choice	svo	ng	erg-abs	er	deranking	d	poss-acc	pa	vos	vos	VS	VPA
+62	62_svo_ng_er_d_ep	62_svo_ng_er_d_ep.choice	svo	ng	erg-abs	er	deranking	d	erg-poss	ep	vos	vos	VS	VPA
+63	63_svo_ng_er_d_no	63_svo_ng_er_d_no.choice	svo	ng	erg-abs	er	deranking	d	nomn	no	vos	vos	VS	VPA
+64	64_vos_gn_ac_b_se	64_vos_gn_ac_b_se.choice	vos	gn	nom-acc	ac	balancing	b	sent	se	vos	vos	VS	VPA
+65	65_vos_gn_ac_b_pa	65_vos_gn_ac_b_pa.choice	vos	gn	nom-acc	ac	balancing	b	poss-acc	pa	svo	svo	SV	AVP
+66	66_vos_gn_ac_b_ep	66_vos_gn_ac_b_ep.choice	vos	gn	nom-acc	ac	balancing	b	erg-poss	ep	sov	sov	SV	PVA
+67	67_vos_gn_ac_b_no	67_vos_gn_ac_b_no.choice	vos	gn	nom-acc	ac	balancing	b	nomn	no	svo	svo	SV	AVP
+68	68_vos_gn_ac_d_se	68_vos_gn_ac_d_se.choice	vos	gn	nom-acc	ac	deranking	d	sent	se	vos	vos	VS	VPA
+69	69_vos_gn_ac_d_pa	69_vos_gn_ac_d_pa.choice	vos	gn	nom-acc	ac	deranking	d	poss-acc	pa	svo	svo	SV	AVP
+70	70_vos_gn_ac_d_ep	70_vos_gn_ac_d_ep.choice	vos	gn	nom-acc	ac	deranking	d	erg-poss	ep	sov	sov	SV	PVA
+71	71_vos_gn_ac_d_no	71_vos_gn_ac_d_no.choice	vos	gn	nom-acc	ac	deranking	d	nomn	no	svo	svo	SV	AVP
+72	72_vos_gn_er_b_se	72_vos_gn_er_b_se.choice	vos	gn	erg-abs	er	balancing	b	sent	se	vos	vos	VS	VPA
+73	73_vos_gn_er_b_pa	73_vos_gn_er_b_pa.choice	vos	gn	erg-abs	er	balancing	b	poss-acc	pa	svo	svo	SV	AVP
+74	74_vos_gn_er_b_ep	74_vos_gn_er_b_ep.choice	vos	gn	erg-abs	er	balancing	b	erg-poss	ep	sov	sov	SV	PVA
+75	75_vos_gn_er_b_no	75_vos_gn_er_b_no.choice	vos	gn	erg-abs	er	balancing	b	nomn	no	svo	svo	SV	AVP
+76	76_vos_gn_er_d_se	76_vos_gn_er_d_se.choice	vos	gn	erg-abs	er	deranking	d	sent	se	vos	vos	VS	VPA
+77	77_vos_gn_er_d_pa	77_vos_gn_er_d_pa.choice	vos	gn	erg-abs	er	deranking	d	poss-acc	pa	svo	svo	SV	AVP
+78	78_vos_gn_er_d_ep	78_vos_gn_er_d_ep.choice	vos	gn	erg-abs	er	deranking	d	erg-poss	ep	sov	sov	SV	PVA
+79	79_vos_gn_er_d_no	79_vos_gn_er_d_no.choice	vos	gn	erg-abs	er	deranking	d	nomn	no	svo	svo	SV	AVP
+80	80_vos_ng_ac_b_se	80_vos_ng_ac_b_se.choice	vos	ng	nom-acc	ac	balancing	b	sent	se	vos	vos	VS	VPA
+81	81_vos_ng_ac_b_pa	81_vos_ng_ac_b_pa.choice	vos	ng	nom-acc	ac	balancing	b	poss-acc	pa	vos	vos	VS	VPA
+82	82_vos_ng_ac_b_ep	82_vos_ng_ac_b_ep.choice	vos	ng	nom-acc	ac	balancing	b	erg-poss	ep	vos	vos	VS	VPA
+83	83_vos_ng_ac_b_no	83_vos_ng_ac_b_no.choice	vos	ng	nom-acc	ac	balancing	b	nomn	no	vos	vos	VS	VPA
+84	84_vos_ng_ac_d_se	84_vos_ng_ac_d_se.choice	vos	ng	nom-acc	ac	deranking	d	sent	se	vos	vos	VS	VPA
+85	85_vos_ng_ac_d_pa	85_vos_ng_ac_d_pa.choice	vos	ng	nom-acc	ac	deranking	d	poss-acc	pa	vos	vos	VS	VPA
+86	86_vos_ng_ac_d_ep	86_vos_ng_ac_d_ep.choice	vos	ng	nom-acc	ac	deranking	d	erg-poss	ep	vos	vos	VS	VPA
+87	87_vos_ng_ac_d_no	87_vos_ng_ac_d_no.choice	vos	ng	nom-acc	ac	deranking	d	nomn	no	vos	vos	VS	VPA
+88	88_vos_ng_er_b_se	88_vos_ng_er_b_se.choice	vos	ng	erg-abs	er	balancing	b	sent	se	vos	vos	VS	VPA
+89	89_vos_ng_er_b_pa	89_vos_ng_er_b_pa.choice	vos	ng	erg-abs	er	balancing	b	poss-acc	pa	vos	vos	VS	VPA
+90	90_vos_ng_er_b_ep	90_vos_ng_er_b_ep.choice	vos	ng	erg-abs	er	balancing	b	erg-poss	ep	vos	vos	VS	VPA
+91	91_vos_ng_er_b_no	91_vos_ng_er_b_no.choice	vos	ng	erg-abs	er	balancing	b	nomn	no	vos	vos	VS	VPA
+92	92_vos_ng_er_d_se	92_vos_ng_er_d_se.choice	vos	ng	erg-abs	er	deranking	d	sent	se	vos	vos	VS	VPA
+93	93_vos_ng_er_d_pa	93_vos_ng_er_d_pa.choice	vos	ng	erg-abs	er	deranking	d	poss-acc	pa	vos	vos	VS	VPA
+94	94_vos_ng_er_d_ep	94_vos_ng_er_d_ep.choice	vos	ng	erg-abs	er	deranking	d	erg-poss	ep	vos	vos	VS	VPA
+95	95_vos_ng_er_d_no	95_vos_ng_er_d_no.choice	vos	ng	erg-abs	er	deranking	d	nomn	no	vos	vos	VS	VPA

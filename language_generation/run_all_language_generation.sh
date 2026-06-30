@@ -8,9 +8,12 @@ LOG_DIR="logs/generation"
 WORKERS=12
 CHUNKSIZE=100
 MAX_GEN=20
+ACE_MODE="oneoff"
+RESTART_EVERY=5000
 SKIP_EXISTING=false
 DRY_RUN=false
 NOHUP_MODE=false
+PYTHON_BIN="${PYTHON:-python}"
 
 usage() {
   cat <<EOF
@@ -27,9 +30,12 @@ Options:
   --workers N                  Number of workers for generation. Default: 12
   --chunksize N                Chunk size for generation. Default: 100
   --max-gen N                  Maximum generations per MRS. Default: 20
+  --ace-mode MODE              oneoff or persistent. Default: oneoff
+  --restart-every N            In persistent mode, restart ACE after N items per worker. Default: 5000
   --skip-existing              Skip languages whose selected output already exists
   --nohup                      Run raw generation in background; selection is not run in this mode
   --dry-run                    Print commands without running them
+  --python PATH                Python executable. Default: \$PYTHON or python
   -h, --help                   Show this help message
 
 Example:
@@ -67,6 +73,14 @@ while [[ $# -gt 0 ]]; do
       MAX_GEN="$2"
       shift 2
       ;;
+    --ace-mode)
+      ACE_MODE="$2"
+      shift 2
+      ;;
+    --restart-every)
+      RESTART_EVERY="$2"
+      shift 2
+      ;;
     --skip-existing)
       SKIP_EXISTING=true
       shift
@@ -78,6 +92,10 @@ while [[ $# -gt 0 ]]; do
     --dry-run)
       DRY_RUN=true
       shift
+      ;;
+    --python)
+      PYTHON_BIN="$2"
+      shift 2
       ;;
     -h|--help)
       usage
@@ -213,6 +231,9 @@ echo "Log dir:        $LOG_DIR"
 echo "Workers:        $WORKERS"
 echo "Chunksize:      $CHUNKSIZE"
 echo "Max gen:        $MAX_GEN"
+echo "ACE mode:       $ACE_MODE"
+echo "Restart every:  $RESTART_EVERY"
+echo "Python:         $PYTHON_BIN"
 echo "Nohup mode:     $NOHUP_MODE"
 echo
 
@@ -274,13 +295,13 @@ for grammar_root in "${grammar_dirs[@]}"; do
     echo "Log: $gen_log"
 
     if [[ "$DRY_RUN" == true ]]; then
-      echo "+ nohup python3 -m language_generation.generate_from_mrs_bank --grammar $grammar_dat --input $MRS_JSONL --out $raw_out --no-mrs --workers $WORKERS --chunksize $CHUNKSIZE --max-gen $MAX_GEN > $gen_log 2>&1 &"
+      echo "+ nohup $PYTHON_BIN -m language_generation.generate_from_mrs_bank --grammar $grammar_dat --input $MRS_JSONL --out $raw_out --no-mrs --workers $WORKERS --chunksize $CHUNKSIZE --max-gen $MAX_GEN --ace-mode $ACE_MODE --restart-every $RESTART_EVERY > $gen_log 2>&1 &"
       record_success "$lang_id" "dry_run_nohup"
       count=$((count + 1))
       continue
     fi
 
-    nohup python3 -m language_generation.generate_from_mrs_bank \
+    nohup "$PYTHON_BIN" -m language_generation.generate_from_mrs_bank \
       --grammar "$grammar_dat" \
       --input "$MRS_JSONL" \
       --out "$raw_out" \
@@ -288,6 +309,8 @@ for grammar_root in "${grammar_dirs[@]}"; do
       --workers "$WORKERS" \
       --chunksize "$CHUNKSIZE" \
       --max-gen "$MAX_GEN" \
+      --ace-mode "$ACE_MODE" \
+      --restart-every "$RESTART_EVERY" \
       > "$gen_log" 2>&1 &
 
     record_success "$lang_id" "generation_started_nohup"
@@ -297,8 +320,8 @@ for grammar_root in "${grammar_dirs[@]}"; do
 
   echo "[1/2] Generating raw output..."
   if [[ "$DRY_RUN" == true ]]; then
-    echo "+ python3 -m language_generation.generate_from_mrs_bank --grammar $grammar_dat --input $MRS_JSONL --out $raw_out --no-mrs --workers $WORKERS --chunksize $CHUNKSIZE --max-gen $MAX_GEN > $gen_log 2>&1"
-  elif ! python3 -m language_generation.generate_from_mrs_bank \
+    echo "+ $PYTHON_BIN -m language_generation.generate_from_mrs_bank --grammar $grammar_dat --input $MRS_JSONL --out $raw_out --no-mrs --workers $WORKERS --chunksize $CHUNKSIZE --max-gen $MAX_GEN --ace-mode $ACE_MODE --restart-every $RESTART_EVERY > $gen_log 2>&1"
+  elif ! "$PYTHON_BIN" -m language_generation.generate_from_mrs_bank \
     --grammar "$grammar_dat" \
     --input "$MRS_JSONL" \
     --out "$raw_out" \
@@ -306,6 +329,8 @@ for grammar_root in "${grammar_dirs[@]}"; do
     --workers "$WORKERS" \
     --chunksize "$CHUNKSIZE" \
     --max-gen "$MAX_GEN" \
+    --ace-mode "$ACE_MODE" \
+    --restart-every "$RESTART_EVERY" \
     > "$gen_log" 2>&1; then
 
     echo "[failed] generation failed"
@@ -325,11 +350,11 @@ for grammar_root in "${grammar_dirs[@]}"; do
 
   echo "[2/2] Selecting overgeneration output..."
   if [[ "$DRY_RUN" == true ]]; then
-    echo "+ python language_generation/select_overgen.py --input $raw_out --out $selected_out --save-details $details_out > $select_log 2>&1"
+    echo "+ $PYTHON_BIN language_generation/select_overgen.py --input $raw_out --out $selected_out --save-details $details_out > $select_log 2>&1"
     record_success "$lang_id" "dry_run"
     count=$((count + 1))
     continue
-  elif ! python language_generation/select_overgen.py \
+  elif ! "$PYTHON_BIN" language_generation/select_overgen.py \
     --input "$raw_out" \
     --out "$selected_out" \
     --save-details "$details_out" \

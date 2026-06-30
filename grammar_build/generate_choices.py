@@ -9,6 +9,8 @@ from itertools import product
 from pathlib import Path
 from typing import Dict, List, Tuple
 
+from utils import derive_language_config
+
 
 CLAUSE_WOS = ["sov", "svo", "vos"]
 NP_WOS = ["gn", "ng"]
@@ -494,6 +496,8 @@ def make_manifest_row(
         strategy=strategy,
     )
 
+    config = derive_language_config(language)
+
     return {
         "id": f"{idx:0{ID_WIDTH}d}",
         "language": language,
@@ -506,7 +510,10 @@ def make_manifest_row(
         "comp_system_code": COMP_SYSTEM_CODES[comp_system],
         "strategy": strategy,
         "strategy_code": STRATEGY_CODES[strategy],
-        "anc_wo": ANC_WO_TABLE[(clause_wo, np_wo)][strategy],
+        "anc_wo": config["anc_wo"],
+        "anc_wo_choice": config["anc_wo_choice"],
+        "anc_iv_order": config["anc_iv_order"],
+        "anc_tv_order": config["anc_tv_order"],
     }
 
 
@@ -524,10 +531,13 @@ def write_manifest(rows: List[Dict[str, str]], path: Path) -> None:
         "strategy",
         "strategy_code",
         "anc_wo",
+        "anc_wo_choice",
+        "anc_iv_order",
+        "anc_tv_order",
     ]
 
     with path.open("w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter="\t")
+        writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter="\t", lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 

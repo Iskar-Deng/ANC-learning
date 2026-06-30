@@ -21,6 +21,8 @@ JsonDict = Dict[str, Any]
 
 
 class PseudoEnglishGenerator:
+    MAX_ANC_NESTING = 3
+
     # Conservative English ANC suffix whitelist.
     # Ordered roughly from longer/more specific to shorter/more general.
     ANC_SUFFIXES: Tuple[str, ...] = (
@@ -35,7 +37,16 @@ class PseudoEnglishGenerator:
         "ing",
     )
 
-    def __init__(self, similarity_threshold: float = 0.70) -> None:
+    def __init__(
+        self,
+        similarity_threshold: float = 0.70,
+        force_anc_source_construction: Optional[str] = None,
+    ) -> None:
+        if force_anc_source_construction not in {None, "iv", "tv"}:
+            raise ValueError(
+                "force_anc_source_construction must be one of None, 'iv', or 'tv'"
+            )
+
         self.noun_lemmas: Set[str] = set()
 
         self.iv_verbs: Set[str] = set()
@@ -53,6 +64,7 @@ class PseudoEnglishGenerator:
         # common_prefix_len / len(stem) >= threshold
         # common_prefix_len / len(verb) >= threshold
         self.similarity_threshold = similarity_threshold
+        self.force_anc_source_construction = force_anc_source_construction
 
         # ========= stats =========
         self.total_input_records = 0
@@ -265,6 +277,9 @@ class PseudoEnglishGenerator:
                 )
                 self.anc_noun_to_candidates[noun] = candidates
 
+        self._refresh_anc_lexicon_counts()
+
+    def _refresh_anc_lexicon_counts(self) -> None:
         iv_count = 0
         tv_count = 0
         multi_source = 0
@@ -285,6 +300,40 @@ class PseudoEnglishGenerator:
             "multi_source": multi_source,
             "total_anc_nouns": len(self.anc_noun_to_candidates),
         }
+
+    def merge_external_anc_lexicon(self, path: str) -> None:
+        """
+        Optionally seed ANC candidates from a previously built lexicon.
+
+        This is deliberately opt-in so normal pseudo-English generation is
+        unchanged. Only nouns observed in the current input are imported.
+        """
+        with open(path, encoding="utf-8") as infile:
+            data = json.load(infile)
+
+        external = data.get("anc_noun_to_candidates", {})
+        if not isinstance(external, dict):
+            raise ValueError(f"external ANC lexicon missing anc_noun_to_candidates: {path}")
+
+        for noun in sorted(self.noun_lemmas):
+            candidates = external.get(noun)
+            if not isinstance(candidates, list):
+                continue
+
+            valid_candidates = []
+            for cand in candidates:
+                if not isinstance(cand, dict):
+                    continue
+                if cand.get("construction") not in {"iv", "tv"}:
+                    continue
+                if not isinstance(cand.get("verb"), str):
+                    continue
+                valid_candidates.append(dict(cand))
+
+            if valid_candidates:
+                self.anc_noun_to_candidates[noun] = valid_candidates
+
+        self._refresh_anc_lexicon_counts()
 
     def iter_outputs(self, records: Iterable[JsonDict], total: Optional[int] = None) -> Iterator[JsonDict]:
         new_sid = 1
@@ -384,6 +433,7 @@ class PseudoEnglishGenerator:
                 "anc_suffixes": list(self.ANC_SUFFIXES),
                 "anc_source_constructions": ["iv", "tv"],
                 "exclude_cv_as_anc_source": True,
+                "force_anc_source_construction": self.force_anc_source_construction,
             },
         }
 
@@ -487,7 +537,7 @@ class PseudoEnglishGenerator:
         if construction == "cv":
             return self._realize_cv(rec, context)
         if construction == "cop_n":
-            return self._realize_cop_n(rec, context), False
+            return self._realize_cop_n(rec, context)
 
         return None, False
 
@@ -499,17 +549,66 @@ class PseudoEnglishGenerator:
         if mode == "iv_single":
             sole_arg = anc.get("agent")
             if sole_arg:
-                parts.append(f"{sole_arg}ge")
+                parts.append(self._add_marker_to_np(sole_arg, "ge"))
             parts.append(f"{anc['verb']}nmz")
             return " ".join(parts)
 
         if anc.get("agent"):
-            parts.append(f"{anc['agent']}ge")
+            parts.append(self._add_marker_to_np(anc["agent"], "ge"))
         parts.append(f"{anc['verb']}nmz")
         if anc.get("patient"):
-            parts.append(f"{anc['patient']}ob")
+            parts.append(self._add_marker_to_np(anc["patient"], "ob"))
 
         return " ".join(parts)
+
+    def _add_marker_to_np(self, realized_np: str, marker: str) -> str:
+        toks = realized_np.split()
+        if not toks:
+            return f"x{marker}"
+
+        for i, tok in enumerate(toks):
+            if tok.endswith("nmz"):
+                toks[i] = f"{tok}{marker}"
+                return " ".join(toks)
+
+        toks[-1] = f"{toks[-1]}{marker}"
+        return " ".join(toks)
+
+    def _add_genitive_marker_to_np(self, realized_np: str) -> str:
+        return self._add_marker_to_np(realized_np, "ge")
+
+    def _realize_noun_or_anc(
+        self,
+        noun_lemma: str,
+        rec: JsonDict,
+        context_rec: Optional[JsonDict] = None,
+        role: Optional[str] = None,
+        anc_depth: int = 0,
+        used_modifier_tokens: Optional[Set[int]] = None,
+    ) -> Tuple[str, bool]:
+        if anc_depth < self.MAX_ANC_NESTING:
+            anc = self._extract_anc_info_for_noun(
+                rec=rec,
+                context_rec=context_rec,
+                role=role,
+                noun_lemma=noun_lemma,
+                expected_construction=self.force_anc_source_construction,
+                anc_depth=anc_depth,
+                used_modifier_tokens=used_modifier_tokens,
+            )
+            if anc is not None:
+                return self._render_anc_np(anc), True
+
+        return (
+            *self._realize_ordinary_noun_with_gen(
+                noun_lemma,
+                rec,
+                context_rec=context_rec,
+                role=role,
+                anc_depth=anc_depth,
+                used_modifier_tokens=used_modifier_tokens,
+            ),
+        )
 
     def _realize_iv(self, rec: JsonDict, context_rec: JsonDict) -> Tuple[str, bool]:
         args = rec.get("arguments") or {}
@@ -519,26 +618,14 @@ class PseudoEnglishGenerator:
         if not subj or not pred:
             return "[BAD_IV]", False
 
-        anc = self._extract_anc_info_for_noun(
-            rec=rec,
-            context_rec=context_rec,
-            role="S",
-            noun_lemma=subj,
-            expected_construction="iv",
-        )
-        if anc is not None:
-            anc_np = self._render_anc_np(anc)
-            verb_tok = self._verb_surface(pred, rec.get("object_info"))
-            return f"{anc_np} {verb_tok}s", True
-
-        subj_tok = self._realize_ordinary_noun_with_gen(
+        subj_tok, subj_has_anc = self._realize_noun_or_anc(
             subj,
             rec,
             context_rec=context_rec,
             role="S",
         )
         verb_tok = self._verb_surface(pred, rec.get("object_info"))
-        return f"{subj_tok} {verb_tok}s", False
+        return f"{subj_tok} {verb_tok}s", subj_has_anc
 
     def _realize_tv(self, rec: JsonDict, context_rec: JsonDict) -> Tuple[str, bool]:
         args = rec.get("arguments") or {}
@@ -548,7 +635,7 @@ class PseudoEnglishGenerator:
         if not a or not p or not rec.get("predicate"):
             return "[BAD_TV]", False
 
-        p_tok = self._realize_ordinary_noun_with_gen(
+        p_tok, p_has_anc = self._realize_noun_or_anc(
             p,
             rec,
             context_rec=context_rec,
@@ -556,24 +643,13 @@ class PseudoEnglishGenerator:
         )
         matrix_verb = self._verb_surface(rec["predicate"], rec.get("object_info")) + "s"
 
-        anc = self._extract_anc_info_for_noun(
-            rec=rec,
-            context_rec=context_rec,
-            role="A",
-            noun_lemma=a,
-            expected_construction="tv",
-        )
-        if anc is not None:
-            anc_np = self._render_anc_np(anc)
-            return f"{anc_np} {matrix_verb} {p_tok}", True
-
-        ordinary_np_subj = self._realize_ordinary_noun_with_gen(
+        a_tok, a_has_anc = self._realize_noun_or_anc(
             a,
             rec,
             context_rec=context_rec,
             role="A",
         )
-        return f"{ordinary_np_subj} {matrix_verb} {p_tok}", False
+        return f"{a_tok} {matrix_verb} {p_tok}", a_has_anc or p_has_anc
 
     def _realize_cv(self, rec: JsonDict, context_rec: JsonDict) -> Tuple[str, bool]:
         args = rec.get("arguments") or {}
@@ -588,53 +664,38 @@ class PseudoEnglishGenerator:
         if embedded is None:
             return "[BAD_CV]", False
 
-        # 这里虽然还调用 expected_construction="cv"，
-        # 但 _extract_anc_info_for_noun() 现在不会返回 cv ANC。
-        # 所以 cv 句子会正常 realization，但不会 nominalized-cv。
-        anc = self._extract_anc_info_for_noun(
-            rec=rec,
-            context_rec=context_rec,
-            role="A",
-            noun_lemma=a,
-            expected_construction="cv",
-        )
-        if anc is not None:
-            anc_np = self._render_anc_np(anc)
-            verb_tok = self._verb_surface(pred, rec.get("object_info"))
-            return f"{anc_np} {verb_tok}s that {embedded}", True
-
-        a_tok = self._realize_ordinary_noun_with_gen(
+        a_tok, a_has_anc = self._realize_noun_or_anc(
             a,
             rec,
             context_rec=context_rec,
             role="A",
         )
         verb_tok = self._verb_surface(pred, rec.get("object_info"))
-        return f"{a_tok} {verb_tok}s that {embedded}", embedded_has_anc
+        return f"{a_tok} {verb_tok}s that {embedded}", a_has_anc or embedded_has_anc
 
-    def _realize_cop_n(self, rec: JsonDict, context_rec: JsonDict) -> str:
+    def _realize_cop_n(self, rec: JsonDict, context_rec: JsonDict) -> Tuple[str, bool]:
         args = rec.get("arguments") or {}
         a = args.get("A")
         pred_nom = args.get("PRED")
         pred = rec.get("predicate")
 
         if not a or not pred_nom or not pred:
-            return "[BAD_COP_N]"
+            return "[BAD_COP_N]", False
 
-        subj = self._realize_ordinary_noun_with_gen(
+        subj, subj_has_anc = self._realize_noun_or_anc(
             a,
             rec,
             context_rec=context_rec,
             role="A",
         )
         verb = self._verb_surface(pred, rec.get("object_info")) + "s"
-        pred_nom_tok = self._realize_ordinary_noun_with_gen(
+        pred_nom_tok, pred_nom_has_anc = self._realize_noun_or_anc(
             pred_nom,
             rec,
             context_rec=context_rec,
             role="PRED",
         )
-        return f"{subj} {verb} {pred_nom_tok}"
+        return f"{subj} {verb} {pred_nom_tok}", subj_has_anc or pred_nom_has_anc
 
     def _argument_token_index(self, rec: JsonDict, role: Optional[str]) -> Optional[int]:
         if role is None:
@@ -648,22 +709,39 @@ class PseudoEnglishGenerator:
         token_index = role_info.get("token_index")
         return token_index if isinstance(token_index, int) else None
 
+    def _mark_modifier_used(
+        self,
+        used_modifier_tokens: Optional[Set[int]],
+        nm: Optional[JsonDict],
+    ) -> Set[int]:
+        used = set(used_modifier_tokens or set())
+        if nm is None:
+            return used
+
+        token_index = nm.get("token_index")
+        if isinstance(token_index, int):
+            used.add(token_index)
+        return used
+
     def _find_nominal_modifier(
         self,
         noun_lemma: str,
         rec: JsonDict,
         context_rec: Optional[JsonDict] = None,
         role: Optional[str] = None,
+        used_modifier_tokens: Optional[Set[int]] = None,
     ) -> Optional[JsonDict]:
         noun_tok = self._canon_token(noun_lemma)
         target_token_index = self._argument_token_index(rec, role)
         source_rec = context_rec or rec
+        used_tokens = used_modifier_tokens or set()
 
         nominal_modifiers = source_rec.get("nominal_modifiers") or []
         matches = [
             nm
             for nm in nominal_modifiers
             if self._canon_token(nm.get("noun_lemma", "")) == noun_tok
+            and nm.get("token_index") not in used_tokens
         ]
 
         if target_token_index is not None:
@@ -686,14 +764,18 @@ class PseudoEnglishGenerator:
         rec: JsonDict,
         context_rec: Optional[JsonDict] = None,
         role: Optional[str] = None,
-    ) -> str:
+        anc_depth: int = 0,
+        used_modifier_tokens: Optional[Set[int]] = None,
+    ) -> Tuple[str, bool]:
         noun_tok = self._canon_token(noun_lemma)
         nm = self._find_nominal_modifier(
             noun_lemma,
             rec,
             context_rec=context_rec,
             role=role,
+            used_modifier_tokens=used_modifier_tokens,
         )
+        child_used = self._mark_modifier_used(used_modifier_tokens, nm)
 
         if nm is not None:
             modifiers = nm.get("modifiers") or {}
@@ -701,37 +783,61 @@ class PseudoEnglishGenerator:
             if poss_mods:
                 possessor = poss_mods[0].get("head_lemma") or poss_mods[0].get("head_text")
                 if possessor:
-                    possessor_tok = self._canon_token(possessor)
-                    return f"{possessor_tok}ge {noun_tok}"
+                    possessor_tok, possessor_has_anc = self._realize_noun_or_anc(
+                        possessor,
+                        rec,
+                        context_rec=context_rec,
+                        role=None,
+                        anc_depth=anc_depth,
+                        used_modifier_tokens=child_used,
+                    )
+                    return f"{self._add_genitive_marker_to_np(possessor_tok)} {noun_tok}", possessor_has_anc
 
-        return noun_tok
+        return noun_tok, False
 
     # ========= ANC handling =========
 
     def _lookup_anc_candidate(
         self,
         noun_lemma: str,
-        expected_construction: str,
+        expected_construction: Optional[str] = None,
     ) -> Optional[Dict[str, Any]]:
         noun_tok = self._canon_token(noun_lemma)
         candidates = self.anc_noun_to_candidates.get(noun_tok, [])
         for cand in candidates:
-            if cand["construction"] == expected_construction:
+            if expected_construction is None or cand["construction"] == expected_construction:
                 return cand
         return None
+
+    def _iter_anc_candidates(
+        self,
+        noun_lemma: str,
+        expected_construction: Optional[str] = None,
+    ) -> List[Dict[str, Any]]:
+        noun_tok = self._canon_token(noun_lemma)
+        candidates = self.anc_noun_to_candidates.get(noun_tok, [])
+        if expected_construction is None:
+            return list(candidates)
+        return [
+            cand
+            for cand in candidates
+            if cand["construction"] == expected_construction
+        ]
 
     def _extract_anc_info_for_noun(
         self,
         rec: JsonDict,
         noun_lemma: str,
-        expected_construction: str,
+        expected_construction: Optional[str] = None,
         context_rec: Optional[JsonDict] = None,
         role: Optional[str] = None,
+        anc_depth: int = 0,
+        used_modifier_tokens: Optional[Set[int]] = None,
     ) -> Optional[Dict[str, Optional[str]]]:
         noun_tok = self._canon_token(noun_lemma)
 
-        cand = self._lookup_anc_candidate(noun_tok, expected_construction)
-        if cand is None:
+        candidates = self._iter_anc_candidates(noun_tok, expected_construction)
+        if not candidates:
             return None
 
         target_nm = self._find_nominal_modifier(
@@ -739,7 +845,9 @@ class PseudoEnglishGenerator:
             rec,
             context_rec=context_rec,
             role=role,
+            used_modifier_tokens=used_modifier_tokens,
         )
+        child_used = self._mark_modifier_used(used_modifier_tokens, target_nm)
 
         poss_mods: List[JsonDict] = []
         of_mods: List[JsonDict] = []
@@ -763,55 +871,80 @@ class PseudoEnglishGenerator:
         if poss_mods:
             raw_subj = poss_mods[0].get("head_lemma") or poss_mods[0].get("head_text")
             if raw_subj:
-                subj_arg = self._canon_token(raw_subj)
+                subj_arg, _ = self._realize_noun_or_anc(
+                    raw_subj,
+                    rec,
+                    context_rec=context_rec,
+                    role=None,
+                    anc_depth=anc_depth + 1,
+                    used_modifier_tokens=child_used,
+                )
         elif by_mods:
             raw_subj = by_mods[0].get("object_head_lemma") or by_mods[0].get("object_head_text")
             if raw_subj:
-                subj_arg = self._canon_token(raw_subj)
+                subj_arg, _ = self._realize_noun_or_anc(
+                    raw_subj,
+                    rec,
+                    context_rec=context_rec,
+                    role=None,
+                    anc_depth=anc_depth + 1,
+                    used_modifier_tokens=child_used,
+                )
 
         if of_mods:
             raw_obj = of_mods[0].get("object_head_lemma") or of_mods[0].get("object_head_text")
             if raw_obj:
-                obj_arg = self._canon_token(raw_obj)
+                obj_arg, _ = self._realize_noun_or_anc(
+                    raw_obj,
+                    rec,
+                    context_rec=context_rec,
+                    role=None,
+                    anc_depth=anc_depth + 1,
+                    used_modifier_tokens=child_used,
+                )
 
         overt_arg_count = int(subj_arg is not None) + int(obj_arg is not None)
 
-        if expected_construction == "iv":
-            # iv:
-            # 0 overt args -> bare verbnmz is allowed
-            # 1 overt arg  -> that sole arg is always realized as ge
-            # 2 overt args -> reject this ANC analysis
-            if overt_arg_count > 1:
-                return None
+        for cand in candidates:
+            source_construction = cand["construction"]
 
-            sole_arg = subj_arg if subj_arg is not None else obj_arg
+            if source_construction == "iv":
+                # iv:
+                # 0 overt args -> bare verbnmz is allowed
+                # 1 overt arg  -> that sole arg is always realized as ge
+                # 2 overt args -> reject this ANC analysis
+                if overt_arg_count > 1:
+                    continue
 
-            self.anc_source_nouns.add(noun_tok)
-            return {
-                "verb": cand["verb"],
-                "agent": sole_arg,           # sole argument always rendered as ge
-                "patient": None,
-                "source_construction": cand["construction"],
-                "realization_mode": "iv_single",
-            }
+                sole_arg = subj_arg if subj_arg is not None else obj_arg
 
-        if expected_construction == "tv":
-            # tv:
-            # poss/by -> subject -> ge
-            # of      -> object  -> ob
-            if overt_arg_count > 2:
-                return None
+                self.anc_source_nouns.add(noun_tok)
+                return {
+                    "verb": cand["verb"],
+                    "agent": sole_arg,           # sole argument always rendered as ge
+                    "patient": None,
+                    "source_construction": cand["construction"],
+                    "realization_mode": "iv_single",
+                }
 
-            self.anc_source_nouns.add(noun_tok)
-            return {
-                "verb": cand["verb"],
-                "agent": subj_arg,
-                "patient": obj_arg,
-                "source_construction": cand["construction"],
-                "realization_mode": "default",
-            }
+            if source_construction == "tv":
+                # tv:
+                # poss/by -> subject -> ge
+                # of      -> object  -> ob
+                if overt_arg_count > 2:
+                    continue
 
-        # 关键改动：cv nominalization 不作为 ANC 抽取/实现。
+                self.anc_source_nouns.add(noun_tok)
+                return {
+                    "verb": cand["verb"],
+                    "agent": subj_arg,
+                    "patient": obj_arg,
+                    "source_construction": cand["construction"],
+                    "realization_mode": "default",
+                }
+
+        # CV verbs are not ANC sources because build_anc_lexicon() only stores
+        # IV/TV candidates.
         return None
 
     # ========= verb handling =========
@@ -895,6 +1028,25 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Do not pre-count input lines for tqdm total",
     )
+    parser.add_argument(
+        "--external-anc-lexicon",
+        default=None,
+        help=(
+            "Optional previously built lexicon JSON. When supplied, ANC "
+            "candidates for nouns observed in the current input are imported "
+            "from its anc_noun_to_candidates map."
+        ),
+    )
+    parser.add_argument(
+        "--force-anc-source-construction",
+        choices=["iv", "tv"],
+        default=None,
+        help=(
+            "Optional ANC candidate filter. When set, nominalizations are only "
+            "realized from candidates with this source construction; nouns "
+            "without such a candidate fall back to ordinary noun realization."
+        ),
+    )
     return parser.parse_args()
 
 
@@ -903,13 +1055,18 @@ def main() -> None:
 
     total = None if args.no_count else count_nonempty_lines(args.input)
 
-    gen = PseudoEnglishGenerator(similarity_threshold=args.similarity_threshold)
+    gen = PseudoEnglishGenerator(
+        similarity_threshold=args.similarity_threshold,
+        force_anc_source_construction=args.force_anc_source_construction,
+    )
 
     # pass 1: collect nouns + verb inventories
     gen.collect_base_lexicon(iter_jsonl(args.input), total=total)
 
     # pass 2: build ANC noun lexicon
     gen.build_anc_lexicon()
+    if args.external_anc_lexicon:
+        gen.merge_external_anc_lexicon(args.external_anc_lexicon)
 
     # pass 3: realize pseudo-English and collect ANC stats
     write_jsonl_stream(

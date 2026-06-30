@@ -1,0 +1,4 @@
+clause_wo	n_languages	n_pairs	raw_accuracy	bad_parse_rate	weighted_accuracy
+sov	32	107200	0.862826	0.223983	0.669568
+svo	32	107200	0.903060	0.120000	0.794693
+vos	32	107200	0.880784	0.223983	0.683503

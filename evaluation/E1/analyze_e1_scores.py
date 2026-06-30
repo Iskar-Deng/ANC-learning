@@ -22,6 +22,9 @@ DIMENSIONS = [
     "comp_system",
     "strategy",
     "anc_wo",
+    "anc_wo_choice",
+    "anc_iv_order",
+    "anc_tv_order",
 ]
 
 
@@ -146,6 +149,9 @@ def main() -> None:
         "comp_system",
         "strategy",
         "anc_wo",
+        "anc_wo_choice",
+        "anc_iv_order",
+        "anc_tv_order",
         "n_pairs",
         "accuracy_strict",
         "ties",
@@ -208,6 +214,9 @@ def main() -> None:
                 "comp_system": r.get("comp_system", ""),
                 "strategy": r.get("strategy", ""),
                 "anc_wo": r.get("anc_wo", ""),
+                "anc_wo_choice": r.get("anc_wo_choice", ""),
+                "anc_iv_order": r.get("anc_iv_order", ""),
+                "anc_tv_order": r.get("anc_tv_order", ""),
             }
             for r in lowest_rows
         ],
@@ -222,4 +231,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

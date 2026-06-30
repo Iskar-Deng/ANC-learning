@@ -1,0 +1,9 @@
+strategy	alignment	n_languages	n_pairs	raw_accuracy	bad_parse_rate	weighted_accuracy
+erg-poss	erg-abs	12	40200	0.871418	0.177338	0.716882
+erg-poss	nom-acc	12	40200	0.909428	0.140299	0.781836
+nomn	erg-abs	12	40200	0.888010	0.199403	0.710938
+nomn	nom-acc	12	40200	0.910025	0.124279	0.796928
+poss-acc	erg-abs	12	40200	0.866418	0.253831	0.646494
+poss-acc	nom-acc	12	40200	0.893010	0.160050	0.750084
+sent	erg-abs	12	40200	0.868706	0.252861	0.649045
+sent	nom-acc	12	40200	0.850771	0.206517	0.675072

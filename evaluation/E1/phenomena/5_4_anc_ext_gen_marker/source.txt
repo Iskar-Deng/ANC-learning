@@ -1,0 +1,160 @@
+The arrival's timing surprised the guard.
+The departure's cause puzzled the clerk.
+The disappearance's effect worried the family.
+The movement's sound startled the dog.
+The improvement's result pleased the coach.
+The return's timing relieved the staff.
+The fall's cause confused the doctor.
+The rise's effect concerned the mayor.
+The delay's cost angered the owner.
+The change's meaning interested the judge.
+The growth's result helped the company.
+The decline's cause troubled the board.
+The visit's purpose confused the nurse.
+The escape's timing shocked the police.
+The landing's sound woke the baby.
+The collapse's cause alarmed the crew.
+The recovery's result encouraged the team.
+The failure's effect upset the manager.
+The start's timing annoyed the crowd.
+The stop's cause puzzled the driver.
+The drop's effect worried the farmer.
+The shift's meaning confused the student.
+The jump's sound scared the horse.
+The turn's purpose interested the guide.
+The move's cost surprised the buyer.
+The climb's result impressed the coach.
+The exit's timing bothered the guard.
+The entry's record helped the lawyer.
+The advance's effect pleased the general.
+The retreat's cause worried the captain.
+The spread's pattern concerned the doctor.
+The break's sound frightened the child.
+The fall's result upset the teacher.
+The recovery's timing pleased the nurse.
+The crash's cause troubled the pilot.
+The pause's purpose confused the speaker.
+The arrival's report satisfied the manager.
+The departure's record helped the officer.
+The disappearance's problem worried the neighbor.
+The improvement's benefit pleased the patient.
+The child's arrival's timing surprised the guard.
+The train's departure's cause puzzled the clerk.
+The boy's disappearance's effect worried the family.
+The car's movement's sound startled the dog.
+The team's improvement's result pleased the coach.
+The worker's return's timing relieved the staff.
+The patient's fall's cause confused the doctor.
+The market's rise's effect concerned the mayor.
+The shipment's delay's cost angered the owner.
+The policy's change's meaning interested the judge.
+The company's growth's result helped the board.
+The store's decline's cause troubled the owner.
+The doctor's visit's purpose confused the nurse.
+The prisoner's escape's timing shocked the police.
+The plane's landing's sound woke the baby.
+The bridge's collapse's cause alarmed the crew.
+The athlete's recovery's result encouraged the team.
+The system's failure's effect upset the manager.
+The show’s start's timing annoyed the crowd.
+The bus's stop's cause puzzled the driver.
+The price's drop's effect worried the farmer.
+The schedule's shift's meaning confused the student.
+The cat's jump's sound scared the horse.
+The guide's turn's purpose interested the group.
+The family's move's cost surprised the buyer.
+The runner's climb's result impressed the coach.
+The guest's exit's timing bothered the guard.
+The visitor's entry's record helped the lawyer.
+The army's advance's effect pleased the general.
+The unit's retreat's cause worried the captain.
+The illness's spread's pattern concerned the doctor.
+The glass's break's sound frightened the child.
+The player’s fall's result upset the teacher.
+The nurse's recovery's timing pleased the doctor.
+The truck's crash's cause troubled the pilot.
+The speaker's pause's purpose confused the audience.
+The manager's arrival's report satisfied the owner.
+The officer's departure's record helped the court.
+The neighbor's disappearance's problem worried the police.
+The patient's improvement's benefit pleased the family.
+The cleaning's result pleased the manager.
+The reading's effect worried the teacher.
+The writing's style impressed the editor.
+The opening's timing surprised the crowd.
+The closing's cost angered the owner.
+The repair's result satisfied the driver.
+The discussion's purpose confused the student.
+The translation's meaning helped the reader.
+The inspection's report alarmed the director.
+The performance's effect moved the audience.
+The payment's record helped the clerk.
+The review's result pleased the author.
+The signing's timing surprised the lawyer.
+The delivery's cost bothered the buyer.
+The sale's effect worried the staff.
+The purchase's record helped the accountant.
+The search's result relieved the officer.
+The test's purpose confused the class.
+The vote's outcome pleased the mayor.
+The call's timing annoyed the nurse.
+The check's result worried the doctor.
+The drawing's meaning puzzled the child.
+The painting's effect impressed the visitor.
+The recording's sound bothered the producer.
+The printing's cost surprised the teacher.
+The cooking's smell pleased the guest.
+The washing's result satisfied the parent.
+The filing's record helped the lawyer.
+The training's benefit pleased the coach.
+The meeting's purpose interested the worker.
+The announcement's timing shocked the staff.
+The approval's effect helped the project.
+The rejection's result upset the writer.
+The explanation's meaning confused the tourist.
+The description's detail impressed the buyer.
+The invitation's purpose puzzled the guest.
+The selection's result pleased the judge.
+The comparison's effect changed the answer.
+The measurement's record helped the nurse.
+The arrangement's cost worried the planner.
+The teacher's reading's effect impressed the class.
+The janitor's cleaning's result pleased the manager.
+The editor's writing's style impressed the publisher.
+The host's opening's timing surprised the crowd.
+The owner’s closing's cost angered the buyer.
+The mechanic's repair's result satisfied the driver.
+The leader's discussion's purpose confused the student.
+The clerk's translation's meaning helped the reader.
+The inspector's inspection's report alarmed the director.
+The singer's performance's effect moved the audience.
+The customer's payment's record helped the clerk.
+The critic's review's result pleased the author.
+The lawyer's signing's timing surprised the client.
+The courier's delivery's cost bothered the buyer.
+The broker's sale's effect worried the staff.
+The accountant's purchase's record helped the auditor.
+The officer's search's result relieved the chief.
+The teacher's test's purpose confused the class.
+The council's vote's outcome pleased the mayor.
+The nurse's call's timing annoyed the doctor.
+The doctor's check's result worried the patient.
+The artist's drawing's meaning puzzled the child.
+The painter's painting's effect impressed the visitor.
+The producer's recording's sound bothered the engineer.
+The printer's printing's cost surprised the teacher.
+The chef's cooking's smell pleased the guest.
+The parent’s washing's result satisfied the child.
+The assistant's filing's record helped the lawyer.
+The coach's training's benefit pleased the team.
+The manager's meeting's purpose interested the worker.
+The director's announcement's timing shocked the staff.
+The board's approval's effect helped the project.
+The editor's rejection's result upset the writer.
+The guide's explanation's meaning confused the tourist.
+The seller's description's detail impressed the buyer.
+The host's invitation's purpose puzzled the guest.
+The judge's selection's result pleased the audience.
+The analyst's comparison's effect changed the answer.
+The nurse's measurement's record helped the doctor.
+The planner's arrangement's cost worried the family.

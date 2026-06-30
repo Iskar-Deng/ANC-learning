@@ -49,6 +49,7 @@ _WORKER_MAX_PARSES: int = 20
 _WORKER_FIRST_PARSE_ONLY: bool = False
 _WORKER_SKIP_FAILED: bool = False
 _WORKER_RESTART_EVERY: int = 5000
+_WORKER_PREFER_ANC_SOURCE_CONSTRUCTION: Optional[str] = None
 _WORKER_PARSER: Any = None
 _WORKER_PARSED_SINCE_RESTART: int = 0
 
@@ -119,6 +120,84 @@ def carryover_metadata(row: JsonDict) -> JsonDict:
     return metadata
 
 
+def strip_pseudo_marker(token: str) -> str:
+    for marker in ("ca", "ge", "ob"):
+        if token.endswith(marker) and len(token) > len(marker):
+            return token[: -len(marker)]
+    return token
+
+
+def extract_nmz_stems(pseudo_sentence: str) -> List[str]:
+    stems: List[str] = []
+    for raw_token in pseudo_sentence.split():
+        token = strip_pseudo_marker(raw_token.lower())
+        if token.endswith("nmz") and len(token) > 3:
+            stems.append(token[:-3])
+    return stems
+
+
+def rel_segment_for_pred(mrs: str, pred: str) -> str | None:
+    pred_text = f'"_{pred}_v_rel"'
+    pred_index = mrs.find(pred_text)
+    if pred_index < 0:
+        return None
+
+    next_rel = mrs.find(" ]  [", pred_index)
+    if next_rel < 0:
+        next_rel = mrs.find(" ] >", pred_index)
+    if next_rel < 0:
+        return mrs[pred_index:]
+
+    return mrs[pred_index:next_rel]
+
+
+def result_matches_anc_construction(
+    result: JsonDict,
+    stems: List[str],
+    construction: str,
+) -> bool:
+    mrs = result.get("mrs")
+    if not isinstance(mrs, str):
+        return False
+
+    for stem in stems:
+        segment = rel_segment_for_pred(mrs, stem)
+        if segment is None:
+            return False
+        has_arg2 = " ARG2:" in segment
+        if construction == "iv" and has_arg2:
+            return False
+        if construction == "tv" and not has_arg2:
+            return False
+    return True
+
+
+def prefer_anc_parse_results(
+    row: JsonDict,
+    results: List[JsonDict],
+    preferred_construction: str | None,
+) -> List[JsonDict]:
+    if preferred_construction is None or not results:
+        return results
+
+    pseudo_sentence = extract_pseudo_sentence(row)
+    stems = extract_nmz_stems(pseudo_sentence)
+    if not stems:
+        return results
+
+    preferred: List[JsonDict] = []
+    other: List[JsonDict] = []
+    for result in results:
+        if result_matches_anc_construction(result, stems, preferred_construction):
+            preferred.append(result)
+        else:
+            other.append(result)
+
+    if not preferred:
+        return results
+    return preferred + other
+
+
 def make_parser(grammar_dat: str, max_parses: int) -> Any:
     cmdargs = ["-n", str(max_parses)]
 
@@ -184,12 +263,14 @@ def init_worker(
     first_parse_only: bool,
     skip_failed: bool,
     restart_every: int,
+    prefer_anc_source_construction: str | None,
 ) -> None:
     global _WORKER_GRAMMAR
     global _WORKER_MAX_PARSES
     global _WORKER_FIRST_PARSE_ONLY
     global _WORKER_SKIP_FAILED
     global _WORKER_RESTART_EVERY
+    global _WORKER_PREFER_ANC_SOURCE_CONSTRUCTION
     global _WORKER_PARSER
     global _WORKER_PARSED_SINCE_RESTART
 
@@ -198,6 +279,7 @@ def init_worker(
     _WORKER_FIRST_PARSE_ONLY = first_parse_only
     _WORKER_SKIP_FAILED = skip_failed
     _WORKER_RESTART_EVERY = restart_every
+    _WORKER_PREFER_ANC_SOURCE_CONSTRUCTION = prefer_anc_source_construction
     _WORKER_PARSER = None
     _WORKER_PARSED_SINCE_RESTART = 0
 
@@ -343,9 +425,11 @@ def parse_one_row_single_process(
     max_parses: int,
     first_parse_only: bool,
     skip_failed: bool,
+    prefer_anc_source_construction: str | None,
 ) -> Tuple[List[JsonDict], int]:
     pseudo_sentence = extract_pseudo_sentence(row)
     results = parse_with_oneoff(grammar_dat, pseudo_sentence, max_parses)
+    results = prefer_anc_parse_results(row, results, prefer_anc_source_construction)
 
     return build_output_rows_for_item(
         row=row,
@@ -369,6 +453,11 @@ def parse_chunk_worker(chunk: List[Tuple[int, JsonDict]]) -> Tuple[List[JsonDict
     for fallback_id, row in chunk:
         pseudo_sentence = extract_pseudo_sentence(row)
         results = parse_results_persistent(pseudo_sentence)
+        results = prefer_anc_parse_results(
+            row,
+            results,
+            _WORKER_PREFER_ANC_SOURCE_CONSTRUCTION,
+        )
 
         rows, n_success = build_output_rows_for_item(
             row=row,
@@ -416,6 +505,7 @@ def parse_single_process(args: argparse.Namespace, input_path: Path, out_path: P
                 max_parses=args.max_parses,
                 first_parse_only=args.first_parse_only,
                 skip_failed=args.skip_failed,
+                prefer_anc_source_construction=args.prefer_anc_source_construction,
             )
 
             for out_row in rows:
@@ -446,6 +536,7 @@ def parse_parallel(args: argparse.Namespace, input_path: Path, out_path: Path, t
                 args.first_parse_only,
                 args.skip_failed,
                 args.restart_every,
+                args.prefer_anc_source_construction,
             ),
         ) as pool:
             chunk_iter = iter_indexed_chunks(input_path, args.chunksize)
@@ -499,6 +590,17 @@ def main() -> None:
             "Use 0 to disable periodic restart. Default: 5000"
         ),
     )
+    ap.add_argument(
+        "--prefer-anc-source-construction",
+        choices=["iv", "tv"],
+        default=None,
+        help=(
+            "When pseudo-English has multiple parses for an ANC token, prefer "
+            "parses whose nominalized verb looks like this source construction. "
+            "For iv, the nominalized verb relation must not have ARG2; for tv, "
+            "it must have ARG2. If no parse matches, the original parse order is kept."
+        ),
+    )
 
     args = ap.parse_args()
 
@@ -535,6 +637,7 @@ def main() -> None:
     print(f"Restart every:  {args.restart_every}")
     print(f"First only:     {args.first_parse_only}")
     print(f"Skip failed:    {args.skip_failed}")
+    print(f"Prefer ANC:     {args.prefer_anc_source_construction or 'none'}")
     print()
 
     if args.workers == 1:
