@@ -30,8 +30,12 @@ evaluation/E2/generated/
 evaluation/E2/**/logs/
 ```
 
-Final paper-facing E2 summary tables can later be copied into a small tracked
-results directory, after the full run finishes.
+Final paper-facing E2 summary tables are copied into the small tracked results
+directory:
+
+```text
+evaluation/E2/results/
+```
 
 ## 1. Check Selected Coverage
 
@@ -82,6 +86,10 @@ python evaluation/E2/analyze_e2_results.py \
   --pred-dir results/e2_real_grammar_preference/all_models_bos_eos \
   --out-dir evaluation/E2/generated/analysis/bos_eos
 ```
+
+Copy small aggregate outputs into `evaluation/E2/results/` for versioned
+analysis. Leave full prediction files and detailed generated diagnostics
+untracked.
 
 Optional item-level analyses:
 

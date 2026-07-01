@@ -1,0 +1,84 @@
+
+[top_construction]
+tv	all=100155 (44.07%)	eval=98400 (44.16%)	acc=0.9954
+iv	all=49382 (21.73%)	eval=49009 (22.00%)	acc=0.9980
+cop_n	all=40570 (17.85%)	eval=38963 (17.49%)	acc=0.9951
+cv	all=37149 (16.35%)	eval=36439 (16.35%)	acc=0.9908
+
+[anc_bucket]
+none	all=217856 (95.86%)	eval=214145 (96.11%)	acc=0.9971
+bare	all=7604 (3.35%)	eval=6966 (3.13%)	acc=0.9922
+arg	all=1796 (0.79%)	eval=1700 (0.76%)	acc=0.7643
+
+[anc_subtype]
+none	all=217856 (95.86%)	eval=214145 (96.11%)	acc=0.9971
+bare	all=7604 (3.35%)	eval=6966 (3.13%)	acc=0.9922
+ge_only	all=1073 (0.47%)	eval=1030 (0.46%)	acc=0.7862
+ob_only	all=692 (0.30%)	eval=640 (0.29%)	acc=0.7383
+ge_ob	all=31 (0.01%)	eval=30 (0.01%)	acc=0.5691
+
+[top_x_anc]
+tv|none	all=94913 (41.76%)	eval=93568 (41.99%)	acc=0.9977
+iv|none	all=48840 (21.49%)	eval=48526 (21.78%)	acc=0.9985
+cop_n|none	all=38538 (16.96%)	eval=37046 (16.63%)	acc=0.9976
+cv|none	all=35565 (15.65%)	eval=35005 (15.71%)	acc=0.9929
+tv|bare	all=4241 (1.87%)	eval=3889 (1.75%)	acc=0.9932
+cop_n|bare	all=1566 (0.69%)	eval=1478 (0.66%)	acc=0.9970
+cv|bare	all=1316 (0.58%)	eval=1175 (0.53%)	acc=0.9830
+tv|arg	all=1001 (0.44%)	eval=943 (0.42%)	acc=0.7723
+cop_n|arg	all=466 (0.21%)	eval=439 (0.20%)	acc=0.7793
+iv|bare	all=481 (0.21%)	eval=424 (0.19%)	acc=0.9926
+cv|arg	all=268 (0.12%)	eval=259 (0.12%)	acc=0.7397
+iv|arg	all=61 (0.03%)	eval=59 (0.03%)	acc=0.6340
+
+[complexity_bucket]
+tv_plain_obj	all=67030 (29.50%)	eval=66446 (29.82%)	acc=0.9980
+iv_plain	all=43935 (19.33%)	eval=43682 (19.60%)	acc=0.9984
+pp_or_particle	all=40958 (18.02%)	eval=39875 (17.90%)	acc=0.9969
+cop_n	all=38538 (16.96%)	eval=37046 (16.63%)	acc=0.9976
+cv_depth1	all=24389 (10.73%)	eval=24124 (10.83%)	acc=0.9920
+anc_bare	all=7604 (3.35%)	eval=6966 (3.13%)	acc=0.9922
+cv_depth2plus	all=3006 (1.32%)	eval=2972 (1.33%)	acc=0.9943
+anc_overt_arg	all=1796 (0.79%)	eval=1700 (0.76%)	acc=0.7643
+
+[construction_detail]
+tv_plain_obj	all=70857 (31.18%)	eval=69992 (31.41%)	acc=0.9957
+iv_plain	all=44422 (19.55%)	eval=44118 (19.80%)	acc=0.9979
+cop_n	all=40570 (17.85%)	eval=38963 (17.49%)	acc=0.9951
+cv_depth1	all=33005 (14.52%)	eval=32381 (14.53%)	acc=0.9905
+tv_pp	all=22636 (9.96%)	eval=21873 (9.82%)	acc=0.9939
+iv_particle	all=4960 (2.18%)	eval=4891 (2.20%)	acc=0.9986
+tv_particle	all=4791 (2.11%)	eval=4720 (2.12%)	acc=0.9976
+cv_depth2plus	all=4144 (1.82%)	eval=4058 (1.82%)	acc=0.9927
+tv_pp+particle	all=1797 (0.79%)	eval=1742 (0.78%)	acc=0.9941
+tv_indirect_obj	all=74 (0.03%)	eval=73 (0.03%)	acc=0.9994
+
+[detail_x_anc]
+tv_plain_obj|none	all=66956 (29.46%)	eval=66373 (29.79%)	acc=0.9980
+iv_plain|none	all=43935 (19.33%)	eval=43682 (19.60%)	acc=0.9984
+cop_n|none	all=38538 (16.96%)	eval=37046 (16.63%)	acc=0.9976
+cv_depth1|none	all=31589 (13.90%)	eval=31102 (13.96%)	acc=0.9927
+tv_pp|none	all=21481 (9.45%)	eval=20827 (9.35%)	acc=0.9967
+iv_particle|none	all=4905 (2.16%)	eval=4844 (2.17%)	acc=0.9990
+tv_particle|none	all=4680 (2.06%)	eval=4621 (2.07%)	acc=0.9988
+cv_depth2plus|none	all=3976 (1.75%)	eval=3903 (1.75%)	acc=0.9945
+tv_plain_obj|bare	all=3189 (1.40%)	eval=2946 (1.32%)	acc=0.9934
+tv_pp+particle|none	all=1722 (0.76%)	eval=1674 (0.75%)	acc=0.9965
+cop_n|bare	all=1566 (0.69%)	eval=1478 (0.66%)	acc=0.9970
+cv_depth1|bare	all=1178 (0.52%)	eval=1050 (0.47%)	acc=0.9820
+tv_pp|bare	all=906 (0.40%)	eval=814 (0.37%)	acc=0.9927
+tv_plain_obj|arg	all=712 (0.31%)	eval=673 (0.30%)	acc=0.7834
+cop_n|arg	all=466 (0.21%)	eval=439 (0.20%)	acc=0.7793
+iv_plain|bare	all=433 (0.19%)	eval=383 (0.17%)	acc=0.9925
+tv_pp|arg	all=249 (0.11%)	eval=232 (0.10%)	acc=0.7437
+cv_depth1|arg	all=238 (0.10%)	eval=229 (0.10%)	acc=0.7369
+cv_depth2plus|bare	all=138 (0.06%)	eval=125 (0.06%)	acc=0.9912
+tv_particle|bare	all=86 (0.04%)	eval=75 (0.03%)	acc=0.9974
+tv_indirect_obj|none	all=74 (0.03%)	eval=73 (0.03%)	acc=0.9994
+tv_pp+particle|bare	all=60 (0.03%)	eval=54 (0.02%)	acc=0.9846
+iv_plain|arg	all=54 (0.02%)	eval=53 (0.02%)	acc=0.6291
+iv_particle|bare	all=48 (0.02%)	eval=41 (0.02%)	acc=0.9934
+cv_depth2plus|arg	all=30 (0.01%)	eval=30 (0.01%)	acc=0.7608
+tv_particle|arg	all=25 (0.01%)	eval=24 (0.01%)	acc=0.7574
+tv_pp+particle|arg	all=15 (0.01%)	eval=14 (0.01%)	acc=0.7381
+iv_particle|arg	all=7 (0.00%)	eval=6 (0.00%)	acc=0.6771

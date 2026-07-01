@@ -1,0 +1,93 @@
+[focus category ranges by language]
+
+iv|none
+lowest:
+  47_svo_gn_er_d_no	0.9956
+  60_svo_ng_er_d_se	0.9956
+  63_svo_ng_er_d_no	0.9957
+  43_svo_gn_er_b_no	0.9962
+  46_svo_gn_er_d_ep	0.9963
+highest:
+  77_vos_gn_er_d_pa	0.9999
+  94_vos_ng_er_d_ep	0.9999
+  78_vos_gn_er_d_ep	0.9999
+  95_vos_ng_er_d_no	0.9998
+  79_vos_gn_er_d_no	0.9998
+
+tv|arg
+lowest:
+  44_svo_gn_er_d_se	0.3298
+  24_sov_ng_er_b_se	0.3616
+  40_svo_gn_er_b_se	0.3860
+  12_sov_gn_er_d_se	0.3924
+  28_sov_ng_er_d_se	0.4008
+highest:
+  34_svo_gn_ac_b_ep	0.9618
+  50_svo_ng_ac_b_ep	0.9586
+  42_svo_gn_er_b_ep	0.9586
+  54_svo_ng_ac_d_ep	0.9533
+  33_svo_gn_ac_b_pa	0.9459
+
+iv|arg
+lowest:
+  08_sov_gn_er_b_se	0.0508
+  44_svo_gn_er_d_se	0.0508
+  00_sov_gn_ac_b_se	0.0847
+  16_sov_ng_ac_b_se	0.0847
+  20_sov_ng_ac_d_se	0.1017
+highest:
+  66_vos_gn_ac_b_ep	0.9831
+  34_svo_gn_ac_b_ep	0.9831
+  50_svo_ng_ac_b_ep	0.9492
+  46_svo_gn_er_d_ep	0.9492
+  54_svo_ng_ac_d_ep	0.9322
+
+cv|bare
+lowest:
+  68_vos_gn_ac_d_se	0.9421
+  69_vos_gn_ac_d_pa	0.9455
+  39_svo_gn_ac_d_no	0.9472
+  84_vos_ng_ac_d_se	0.9506
+  37_svo_gn_ac_d_pa	0.9549
+highest:
+  76_vos_gn_er_d_se	1.0000
+  77_vos_gn_er_d_pa	0.9983
+  74_vos_gn_er_b_ep	0.9983
+  78_vos_gn_er_d_ep	0.9974
+  92_vos_ng_er_d_se	0.9966
+
+bare-arg gap
+lowest:
+  50_svo_ng_ac_b_ep	0.0420
+  34_svo_gn_ac_b_ep	0.0428
+  54_svo_ng_ac_d_ep	0.0470
+  42_svo_gn_er_b_ep	0.0472
+  90_vos_ng_er_b_ep	0.0617
+highest:
+  44_svo_gn_er_d_se	0.6501
+  24_sov_ng_er_b_se	0.6199
+  40_svo_gn_er_b_se	0.6016
+  28_sov_ng_er_d_se	0.5935
+  12_sov_gn_er_d_se	0.5800
+
+[weakest labels by group; min_items applied]
+anc_bucket	arg	96 languages
+complexity_bucket	anc_overt_arg	96 languages
+construction_detail	cv_depth1	38 languages
+construction_detail	cv_depth2plus	26 languages
+construction_detail	tv_pp	13 languages
+construction_detail	tv_pp+particle	13 languages
+construction_detail	iv_plain	4 languages
+construction_detail	tv_indirect_obj	2 languages
+detail_x_anc	iv_plain|arg	60 languages
+detail_x_anc	tv_pp|arg	17 languages
+detail_x_anc	cv_depth2plus|arg	10 languages
+detail_x_anc	cv_depth1|arg	6 languages
+detail_x_anc	cop_n|arg	3 languages
+top_construction	cv	79 languages
+top_construction	cop_n	12 languages
+top_construction	iv	4 languages
+top_construction	tv	1 languages
+top_x_anc	iv|arg	65 languages
+top_x_anc	cv|arg	17 languages
+top_x_anc	cop_n|arg	14 languages

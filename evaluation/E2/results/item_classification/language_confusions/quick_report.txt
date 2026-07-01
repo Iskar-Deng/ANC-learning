@@ -1,0 +1,158 @@
+[type-level target distributions]
+
+[ALL=ALL]
+clause_wo:sov -> sov=0.908, vos=0.060, svo=0.032
+clause_wo:svo -> svo=0.703, vos=0.244, sov=0.053
+clause_wo:vos -> vos=0.967, svo=0.020, sov=0.013
+alignment_code:ac -> ac=0.724, er=0.276
+alignment_code:er -> er=0.891, ac=0.109
+strategy_code:ep -> pa=0.266, no=0.258, ep=0.241, se=0.235
+strategy_code:no -> ep=0.368, se=0.220, pa=0.209, no=0.203
+strategy_code:pa -> ep=0.444, se=0.203, pa=0.181, no=0.172
+strategy_code:se -> ep=0.344, pa=0.277, no=0.255, se=0.123
+anc_wo:ovs -> sov=0.703, vos=0.204, ovs=0.059, svo=0.034
+anc_wo:sov -> sov=0.411, vos=0.270, ovs=0.249, svo=0.070
+anc_wo:svo -> vos=0.445, sov=0.297, svo=0.245, ovs=0.012
+anc_wo:vos -> vos=0.467, svo=0.279, sov=0.236, ovs=0.019
+
+[top_x_anc=iv|none]
+clause_wo:sov -> vos=0.676, sov=0.162, svo=0.162
+clause_wo:svo -> vos=0.925, sov=0.037, svo=0.037
+clause_wo:vos -> vos=0.511, sov=0.244, svo=0.244
+alignment_code:ac -> ac=0.500, er=0.500
+alignment_code:er -> ac=0.500, er=0.500
+strategy_code:ep -> ep=0.250, no=0.250, pa=0.250, se=0.250
+strategy_code:no -> ep=0.250, no=0.250, pa=0.250, se=0.250
+strategy_code:pa -> ep=0.250, no=0.250, pa=0.250, se=0.250
+strategy_code:se -> ep=0.250, no=0.250, pa=0.250, se=0.250
+anc_wo:ovs -> vos=0.462, svo=0.283, sov=0.255
+anc_wo:sov -> vos=0.560, svo=0.224, sov=0.149, ovs=0.067
+anc_wo:svo -> vos=0.590, svo=0.244, sov=0.143, ovs=0.023
+anc_wo:vos -> vos=0.492, svo=0.295, sov=0.200, ovs=0.013
+
+[top_x_anc=tv|arg]
+clause_wo:sov -> sov=0.997, vos=0.003
+clause_wo:svo -> svo=0.978, vos=0.013, sov=0.009
+clause_wo:vos -> vos=0.997, sov=0.002, svo=0.001
+alignment_code:ac -> ac=0.980, er=0.020
+alignment_code:er -> er=0.984, ac=0.016
+strategy_code:ep -> pa=0.305, no=0.304, ep=0.229, se=0.162
+strategy_code:no -> ep=0.682, se=0.146, pa=0.094, no=0.078
+strategy_code:pa -> ep=0.793, se=0.120, pa=0.050, no=0.036
+strategy_code:se -> ep=0.425, pa=0.304, no=0.265, se=0.006
+anc_wo:ovs -> sov=0.540, vos=0.435, ovs=0.023, svo=0.001
+anc_wo:sov -> sov=0.533, vos=0.217, ovs=0.205, svo=0.045
+anc_wo:svo -> sov=0.455, vos=0.315, svo=0.226, ovs=0.003
+anc_wo:vos -> vos=0.577, svo=0.204, sov=0.196, ovs=0.024
+
+[top_x_anc=iv|arg]
+clause_wo:sov -> sov=0.522, svo=0.477, vos=0.001
+clause_wo:svo -> sov=0.494, svo=0.435, vos=0.071
+clause_wo:vos -> vos=0.998, sov=0.002
+alignment_code:ac -> ac=0.583, er=0.417
+alignment_code:er -> ac=0.698, er=0.302
+strategy_code:ep -> se=0.438, pa=0.390, no=0.087, ep=0.085
+strategy_code:no -> se=0.364, pa=0.299, ep=0.287, no=0.049
+strategy_code:pa -> se=0.347, ep=0.311, pa=0.292, no=0.050
+strategy_code:se -> pa=0.345, ep=0.303, no=0.257, se=0.096
+anc_wo:ovs -> sov=0.457, svo=0.349, vos=0.103, ovs=0.091
+anc_wo:sov -> sov=0.323, vos=0.295, svo=0.227, ovs=0.155
+anc_wo:svo -> sov=0.380, vos=0.366, svo=0.131, ovs=0.123
+anc_wo:vos -> vos=0.440, svo=0.299, sov=0.238, ovs=0.023
+
+[top_x_anc=cv|bare]
+clause_wo:sov -> sov=0.978, vos=0.013, svo=0.009
+clause_wo:svo -> svo=0.706, vos=0.276, sov=0.017
+clause_wo:vos -> vos=0.955, svo=0.045
+alignment_code:ac -> er=0.664, ac=0.336
+alignment_code:er -> er=0.987, ac=0.013
+strategy_code:ep -> pa=0.254, se=0.254, ep=0.246, no=0.246
+strategy_code:no -> ep=0.280, pa=0.243, se=0.243, no=0.234
+strategy_code:pa -> ep=0.281, no=0.240, pa=0.240, se=0.240
+strategy_code:se -> ep=0.253, no=0.249, pa=0.249, se=0.249
+anc_wo:ovs -> sov=0.685, ovs=0.191, vos=0.115, svo=0.009
+anc_wo:sov -> sov=0.436, vos=0.235, ovs=0.218, svo=0.110
+anc_wo:svo -> vos=0.462, svo=0.350, sov=0.184, ovs=0.004
+anc_wo:vos -> vos=0.501, svo=0.314, sov=0.175, ovs=0.010
+
+[complexity_bucket=iv_plain]
+clause_wo:sov -> vos=0.694, sov=0.153, svo=0.153
+clause_wo:svo -> vos=0.928, sov=0.036, svo=0.036
+clause_wo:vos -> vos=0.499, sov=0.250, svo=0.250
+alignment_code:ac -> ac=0.500, er=0.500
+alignment_code:er -> ac=0.500, er=0.500
+strategy_code:ep -> ep=0.250, no=0.250, pa=0.250, se=0.250
+strategy_code:no -> ep=0.250, no=0.250, pa=0.250, se=0.250
+strategy_code:pa -> ep=0.250, no=0.250, pa=0.250, se=0.250
+strategy_code:se -> ep=0.250, no=0.250, pa=0.250, se=0.250
+anc_wo:ovs -> vos=0.466, svo=0.282, sov=0.252
+anc_wo:sov -> vos=0.562, svo=0.226, sov=0.148, ovs=0.064
+anc_wo:svo -> vos=0.591, svo=0.245, sov=0.142, ovs=0.022
+anc_wo:vos -> vos=0.496, svo=0.293, sov=0.198, ovs=0.013
+
+[complexity_bucket=anc_bare]
+clause_wo:sov -> sov=0.936, vos=0.051, svo=0.013
+clause_wo:svo -> svo=0.562, vos=0.387, sov=0.051
+clause_wo:vos -> vos=0.925, svo=0.054, sov=0.021
+alignment_code:ac -> ac=0.520, er=0.480
+alignment_code:er -> er=0.883, ac=0.117
+strategy_code:ep -> pa=0.263, se=0.263, ep=0.240, no=0.234
+strategy_code:no -> ep=0.394, no=0.220, pa=0.193, se=0.193
+strategy_code:pa -> ep=0.437, pa=0.190, se=0.190, no=0.183
+strategy_code:se -> ep=0.363, pa=0.216, se=0.216, no=0.205
+anc_wo:ovs -> sov=0.586, vos=0.302, ovs=0.092, svo=0.020
+anc_wo:sov -> sov=0.403, vos=0.284, ovs=0.242, svo=0.071
+anc_wo:svo -> vos=0.429, sov=0.351, svo=0.210, ovs=0.010
+anc_wo:vos -> vos=0.495, svo=0.283, sov=0.205, ovs=0.017
+
+[complexity_bucket=anc_overt_arg]
+clause_wo:sov -> sov=0.970, svo=0.028, vos=0.002
+clause_wo:svo -> svo=0.953, sov=0.032, vos=0.016
+clause_wo:vos -> vos=0.998, sov=0.001, svo=0.001
+alignment_code:ac -> ac=0.948, er=0.052
+alignment_code:er -> er=0.951, ac=0.049
+strategy_code:ep -> pa=0.322, no=0.292, ep=0.208, se=0.178
+strategy_code:no -> ep=0.656, se=0.151, pa=0.112, no=0.081
+strategy_code:pa -> ep=0.778, se=0.123, pa=0.062, no=0.037
+strategy_code:se -> ep=0.421, pa=0.303, no=0.263, se=0.013
+anc_wo:ovs -> sov=0.523, vos=0.428, ovs=0.029, svo=0.020
+anc_wo:sov -> sov=0.506, vos=0.221, ovs=0.211, svo=0.062
+anc_wo:svo -> sov=0.462, vos=0.315, svo=0.215, ovs=0.009
+anc_wo:vos -> vos=0.582, svo=0.204, sov=0.188, ovs=0.025
+
+[anc_bucket=arg]
+clause_wo:sov -> sov=0.970, svo=0.028, vos=0.002
+clause_wo:svo -> svo=0.953, sov=0.032, vos=0.016
+clause_wo:vos -> vos=0.998, sov=0.001, svo=0.001
+alignment_code:ac -> ac=0.948, er=0.052
+alignment_code:er -> er=0.951, ac=0.049
+strategy_code:ep -> pa=0.322, no=0.292, ep=0.208, se=0.178
+strategy_code:no -> ep=0.656, se=0.151, pa=0.112, no=0.081
+strategy_code:pa -> ep=0.778, se=0.123, pa=0.062, no=0.037
+strategy_code:se -> ep=0.421, pa=0.303, no=0.263, se=0.013
+anc_wo:ovs -> sov=0.523, vos=0.428, ovs=0.029, svo=0.020
+anc_wo:sov -> sov=0.506, vos=0.221, ovs=0.211, svo=0.062
+anc_wo:svo -> sov=0.462, vos=0.315, svo=0.215, ovs=0.009
+anc_wo:vos -> vos=0.582, svo=0.204, sov=0.188, ovs=0.025
+
+[top source-language attractions, overall]
+41_svo_gn_er_b_pa	acc=0.9966	errors=756	top=42_svo_gn_er_b_ep	share=0.316
+57_svo_ng_er_b_pa	acc=0.9961	errors=869	top=58_svo_ng_er_b_ep	share=0.314
+89_vos_ng_er_b_pa	acc=0.9950	errors=1116	top=90_vos_ng_er_b_ep	share=0.246
+45_svo_gn_er_d_pa	acc=0.9946	errors=1196	top=42_svo_gn_er_b_ep	share=0.230
+73_vos_gn_er_b_pa	acc=0.9954	errors=1034	top=74_vos_gn_er_b_ep	share=0.215
+93_vos_ng_er_d_pa	acc=0.9954	errors=1025	top=94_vos_ng_er_d_ep	share=0.214
+56_svo_ng_er_b_se	acc=0.9947	errors=1188	top=58_svo_ng_er_b_ep	share=0.206
+77_vos_gn_er_d_pa	acc=0.9963	errors=824	top=78_vos_gn_er_d_ep	share=0.202
+43_svo_gn_er_b_no	acc=0.9974	errors=587	top=42_svo_gn_er_b_ep	share=0.199
+49_svo_ng_ac_b_pa	acc=0.9984	errors=359	top=50_svo_ng_ac_b_ep	share=0.197
+59_svo_ng_er_b_no	acc=0.9981	errors=432	top=58_svo_ng_er_b_ep	share=0.197
+40_svo_gn_er_b_se	acc=0.9936	errors=1426	top=42_svo_gn_er_b_ep	share=0.190
+35_svo_gn_ac_b_no	acc=0.9982	errors=394	top=34_svo_gn_ac_b_ep	share=0.182
+51_svo_ng_ac_b_no	acc=0.9987	errors=295	top=50_svo_ng_ac_b_ep	share=0.179
+47_svo_gn_er_d_no	acc=0.9948	errors=1153	top=42_svo_gn_er_b_ep	share=0.168
+75_vos_gn_er_b_no	acc=0.9970	errors=675	top=74_vos_gn_er_b_ep	share=0.164
+88_vos_ng_er_b_se	acc=0.9945	errors=1229	top=90_vos_ng_er_b_ep	share=0.164
+61_svo_ng_er_d_pa	acc=0.9944	errors=1241	top=58_svo_ng_er_b_ep	share=0.164
+44_svo_gn_er_d_se	acc=0.9916	errors=1869	top=46_svo_gn_er_d_ep	share=0.161
+33_svo_gn_ac_b_pa	acc=0.9983	errors=380	top=34_svo_gn_ac_b_ep	share=0.151
